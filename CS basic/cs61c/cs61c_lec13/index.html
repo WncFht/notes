@@ -4,38 +4,44 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="wnc" name="author"/>
-<link href="https://WncFht.github.io/notes/links/" rel="canonical"/>
-<link href=".." rel="prev"/>
-<link href="../CS%20basic/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="next"/>
-<link href="../assets/images/favicon.png" rel="icon"/>
+<link href="https://WncFht.github.io/notes/CS%20basic/cs61c/cs61c_lec13/" rel="canonical"/>
+<link href="../cs61c_lec12/" rel="prev"/>
+<link href="../cs61c_lec14/" rel="next"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.42" name="generator"/>
-<title>友链 - wnc 的咖啡馆</title>
-<link href="../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
-<link href="../css/heti.css" rel="stylesheet"/>
+<title>Cs61c lec13 - wnc 的咖啡馆</title>
+<link href="../../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link href="../../../css/heti.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css" rel="stylesheet"/>
-<link href="../css/custom.css" rel="stylesheet"/>
-<link href="../css/tasklist.css" rel="stylesheet"/>
-<link href="../css/card.css" rel="stylesheet"/>
-<link href="../css/flink.css" rel="stylesheet"/>
-<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-</head>
+<link href="../../../css/custom.css" rel="stylesheet"/>
+<link href="../../../css/tasklist.css" rel="stylesheet"/>
+<link href="../../../css/card.css" rel="stylesheet"/>
+<link href="../../../css/flink.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="indigo" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#_1">
-          跳转至
-        </a>
 </div>
 <div data-md-component="announce">
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href=".." title="wnc 的咖啡馆">
+<a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -51,7 +57,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              友链
+              Cs61c lec13
             
           </span>
 </div>
@@ -114,8 +120,8 @@
 <nav aria-label="标签" class="md-tabs" data-md-component="tabs">
 <div class="md-grid">
 <ul class="md-tabs__list">
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="..">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
           
   
     
@@ -124,8 +130,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../CS%20basic/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
           
   
     
@@ -135,7 +141,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/">
+<a class="md-tabs__link" href="../../../traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/">
           
   
     
@@ -145,7 +151,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../AI/Dive%20into%20Deep%20Learning/">
+<a class="md-tabs__link" href="../../../AI/Dive%20into%20Deep%20Learning/">
           
   
     
@@ -155,7 +161,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../Robot/pnp/">
+<a class="md-tabs__link" href="../../../Robot/pnp/">
           
   
     
@@ -165,7 +171,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../Environment/Ubuntu%E9%85%8D%E7%BD%AE/">
+<a class="md-tabs__link" href="../../../Environment/Ubuntu%E9%85%8D%E7%BD%AE/">
           
   
     
@@ -175,7 +181,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../Technology/CMake/">
+<a class="md-tabs__link" href="../../../Technology/CMake/">
           
   
     
@@ -185,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../summary/202409-10/">
+<a class="md-tabs__link" href="../../../summary/202409-10/">
           
   
     
@@ -204,7 +210,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href=".." title="wnc 的咖啡馆">
+<a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
 </a>
     wnc 的咖啡馆
@@ -220,27 +226,26 @@
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="..">
+<a class="md-nav__link" href="../../..">
 <span class="md-ellipsis">
     Home
   </span>
 </a>
-<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
             Home
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../links/">
 <span class="md-ellipsis">
     友链
   </span>
@@ -249,29 +254,29 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
 <span class="md-ellipsis">
     计算机基础
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             计算机基础
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+<a class="md-nav__link" href="../../%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
 <span class="md-ellipsis">
     深入理解计算机系统
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E7%A1%AC%E4%BB%B6%E8%BD%AF%E4%BB%B6%E6%8E%A5%E5%8F%A3/">
+<a class="md-nav__link" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E7%A1%AC%E4%BB%B6%E8%BD%AF%E4%BB%B6%E6%8E%A5%E5%8F%A3/">
 <span class="md-ellipsis">
     计算机组成与设计硬件软件接口
   </span>
@@ -292,14 +297,14 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/C%2B%2B/Accelerated%20C%2B%2B/">
+<a class="md-nav__link" href="../../C%2B%2B/Accelerated%20C%2B%2B/">
 <span class="md-ellipsis">
     Accelerated C++
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/C%2B%2B/C%2B%2B%E8%AF%AD%E6%B3%95/">
+<a class="md-nav__link" href="../../C%2B%2B/C%2B%2B%E8%AF%AD%E6%B3%95/">
 <span class="md-ellipsis">
     C++
   </span>
@@ -323,14 +328,14 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61a/COMPOSING%20PROGRAMS/">
+<a class="md-nav__link" href="../../cs61a/COMPOSING%20PROGRAMS/">
 <span class="md-ellipsis">
     COMPOSING PROGRAMS
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61a/cs61a/">
+<a class="md-nav__link" href="../../cs61a/cs61a/">
 <span class="md-ellipsis">
     Cs61a
   </span>
@@ -339,99 +344,100 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
 <span class="md-ellipsis">
     cs61c
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_5">
 <span class="md-nav__icon md-icon"></span>
             cs61c
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c/">
+<a class="md-nav__link" href="../cs61c/">
 <span class="md-ellipsis">
     Cs61c
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec06/">
+<a class="md-nav__link" href="../cs61c_lec06/">
 <span class="md-ellipsis">
     Cs61c lec06
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec07/">
+<a class="md-nav__link" href="../cs61c_lec07/">
 <span class="md-ellipsis">
     Cs61c lec07
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec08/">
+<a class="md-nav__link" href="../cs61c_lec08/">
 <span class="md-ellipsis">
     Cs61c lec08
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec09/">
+<a class="md-nav__link" href="../cs61c_lec09/">
 <span class="md-ellipsis">
     Cs61c lec09
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec10/">
+<a class="md-nav__link" href="../cs61c_lec10/">
 <span class="md-ellipsis">
     Cs61c lec10
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec11/">
+<a class="md-nav__link" href="../cs61c_lec11/">
 <span class="md-ellipsis">
     Cs61c lec11
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec12/">
+<a class="md-nav__link" href="../cs61c_lec12/">
 <span class="md-ellipsis">
     Cs61c lec12
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec13/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Cs61c lec13
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec14/">
+<a class="md-nav__link" href="../cs61c_lec14/">
 <span class="md-ellipsis">
     Cs61c lec14
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/cs61c_lec15/">
+<a class="md-nav__link" href="../cs61c_lec15/">
 <span class="md-ellipsis">
     Cs61c lec15
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/cs61c/%E8%B7%B3%E8%BD%AC%E5%92%8C%E8%BF%94%E5%9B%9E%E7%9A%84%E5%87%BD%E6%95%B0/">
+<a class="md-nav__link" href="../%E8%B7%B3%E8%BD%AC%E5%92%8C%E8%BF%94%E5%9B%9E%E7%9A%84%E5%87%BD%E6%95%B0/">
 <span class="md-ellipsis">
     跳转和返回的函数
   </span>
@@ -455,7 +461,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../CS%20basic/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/">
+<a class="md-nav__link" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/">
 <span class="md-ellipsis">
     计算机网络安全基础
   </span>
@@ -482,7 +488,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/">
+<a class="md-nav__link" href="../../../traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/">
 <span class="md-ellipsis">
     视觉SLAM十四讲
   </span>
@@ -506,14 +512,14 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../AI/Dive%20into%20Deep%20Learning/">
+<a class="md-nav__link" href="../../../AI/Dive%20into%20Deep%20Learning/">
 <span class="md-ellipsis">
     Dive into Deep Learning
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../AI/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">
+<a class="md-nav__link" href="../../../AI/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">
 <span class="md-ellipsis">
     统计学习方法
   </span>
@@ -537,21 +543,21 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Robot/pnp/">
+<a class="md-nav__link" href="../../../Robot/pnp/">
 <span class="md-ellipsis">
     pnp
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Robot/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
+<a class="md-nav__link" href="../../../Robot/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
 <span class="md-ellipsis">
     卡尔曼滤波
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Robot/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/">
+<a class="md-nav__link" href="../../../Robot/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/">
 <span class="md-ellipsis">
     相机标定
   </span>
@@ -575,21 +581,21 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Environment/Ubuntu%E9%85%8D%E7%BD%AE/">
+<a class="md-nav__link" href="../../../Environment/Ubuntu%E9%85%8D%E7%BD%AE/">
 <span class="md-ellipsis">
     Ubuntu配置
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Environment/obsidian%20%E9%85%8D%E7%BD%AE/">
+<a class="md-nav__link" href="../../../Environment/obsidian%20%E9%85%8D%E7%BD%AE/">
 <span class="md-ellipsis">
     obsidian 配置
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Environment/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+<a class="md-nav__link" href="../../../Environment/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 <span class="md-ellipsis">
     开发环境配置
   </span>
@@ -613,21 +619,21 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Technology/CMake/">
+<a class="md-nav__link" href="../../../Technology/CMake/">
 <span class="md-ellipsis">
     CMake 相关
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Technology/Makeflie/">
+<a class="md-nav__link" href="../../../Technology/Makeflie/">
 <span class="md-ellipsis">
     Makeflie
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Technology/SSH/">
+<a class="md-nav__link" href="../../../Technology/SSH/">
 <span class="md-ellipsis">
     SSH
   </span>
@@ -651,14 +657,14 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/202409-10/">
+<a class="md-nav__link" href="../../../summary/202409-10/">
 <span class="md-ellipsis">
     2024年9月10月总结
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/2024summer_vacation/">
+<a class="md-nav__link" href="../../../summary/2024summer_vacation/">
 <span class="md-ellipsis">
     2024年高三-大一暑假总结
   </span>
@@ -679,35 +685,35 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/eng_fht/">
+<a class="md-nav__link" href="../../../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/eng_fht/">
 <span class="md-ellipsis">
     英语经验分享
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/math_fht/">
+<a class="md-nav__link" href="../../../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/math_fht/">
 <span class="md-ellipsis">
     数学经验分享
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/phy_fht/">
+<a class="md-nav__link" href="../../../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/phy_fht/">
 <span class="md-ellipsis">
     物理经验分享
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/tech_fht/">
+<a class="md-nav__link" href="../../../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/tech_fht/">
 <span class="md-ellipsis">
     技术经验分享
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/%E4%B8%80%E4%BA%9B%E8%B5%84%E6%BA%90/">
+<a class="md-nav__link" href="../../../summary/%E7%BB%99%E5%AD%A6%E5%BC%9F%E5%AD%A6%E5%A6%B9%E7%9A%84%E9%AB%98%E4%B8%AD%E6%8C%87%E5%8D%97/%E4%B8%80%E4%BA%9B%E8%B5%84%E6%BA%90/">
 <span class="md-ellipsis">
     一些资源
   </span>
@@ -734,34 +740,103 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/links.md" title="edit.link.title">
+<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/CS basic/cs61c/cs61c_lec13.md" title="edit.link.title">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
 </a>
-<h1 id="_1">友链<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
-<div class="admonition abstract">
-<p class="admonition-title">Abstract</p>
-<p>朋友们！</p>
+<h1>Cs61c lec13</h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>891<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>分钟</p>
 </div>
-<div class="flink-list">
-<div class="flink-list-item">
-<a href="https://WncFht.github.io/" target="_blank" title="Wnc's Notebook">
-<div class="flink-item-icon">
-<img alt="Wnc" src="https://raw.githubusercontent.com/WncFht/picture/main/picture/微信图片_20241003201746.jpg"/>
-</div>
-<div class="flink-item-name heti-skip">Wnc 的咖啡馆</div>
-<div class="flink-item-desc">我自己！</div>
-</a>
-</div>
-<div class="flink-list-item">
-<a href="http://donotknowsjtu.top" target="_blank" title="donotknow">
-<div class="flink-item-icon">
-<img alt="donotknow" src="https://raw.githubusercontent.com/WncFht/picture/main/picture/logo.gif"/>
-</div>
-<div class="flink-item-name heti-skip">donotknow</div>
-<div class="flink-item-desc">DoNotKnow</div>
-</a>
-</div>
-</div>
+<p><code>lec13.pdf</code>文件是计算机科学<span class="heti-skip"><span class="heti-spacing"> </span>61C<span class="heti-spacing"> </span></span>春季<span class="heti-skip"><span class="heti-spacing"> </span>2020<span class="heti-spacing"> </span></span>课程的一部分，由<span class="heti-skip"><span class="heti-spacing"> </span>Kolb<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>Weaver<span class="heti-spacing"> </span></span>以及<span class="heti-skip"><span class="heti-spacing"> </span>McMahon<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>Weaver<span class="heti-spacing"> </span></span>教授，主要讲解了<span class="heti-skip"><span class="heti-spacing"> </span>RISC-V<span class="heti-spacing"> </span></span>指令集架构中单周期<span class="heti-skip"><span class="heti-spacing"> </span>(Single-Cycle)<span class="heti-spacing"> </span></span>和流水线<span class="heti-skip"><span class="heti-spacing"> </span>(Pipelined)<span class="heti-spacing"> </span></span>数据路径的设计和控制。以下是该讲座的详细内容<span><span class="heti-spacing"> </span>:</span></p>
+<ol>
+<li>
+<p><strong>单周期<span class="heti-skip"><span class="heti-spacing"> </span>RISC-V<span class="heti-spacing"> </span></span>数据路径完成</strong>:
+   - 介绍了如何完成单周期RISC-V数据路径的设计，确保每个RISC-V指令可以在一个时钟周期内执行。</p>
+</li>
+<li>
+<p><strong>控制器<span><span class="heti-spacing"> </span>(Controller)</span></strong>:
+   - 控制器是告诉通用数据路径如何执行每条指令的部分。它根据指令的类型生成相应的控制信号。</p>
+</li>
+<li>
+<p><strong>指令定时<span><span class="heti-spacing"> </span>(Instruction Timing)</span></strong>:
+   - 讨论了不同类型的指令在执行时所需的时间，包括取指(IF)、译码(ID)、执行(EX)、访存(MEM)和写回(WB)阶段。</p>
+</li>
+<li>
+<p><strong>性能度量<span><span class="heti-spacing"> </span>(Performance Measures)</span></strong>:
+   - 介绍了评估处理器性能的不同指标，如时钟频率、指令执行时间、吞吐量等。</p>
+</li>
+<li>
+<p><strong>流水线介绍<span><span class="heti-spacing"> </span>(Introduction to Pipelining)</span></strong>:
+   - 讲解了流水线的概念，以及如何通过流水线提高处理器的指令吞吐量。</p>
+</li>
+<li>
+<p><strong>流水线<span class="heti-skip"><span class="heti-spacing"> </span>RISC-V<span class="heti-spacing"> </span></span>数据路径<span><span class="heti-spacing"> </span>(Pipelined RISC-V Datapath)</span></strong>:
+   - 详细介绍了流水线RISC-V数据路径的设计，包括流水线的各个阶段和它们如何协同工作。</p>
+</li>
+<li>
+<p><strong>实现<span class="heti-skip"><span class="heti-spacing"> </span>jal<span class="heti-spacing"> </span></span>指令</strong>:
+   - 特别介绍了jal（跳转并链接）指令的实现，包括如何在寄存器中保存返回地址，以及如何设置程序计数器以实现跳转。</p>
+</li>
+<li>
+<p><strong>数据路径添加<span><span class="heti-spacing"> </span>jal</span></strong>:
+   - 展示了如何在数据路径中添加对jal指令的支持，包括所需的控制信号和数据路径的变化。</p>
+</li>
+<li>
+<p><strong>单周期<span class="heti-skip"><span class="heti-spacing"> </span>RV32I<span class="heti-spacing"> </span></span>数据路径回顾</strong>:
+   - 回顾了单周期RV32I指令集架构的数据路径设计，包括ALU、寄存器、内存等组件。</p>
+</li>
+<li>
+<p><strong>通用数据路径</strong>:
+   - 讨论了通用数据路径的概念，即数据路径能够执行所有RISC-V指令，以及它是如何通过多路选择器实现不同指令的执行。</p>
+</li>
+<li>
+<p><strong>控制逻辑</strong>:
+   - 介绍了控制逻辑的设计，包括如何使用真值表来确定每条指令所需的控制信号。</p>
+</li>
+<li>
+<p><strong>控制器实现选项</strong>:</p>
+<ul>
+<li>讨论了控制器的两种实现方式<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>只读存储器<span class="heti-skip"><span class="heti-spacing"> </span>(ROM)<span class="heti-spacing"> </span></span>和组合逻辑<span><span class="heti-spacing"> </span>(Combinatorial Logic)</span>。</li>
+</ul>
+</li>
+<li>
+<p><strong><span>ROM<span class="heti-spacing"> </span></span>控制器实现</strong>:</p>
+<ul>
+<li>展示了如何使用<span class="heti-skip"><span class="heti-spacing"> </span>ROM<span class="heti-spacing"> </span></span>来实现控制器，以及如何通过地址解码来生成控制信号。</li>
+</ul>
+</li>
+<li>
+<p><strong>指令定时</strong>:</p>
+<ul>
+<li>分析了不同指令在执行时的典型最坏情况时间，以及如何通过流水线来提高时钟频率。</li>
+</ul>
+</li>
+<li>
+<p><strong>性能度量</strong>:</p>
+<ul>
+<li>进一步讨论了性能度量的概念，包括如何理解指令执行时间、吞吐量和能效。</li>
+</ul>
+</li>
+<li>
+<p><strong>运输类比</strong>:</p>
+<ul>
+<li>使用赛车和公交车的类比来解释指令执行时间（延迟<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>、指令执行总量（吞吐量）和每条指令的能耗（能效<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+</ul>
+</li>
+<li>
+<p><strong>处理器性能的“铁律”</strong>:</p>
+<ul>
+<li>讨论了程序执行时间由指令数、每条指令的时钟周期数和每个时钟周期的时间共同决定的原理。</li>
+</ul>
+</li>
+<li>
+<p><strong>结束语</strong>:</p>
+<ul>
+<li>总结了数据路径的设计、控制器的作用、指令定时的重要性以及流水线如何提高性能。</li>
+</ul>
+</li>
+</ol>
+<p>这份讲座幻灯片为理解<span class="heti-skip"><span class="heti-spacing"> </span>RISC-V<span class="heti-spacing"> </span></span>架构中单周期和流水线数据路径的设计提供了深入的分析，涵盖了从指令执行的基础知识到高级性能优化的多个方面。</p>
 <div id="__comments"></div>
 <!-- <h3>颜色主题调整</h3>
     <div class="tx-switch">
@@ -868,10 +943,12 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.action.view", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
-<script src="../js/katex.js"></script>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.action.view", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script src="../../../js/katex.js"></script>
 <script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
 <script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
