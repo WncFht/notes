@@ -851,19 +851,23 @@
 </li>
 <li>期中考试结束</li>
 <li><span>RM<span class="heti-spacing"> </span></span>校内赛造车，实现底盘运动（麦轮解算代码<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>底盘安装<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。迭代了三版保险杠。通过中期检查<heti-adjacent class="heti-adjacent-half">。</heti-adjacent>（这个真废时间，不过学了电控和<span><span class="heti-spacing"> </span>solidwork</span>）</li>
-<li><span>RM<span class="heti-spacing"> </span></span>项目</li>
-<li>搜索了<span class="heti-skip"><span class="heti-spacing"> </span>6Dof<span class="heti-spacing"> </span></span>识别相关模型。排除了所有基于<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的模型（参数太多，算力需求大，不能在<span class="heti-skip"><span class="heti-spacing"> </span>Orin NX<span class="heti-spacing"> </span></span>上在<span class="heti-skip"><span class="heti-spacing"> </span>1s<span class="heti-spacing"> </span></span>内跑完<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。<ul>
+<li><span>RM<span class="heti-spacing"> </span></span>项目<ul>
+<li>搜索了<span class="heti-skip"><span class="heti-spacing"> </span>6Dof<span class="heti-spacing"> </span></span>识别相关模型。排除了所有基于<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的模型（参数太多，算力需求大，不能在<span class="heti-skip"><span class="heti-spacing"> </span>Orin NX<span class="heti-spacing"> </span></span>上在<span class="heti-skip"><span class="heti-spacing"> </span>1s<span class="heti-spacing"> </span></span>内跑完<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
 <li>最终大概选择用<span><span class="heti-spacing"> </span>FFB6D pose</span>，他是基于李飞飞之前的<span class="heti-skip"><span class="heti-spacing"> </span>DenseFusion<span class="heti-spacing"> </span></span>改进的。用<span class="heti-skip"><span class="heti-spacing"> </span>RGB<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>D<span class="heti-spacing"> </span></span>的信息进行特征识别<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>融合<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>投票的模型。</li>
 <li>大致尝试部署了一下，但是环境出了很多问题。</li>
 </ul>
 </li>
-<li>上周<strong>功率识别</strong>的任务完成，最终用了预处理<span><span class="heti-spacing"> </span>+ tesseract OCR</span>，但是对红色数字的识别不是很好（因为视频本身就很模糊<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。顺带去学了一下<span><span class="heti-spacing"> </span>PR</span> 。</li>
+<li>上周<strong>功率识别</strong>的任务完成，最终用了预处理<span><span class="heti-spacing"> </span>+ tesseract OCR</span>，但是对红色数字的识别不是很好（因为视频本身就很模糊<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。顺带去学了一下<span><span class="heti-spacing"> </span>PR</span> 。<ul>
 <li>代码在<a href="https://github.com/WncFht/Power-OCR-Video-Analyzer">这里</a></li>
 </ul>
 </li>
+</ul>
+</li>
 <li>计划<ul>
-<li>复现<span><span class="heti-spacing"> </span>FFB6D pose</span> ，制作数据集。</li>
+<li>复现<span><span class="heti-spacing"> </span>FFB6D pose</span> ，制作数据集。<ul>
 <li>顺带学一下<span class="heti-skip"><span class="heti-spacing"> </span>docker<span class="heti-spacing"> </span></span>啥的。</li>
+</ul>
+</li>
 <li>做完<span class="heti-skip"><span class="heti-spacing"> </span>Assignment 2,<span class="heti-spacing"> </span></span>上周的<span class="heti-skip"><span class="heti-spacing"> </span>flag<span class="heti-spacing"> </span></span>倒了<span><span class="heti-spacing"> </span>:(</span> （真没时间了）</li>
 <li><span>RM<span class="heti-spacing"> </span></span>校内赛，周三之前画完图，给厂家加工。实现捡球<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>扔球的功能。</li>
 <li>完善功率识别的任务，传统方法似乎精度不太够用。</li>
