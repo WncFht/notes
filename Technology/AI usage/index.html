@@ -1,0 +1,2076 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="wnc" name="author"/>
+<link href="https://WncFht.github.io/notes/Technology/AI%20usage/" rel="canonical"/>
+<link href="../../Environment/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="prev"/>
+<link href="../CMake/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.47" name="generator"/>
+<title>AI 使用 - wnc 的咖啡馆</title>
+<link href="../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link href="../../css/heti.css" rel="stylesheet"/>
+<link href="https://cdn.tonycrane.cc/utils/katex.min.css" rel="stylesheet"/>
+<link href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css" rel="stylesheet"/>
+<link href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css" rel="stylesheet"/>
+<link href="../../css/custom.css" rel="stylesheet"/>
+<link href="../../css/tasklist.css" rel="stylesheet"/>
+<link href="../../css/card.css" rel="stylesheet"/>
+<link href="../../css/flink.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="indigo" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#ai">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            wnc 的咖啡馆
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              AI 使用
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="切换至夜间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换至夜间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+<input aria-label="切换至日间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="切换至日间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    wnc's café
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+          
+  
+    
+  
+  Home
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../CS%20basic/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+          
+  
+    
+  
+  计算机基础
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/">
+          
+  
+    
+  
+  传统计算机视觉
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../AI/Dive%20into%20Deep%20Learning/">
+          
+  
+    
+  
+  AI
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../Robot/pnp/">
+          
+  
+    
+  
+  Robot
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../Environment/Ubuntu%E9%85%8D%E7%BD%AE/">
+          
+  
+    
+  
+  环境配置
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="./">
+          
+  
+    
+  
+  一些工具
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../summary/202409-10/">
+          
+  
+    
+  
+  总结
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+</a>
+    wnc 的咖啡馆
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+</div>
+<div class="md-source__repository">
+    wnc's café
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    Home
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../links/">
+<span class="md-ellipsis">
+    友链
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    计算机基础
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            计算机基础
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+<span class="md-ellipsis">
+    深入理解计算机系统
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E7%A1%AC%E4%BB%B6%E8%BD%AF%E4%BB%B6%E6%8E%A5%E5%8F%A3/">
+<span class="md-ellipsis">
+    计算机组成与设计硬件软件接口
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    C++
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            C++
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/C%2B%2B/Accelerated%20C%2B%2B/">
+<span class="md-ellipsis">
+    Accelerated C++
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/C%2B%2B/C%2B%2B%E8%AF%AD%E6%B3%95/">
+<span class="md-ellipsis">
+    C++
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    cs61a
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            cs61a
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61a/COMPOSING%20PROGRAMS/">
+<span class="md-ellipsis">
+    COMPOSING PROGRAMS
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61a/cs61a/">
+<span class="md-ellipsis">
+    Cs61a
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+<span class="md-ellipsis">
+    cs61c
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_5">
+<span class="md-nav__icon md-icon"></span>
+            cs61c
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c/">
+<span class="md-ellipsis">
+    Cs61c
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec06/">
+<span class="md-ellipsis">
+    Cs61c lec06
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec07/">
+<span class="md-ellipsis">
+    Cs61c lec07
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec08/">
+<span class="md-ellipsis">
+    Cs61c lec08
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec09/">
+<span class="md-ellipsis">
+    Cs61c lec09
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec10/">
+<span class="md-ellipsis">
+    Cs61c lec10
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec11/">
+<span class="md-ellipsis">
+    Cs61c lec11
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec12/">
+<span class="md-ellipsis">
+    Cs61c lec12
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec13/">
+<span class="md-ellipsis">
+    Cs61c lec13
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec14/">
+<span class="md-ellipsis">
+    Cs61c lec14
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/cs61c_lec15/">
+<span class="md-ellipsis">
+    Cs61c lec15
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/cs61c/%E8%B7%B3%E8%BD%AC%E5%92%8C%E8%BF%94%E5%9B%9E%E7%9A%84%E5%87%BD%E6%95%B0/">
+<span class="md-ellipsis">
+    跳转和返回的函数
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+<span class="md-ellipsis">
+    计算机网络
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_6">
+<span class="md-nav__icon md-icon"></span>
+            计算机网络
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../CS%20basic/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/">
+<span class="md-ellipsis">
+    计算机网络安全基础
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    传统计算机视觉
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            传统计算机视觉
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/">
+<span class="md-ellipsis">
+    视觉SLAM十四讲
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../AI/">
+<span class="md-ellipsis">
+    AI
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/Dive%20into%20Deep%20Learning/">
+<span class="md-ellipsis">
+    Dive into Deep Learning
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">
+<span class="md-ellipsis">
+    统计学习方法
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+<span class="md-ellipsis">
+    CS231n
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+            CS231n
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/CS231n/Image%20Classification-Data-driven%20Approach%2C%20k-Nearest%20Neighbor%2C%20train_val_test%20splits/">
+<span class="md-ellipsis">
+    Image Classification-Data-driven Approach, k-Nearest Neighbor, train_val_test splits
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/CS231n/Linear%20classification-Support%20Vector%20Machine%2C%20Softmax/">
+<span class="md-ellipsis">
+    Linear classification-Support Vector Machine, Softmax
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/CS231n/Python%20Numpy/">
+<span class="md-ellipsis">
+    Python Numpy
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+<span class="md-ellipsis">
+    EECS 498-007
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_5">
+<span class="md-nav__icon md-icon"></span>
+            EECS 498-007
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/EECS%20498-007/KNN/">
+<span class="md-ellipsis">
+    KNN
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/EECS%20498-007/linear_classifer/">
+<span class="md-ellipsis">
+    Linear classifer
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/EECS%20498-007/pytorch%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+<span class="md-ellipsis">
+    pytorch 的基本使用
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+<span class="md-ellipsis">
+    ffb6d
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_6">
+<span class="md-nav__icon md-icon"></span>
+            ffb6d
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/ffb6d/ffb6d-docker/">
+<span class="md-ellipsis">
+    Docker从入门到实践：以FFB6D环境配置为例
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../AI/ffb6d/ffb6d/">
+<span class="md-ellipsis">
+    FFB6D环境配置指南：原生系统安装
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    Robot
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            Robot
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Robot/pnp/">
+<span class="md-ellipsis">
+    pnp
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Robot/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
+<span class="md-ellipsis">
+    卡尔曼滤波
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Robot/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/">
+<span class="md-ellipsis">
+    相机标定
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    环境配置
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            环境配置
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Environment/Ubuntu%E9%85%8D%E7%BD%AE/">
+<span class="md-ellipsis">
+    Ubuntu配置
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Environment/obsidian%20%E9%85%8D%E7%BD%AE/">
+<span class="md-ellipsis">
+    obsidian 配置
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Environment/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+<span class="md-ellipsis">
+    开发环境配置
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+<span class="md-ellipsis">
+    一些工具
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            一些工具
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    AI 使用
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    AI 使用
+  </span>
+</a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-prompt">
+<span class="md-ellipsis">
+      1 如何写一个 Prompt
+    </span>
+</a>
+<nav aria-label="1 如何写一个 Prompt" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-prompt">
+<span class="md-ellipsis">
+      1.1 Prompt 的基本原则
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12">
+<span class="md-ellipsis">
+      1.2 高级技巧
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13">
+<span class="md-ellipsis">
+      1.3 优化与迭代
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#14">
+<span class="md-ellipsis">
+      1.4 实用案例
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#15">
+<span class="md-ellipsis">
+      1.5 我曾经用法
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-prompt">
+<span class="md-ellipsis">
+      2 常用的 Prompt
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../CMake/">
+<span class="md-ellipsis">
+    CMake 相关
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Makeflie/">
+<span class="md-ellipsis">
+    Makeflie
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../SSH/">
+<span class="md-ellipsis">
+    SSH配置指南
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Tabby%20%2B%20Zsh/">
+<span class="md-ellipsis">
+    Tabby + Zsh 配置指南
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../chezmoi/">
+<span class="md-ellipsis">
+    用 chezmoi 实现跨设备同步配置
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../mkdocs%20material/">
+<span class="md-ellipsis">
+    mkdocs material 超全配置
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../prompt/">
+<span class="md-ellipsis">
+    常用 prompt 记录
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-ellipsis">
+    总结
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+            总结
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/202409-10/">
+<span class="md-ellipsis">
+    2024 年 9 月 10 月总结
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/20241028-1103/">
+<span class="md-ellipsis">
+    2024 年第 44 周周结
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/20241104-1110/">
+<span class="md-ellipsis">
+    2024 年第 45 周周结
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/20241111-1117/">
+<span class="md-ellipsis">
+    2024 年第 46 周周结
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/20241118-1124/">
+<span class="md-ellipsis">
+    2024 年第 47 周周结
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/20241125-1201/">
+<span class="md-ellipsis">
+    2024 年第 48 周周结
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/2024summer_vacation/">
+<span class="md-ellipsis">
+    2024年高三-大一暑假总结
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_8_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="0">
+<span class="md-ellipsis">
+    high school
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_8_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_8_8">
+<span class="md-nav__icon md-icon"></span>
+            high school
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/high%20school/eng_fht/">
+<span class="md-ellipsis">
+    英语经验分享
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/high%20school/math_fht/">
+<span class="md-ellipsis">
+    数学经验分享
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/high%20school/phy_fht/">
+<span class="md-ellipsis">
+    物理经验分享
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/high%20school/tech_fht/">
+<span class="md-ellipsis">
+    技术经验分享
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../summary/high%20school/%E4%B8%80%E4%BA%9B%E8%B5%84%E6%BA%90/">
+<span class="md-ellipsis">
+    一些资源
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-prompt">
+<span class="md-ellipsis">
+      1 如何写一个 Prompt
+    </span>
+</a>
+<nav aria-label="1 如何写一个 Prompt" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-prompt">
+<span class="md-ellipsis">
+      1.1 Prompt 的基本原则
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12">
+<span class="md-ellipsis">
+      1.2 高级技巧
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13">
+<span class="md-ellipsis">
+      1.3 优化与迭代
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#14">
+<span class="md-ellipsis">
+      1.4 实用案例
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#15">
+<span class="md-ellipsis">
+      1.5 我曾经用法
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-prompt">
+<span class="md-ellipsis">
+      2 常用的 Prompt
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Technology/AI usage.md" title="edit.link.title">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+</a>
+<h1 id="ai"><span>AI<span class="heti-spacing"> </span></span>使用<a class="headerlink" href="#ai" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>3315<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>157<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>13<span class="heti-spacing"> </span></span>分钟</p>
+</div>
+<h2 id="1-prompt">1 <strong>如何写一个<span><span class="heti-spacing"> </span>Prompt</span></strong><a class="headerlink" href="#1-prompt" title="Permanent link">¶</a></h2>
+<h3 id="11-prompt">1.1 <strong><span>Prompt<span class="heti-spacing"> </span></span>的基本原则</strong><a class="headerlink" href="#11-prompt" title="Permanent link">¶</a></h3>
+<h4 id="111">1.1.1 <strong>明确需求</strong><a class="headerlink" href="#111" title="Permanent link">¶</a></h4>
+<h5 id="1111">1.1.1.1 <strong>什么是清晰的指令？</strong><a class="headerlink" href="#1111" title="Permanent link">¶</a></h5>
+<p>清晰的指令是指能够准确传达任务意图的描述，避免歧义，让模型理解并生成期望的结果。<br/>
+它的核心在于具体化需求，通过明确的语言和结构化的描述，让任务目标易于被模型解析。</p>
+<h5 id="1112">1.1.1.2 <strong>如何表达需求无歧义？</strong><a class="headerlink" href="#1112" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>使用具体的语言</strong><br/>
+   例如，不要简单说“生成摘要”，而是明确内容形式和要求： </li>
+</ol>
+<ul>
+<li>❌ 不清晰：总结一下这篇文章。  </li>
+<li>✅ 清晰：用通俗易懂的语言将以下文章总结为<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>点，并以<span class="heti-skip"><span class="heti-spacing"> </span>Markdown<span class="heti-spacing"> </span></span>列表的形式输出。</li>
+</ul>
+<ol start="2">
+<li><strong>设定清晰的边界和限制</strong><br/>
+   给出明确的范围，避免模型输出无关信息。  </li>
+</ol>
+<ul>
+<li>❌ 不清晰：解释<span><span class="heti-spacing"> </span>AI</span>。  </li>
+<li>✅ 清晰：请用<span class="heti-skip"><span class="heti-spacing"> </span>2-3<span class="heti-spacing"> </span></span>句话向高中生解释什么是<span><span class="heti-spacing"> </span>AI</span>，避免使用过于专业的术语。</li>
+</ul>
+<ol start="3">
+<li><strong>使用任务指向性强的词语</strong><br/>
+   强调任务的核心，例如“详细说明”“以简洁语言总结”“列出具体步骤”等。</li>
+</ol>
+<h5 id="1113">1.1.1.3 <strong>示例：清晰与模糊指令的对比</strong><a class="headerlink" href="#1113" title="Permanent link">¶</a></h5>
+<table>
+<thead>
+<tr>
+<th><strong>模糊指令</strong></th>
+<th><strong>清晰指令</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总结会议记录。</td>
+<td>用一个段落总结会议记录，并列出发言人及其建议的行动项目，以<span class="heti-skip"><span class="heti-spacing"> </span>Markdown<span class="heti-spacing"> </span></span>列表格式输出。</td>
+</tr>
+<tr>
+<td>解释大数据。</td>
+<td>用三句话向中学生解释大数据的定义及作用，并提供一个与日常生活相关的例子。</td>
+</tr>
+<tr>
+<td>生成一份旅行计划。</td>
+<td>请为北京三日游生成一份详细的旅行计划，包含每天的行程、景点介绍、预算范围和推荐美食。</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h4 id="112">1.1.2 <strong>简洁与精炼</strong><a class="headerlink" href="#112" title="Permanent link">¶</a></h4>
+<h5 id="1121">1.1.2.1 <strong>避免冗长与无效信息的方法</strong><a class="headerlink" href="#1121" title="Permanent link">¶</a></h5>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>Prompt<span class="heti-spacing"> </span></span>中，冗长的描述会增加模型的理解难度，同时可能引入无关内容。以下技巧可以帮助优化表达：  </p>
+<ol>
+<li><strong>删减无用信息</strong>：去掉不必要的修饰词或重复内容。  </li>
+<li>
+<ul>
+<li>❌ 冗长：在用来写这篇文章的摘要时，你可以参考以下这些文章的内容……  </li>
+<li>✅ 精炼：为以下文章写摘要。  </li>
+</ul>
+</li>
+<li><strong>直接切入重点</strong>：优先描述任务的核心需求，避免背景信息过多干扰任务。  </li>
+<li><strong>层级分明</strong>：使用结构化格式，避免将多条指令混为一谈。</li>
+</ol>
+<h5 id="1122">1.1.2.2 <strong>“奥卡姆剃刀”原则的实际应用</strong><a class="headerlink" href="#1122" title="Permanent link">¶</a></h5>
+<p>奥卡姆剃刀原则强调“如无必要，勿增实体”，在<span class="heti-skip"><span class="heti-spacing"> </span>Prompt<span class="heti-spacing"> </span></span>中，表现为尽量减少不必要的约束和附加要求。  </p>
+<ul>
+<li><strong>示例</strong>：  <ul>
+<li>不必要的约束：<br/>
+    请用 500 字左右总结以下文本，不要提到与文本无关的内容，也不要加入个人观点，只需简洁概括主要观点……  </li>
+<li>优化后：<br/>
+    请用 500 字总结以下文本的主要观点，语言简洁明了。</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="113">1.1.3 <strong>语气与风格</strong><a class="headerlink" href="#113" title="Permanent link">¶</a></h4>
+<h5 id="1131">1.1.3.1 <strong>使用正式、礼貌的语言提高生成准确性</strong><a class="headerlink" href="#1131" title="Permanent link">¶</a></h5>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>Prompt<span class="heti-spacing"> </span></span>中，语气和语言风格会影响模型的生成质量。  </p>
+<ul>
+<li><strong>正式语言</strong>通常更符合大模型的训练数据分布，有助于生成更严谨的内容。  </li>
+<li>示例：  <ul>
+<li><strong>正式</strong>：请用通俗易懂的语言解释以下技术概念。  </li>
+<li><strong>非正式</strong>：帮我把这段话简单说一下。</li>
+</ul>
+</li>
+</ul>
+<h5 id="1132">1.1.3.2 <strong>针对不同任务调整语气的案例</strong><a class="headerlink" href="#1132" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>创意任务</strong>：<br/>
+   指令应更具感染力，以激发模型生成更具想象力的内容。 </li>
+</ol>
+<ul>
+<li>示例：  <ul>
+<li>你是一位小红书爆款文案专家，请为年轻人设计一个具有吸引力的青岛旅游攻略。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>教育任务</strong>：<br/>
+   语气需要循循善诱，内容结构清晰明了。  </li>
+</ol>
+<ul>
+<li>示例：  <ul>
+<li>你是一名高中数学老师，请用通俗易懂的方式讲解二次函数的概念。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>专业任务</strong>：<br/>
+   语气应严谨，信息需精确，避免主观性表达。 </li>
+</ol>
+<ul>
+<li>示例：  <ul>
+<li>请从定义、特性和应用三个方面详细说明区块链技术，并提供相关的行业实例。</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h3 id="12">1.2 <strong>高级技巧</strong><a class="headerlink" href="#12" title="Permanent link">¶</a></h3>
+<h4 id="121">1.2.1 <strong>提供上下文与示例</strong><a class="headerlink" href="#121" title="Permanent link">¶</a></h4>
+<h5 id="1211-few-shot-prompt">1.2.1.1 <strong>使用<span class="heti-skip"><span class="heti-spacing"> </span>Few-shot Prompt<span class="heti-spacing"> </span></span>提供有效示例</strong><a class="headerlink" href="#1211-few-shot-prompt" title="Permanent link">¶</a></h5>
+<p><span>Few-shot Prompt<span class="heti-spacing"> </span></span>是指在提示语中提供示例以引导模型生成类似的内容。这种方法特别适合复杂任务或需求不明确的场景。</p>
+<ol>
+<li><strong>为何使用<span><span class="heti-spacing"> </span>Few-shot Prompt</span>？</strong></li>
+</ol>
+<ul>
+<li><strong>降低模型的自由发挥度</strong>：通过提供示例，限制模型的输出风格和结构。</li>
+<li><strong>提升任务准确性</strong>：通过示例传递明确的标准，减少偏差。</li>
+<li><strong>扩展模型的适应能力</strong>：帮助模型适应一些训练数据中可能未见过的场景。</li>
+</ul>
+<ol start="2">
+<li><strong>设计<span class="heti-skip"><span class="heti-spacing"> </span>Few-shot Prompt<span class="heti-spacing"> </span></span>的关键点</strong></li>
+</ol>
+<ul>
+<li><strong>示例数量</strong>：通常<span class="heti-skip"><span class="heti-spacing"> </span>2-5<span class="heti-spacing"> </span></span>个示例即可，过多可能导致提示过长，增加噪声。</li>
+<li><strong>覆盖不同难度的案例</strong>：包括简单场景（easy case<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>、复杂场景（hard case）以及边缘情况（corner case<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+<li><strong>示例质量</strong>：确保提供的示例与预期任务高度相关。</li>
+</ul>
+<ol start="3">
+<li><strong>示例</strong>：<br/>
+<strong>任务</strong>：判断输入是否属于知识问答类问题。  </li>
+</ol>
+<p><strong>Few-shot Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>请判断以下问题是否属于知识问答类问题。
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>问题：世界上最高的山是什么？ # easy case，属于客观知识问答
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>答案：是
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>问题：为什么水能传导电？ # hard case，属于科学原理问答
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>答案：是
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>问题：帮我写一篇旅行日记。 # easy case，属于创作类任务
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>答案：否
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>问题：什么是嵌套字典？ # hard case，属于技术知识问答
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>答案：是
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>问题：{输入}
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>答案：
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h5 id="1212">1.2.1.2 <strong>参考文本的使用与引用技巧</strong><a class="headerlink" href="#1212" title="Permanent link">¶</a></h5>
+<p>参考文本能为模型提供明确的知识基础，尤其在需要可靠性和准确性的任务中效果显著。</p>
+<ol>
+<li><strong>让模型使用参考文本作答</strong></li>
+</ol>
+<ul>
+<li>给模型明确指令，只允许依据参考文本生成答案。</li>
+<li>
+<p><strong>示例</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>使用以下由三引号分隔的文本回答问题。如果在文本中找不到答案，请回复“信息不足”。
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>"""
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>大熊猫主要分布在中国四川、陕西和甘肃等地。它们以竹子为主食。
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>"""
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>问题：大熊猫的分布范围有哪些？
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>引用参考文本中的段落</strong></li>
+</ol>
+<ul>
+<li>要求模型在回答中标注引用来源，增加答案的可验证性。</li>
+<li>
+<p><strong>示例</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>您将获得一段文档和一个问题。仅使用文档回答问题，并标注引用段落。如果答案缺乏信息，请回复“无法回答”。
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>文档：
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>"""
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>机器学习是通过数据训练模型的一种方法。深度学习是机器学习的一个分支，以多层神经网络为核心。
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>"""
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>问题：什么是深度学习？
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>回答：
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>深度学习是机器学习的一个分支，以多层神经网络为核心（引用：第1段）。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<hr/>
+<h4 id="122">1.2.2 <strong>任务分解</strong><a class="headerlink" href="#122" title="Permanent link">¶</a></h4>
+<h5 id="1221">1.2.2.1 <strong>将复杂任务拆解为子任务的最佳实践</strong><a class="headerlink" href="#1221" title="Permanent link">¶</a></h5>
+<p>复杂任务可能涉及多个子目标，将其分解为清晰的步骤可以提高模型的表现。</p>
+<ol>
+<li><strong>为何分解任务？</strong></li>
+</ol>
+<ul>
+<li>降低模型理解难度。</li>
+<li>更容易对生成结果进行验证。</li>
+<li>增强<span class="heti-skip"><span class="heti-spacing"> </span>Prompt<span class="heti-spacing"> </span></span>的复用性。</li>
+</ul>
+<ol start="2">
+<li><strong>任务分解方法</strong></li>
+</ol>
+<ul>
+<li><strong>明确每一步的目标</strong>：逐层剖析问题，将复杂任务分解为简单子任务。</li>
+<li><strong>任务依赖管理</strong>：确保每一步为下一步提供必要的输入。</li>
+</ul>
+<ol start="3">
+<li><strong>示例</strong>： </li>
+</ol>
+<p><strong>任务</strong>：生成会议纪要。  </p>
+<p><strong>任务分解<span><span class="heti-spacing"> </span>Prompt</span></strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>请按照以下步骤完成任务：
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>1. 阅读以下会议记录文本。
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>2. 提取发言人及其观点。
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>3. 用 Markdown 列表格式总结会议的主要结论。
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>文本：{会议记录}
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h5 id="1222-chain-of-thought-cot">1.2.2.2 <strong>连续生成任务的链式思考（Chain of Thought, CoT）</strong><a class="headerlink" href="#1222-chain-of-thought-cot" title="Permanent link">¶</a></h5>
+<p><span>CoT<span class="heti-spacing"> </span></span>是一种逐步思考的提示策略，适用于需要逻辑推理的任务。</p>
+<ol>
+<li><strong>为何使用<span><span class="heti-spacing"> </span>CoT</span>？</strong></li>
+</ol>
+<ul>
+<li>帮助模型将复杂任务分解为一系列易于解决的小任务。</li>
+<li>提升逻辑推理能力，尤其适用于数学、推理或复杂问题。</li>
+</ul>
+<ol start="2">
+<li><strong>设计<span class="heti-skip"><span class="heti-spacing"> </span>CoT Prompt<span class="heti-spacing"> </span></span>的关键</strong></li>
+</ol>
+<ul>
+<li>指导模型逐步完成任务。</li>
+<li>强调“思考过程”并输出步骤。</li>
+</ul>
+<ol start="3">
+<li><strong>示例</strong>：  </li>
+</ol>
+<p><strong>任务</strong>：计算<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((1362+5145)*145-(1517*42+24)\)</span><span class="heti-spacing"> </span></span>的结果。  </p>
+<p><strong>CoT Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>请帮我计算以下问题的结果：$(1362+5145)*145-(1517*42+24)$。
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>展示你的每一步计算过程，并确保计算正确。
+</code></pre></div></td></tr></table></div>
+<p><strong>模型生成示例</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>第一步：计算 (1362+5145)，结果为 6507。
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>第二步：计算 6507*145，结果为 943515。
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>第三步：计算 1517*42，结果为 63654。
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>第四步：计算 63654+24，结果为 63678。
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>第五步：计算 943515-63678，结果为 879837。
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>答案：879837。
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h5 id="1223">1.2.2.3 <strong>示例：多步骤任务的分解与优化</strong><a class="headerlink" href="#1223" title="Permanent link">¶</a></h5>
+<p><strong>任务</strong>：撰写一份产品设计文档，包括需求、功能列表、设计方案。  </p>
+<p><strong>多步骤<span><span class="heti-spacing"> </span>Prompt</span></strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>请按照以下步骤撰写一份产品设计文档：
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>1. 总结以下文本的核心需求。
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>2. 根据需求生成功能列表。
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>3. 为每个功能设计一个详细的方案。
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>文本：{输入}
+</code></pre></div></td></tr></table></div>
+<p><strong>模型输出示例</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>核心需求：用户希望通过应用快速获取附近的餐饮推荐。
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>功能列表：
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>- 餐饮推荐系统
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>- 用户偏好设置
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>- 地图导航
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>设计方案：
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>- 餐饮推荐系统：根据用户位置和偏好实时推荐附近的餐馆。
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>- 用户偏好设置：允许用户自定义口味、预算和菜系。
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>- 地图导航：提供餐馆的实时位置和最佳路线。
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h4 id="123">1.2.3 <strong>角色扮演</strong><a class="headerlink" href="#123" title="Permanent link">¶</a></h4>
+<h5 id="1231">1.2.3.1 <strong>指定模型身份的优势</strong><a class="headerlink" href="#1231" title="Permanent link">¶</a></h5>
+<p>通过为模型设置角色，可以帮助其以更适合任务的方式生成内容。模型角色的指定类似于设定语境，能够更精准地控制生成内容的语言风格、细节和专业性。</p>
+<ol>
+<li><strong>为什么需要角色扮演？</strong></li>
+</ol>
+<ul>
+<li><strong>提高生成准确性</strong>：指定角色后，模型的回答会更聚焦于该角色的知识领域。</li>
+<li><strong>增强输出风格的一致性</strong>：根据角色的设定，输出会符合预期的专业性或创意性。</li>
+</ul>
+<ol start="2">
+<li><strong>示例</strong></li>
+</ol>
+<ul>
+<li>
+<p><strong>任务</strong>：撰写旅游攻略。  </p>
+<p><strong>Prompt</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>你是一位擅长撰写旅游文案的小红书内容创作者，请撰写一份关于青岛三日游的攻略，强调景点推荐、美食分享和摄影技巧。
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><strong>任务</strong>：解释编程概念。  </p>
+<p><strong>Prompt</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>你是一名经验丰富的 Python 开发者，请用通俗易懂的语言解释以下代码的功能，并提供改进建议：
+</code></pre></div></td></tr></table></div>
+<p><strong>代码示例</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">nested_dict</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">nested_dict</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="3">
+<li><strong>多角色结合</strong></li>
+</ol>
+<ul>
+<li>在复杂任务中，多个角色可以分担不同部分的生成任务。</li>
+<li>
+<p><strong>示例</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>你是一位数据科学家，请分析以下数据的模式；然后作为一名市场分析师，提出优化方案。
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>数据：{数据内容}
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<hr/>
+<h4 id="124">1.2.4 <strong>格式化与结构化输出</strong><a class="headerlink" href="#124" title="Permanent link">¶</a></h4>
+<h5 id="1241-json">1.2.4.1 <strong>JSON、表格、清单等输出格式的应用场景</strong><a class="headerlink" href="#1241-json" title="Permanent link">¶</a></h5>
+<p>为保证输出的易读性和便于后续处理，可以明确要求模型返回结果的格式化输出。例如，<span>JSON<span class="heti-spacing"> </span></span>格式适合数据处理，表格适合总结分析，清单适合任务分解。</p>
+<ol>
+<li><strong>为什么需要结构化输出？</strong></li>
+</ol>
+<ul>
+<li><strong>提高可读性</strong>：输出易于直接查看和理解。</li>
+<li><strong>便于后续处理</strong>：尤其在数据处理或编程任务中，结构化数据可直接用于其他工具或代码。</li>
+</ul>
+<ol start="2">
+<li><strong>示例</strong></li>
+</ol>
+<ul>
+<li>
+<p><strong>任务</strong>：提取文本中的关键信息并返回<span class="heti-skip"><span class="heti-spacing"> </span>JSON<span class="heti-spacing"> </span></span>格式。  </p>
+<p><strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>请从以下文本中提取关键信息，包括人名、地名和事件，以 JSON 格式返回：
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>文本：{文本内容}
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>输出格式：
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>{
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>    "人名": ["人名1", "人名2"],
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>    "地名": ["地名1", "地名2"],
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a>    "事件": ["事件1", "事件2"]
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>}
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><strong>任务</strong>：总结会议记录并生成表格。  </p>
+<p><strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>请总结以下会议记录，并将发言人及其观点以 Markdown 表格的形式输出。
+</code></pre></div></td></tr></table></div>
+<p><strong>模型生成示例</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Markdown</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>| 发言人   | 观点                  |
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>|----------|-----------------------|
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>| 张三     | 强调市场扩张的重要性 |
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>| 李四     | 提议提高研发预算      |
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<h5 id="1242">1.2.4.2 <strong>使用分隔符（如三引号）明确任务结构</strong><a class="headerlink" href="#1242" title="Permanent link">¶</a></h5>
+<p>分隔符可以帮助区分任务描述和输入内容，减轻模型的理解负担。</p>
+<ol>
+<li><strong>典型用法</strong></li>
+</ol>
+<ul>
+<li>
+<p><strong>明确输入与输出部分</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>使用三引号分隔的文本完成任务：
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>"""
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>{输入内容}
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>"""
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>请为上述内容撰写摘要，摘要需包含主要观点，并以 Markdown 列表形式输出。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>减少噪声干扰</strong></li>
+</ol>
+<ul>
+<li>
+<p>将多段输入分块：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span>
+<span class="normal"><a href="#__codelineno-16-7">7</a></span>
+<span class="normal"><a href="#__codelineno-16-8">8</a></span>
+<span class="normal"><a href="#__codelineno-16-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>第1部分：
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a>"""
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a>{第一段内容}
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a>"""
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a>第2部分：
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a>"""
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a>{第二段内容}
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a>"""
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a>请分别总结以上两部分内容，并以 Markdown 列表形式输出。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<h5 id="1243">1.2.4.3 <strong>示例：从无格式到标准化输出的转变</strong><a class="headerlink" href="#1243" title="Permanent link">¶</a></h5>
+<p><strong>任务</strong>：为一段产品评论生成结构化摘要。  </p>
+<p><strong>无格式的指令</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>请总结以下产品评论：
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>{评论内容}
+</code></pre></div></td></tr></table></div>
+<p><strong>标准化的指令</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>请总结以下产品评论，并以表格形式输出。表格应包含以下字段：优点、缺点、建议。
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a>评论：
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>"""
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a>{评论内容}
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a>"""
+</code></pre></div></td></tr></table></div>
+<p><strong>输出示例</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Markdown</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>| 优点            | 缺点           | 建议               |
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a>|-----------------|---------------|--------------------|
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>| 价格便宜        | 做工一般       | 改善产品外观设计    |
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a>| 功能齐全        | 操作复杂       | 简化用户操作流程    |
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h3 id="13">1.3 <strong>优化与迭代</strong><a class="headerlink" href="#13" title="Permanent link">¶</a></h3>
+<h4 id="131-ai-prompt">1.3.1 <strong>如何通过<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>帮助改写或优化<span><span class="heti-spacing"> </span>Prompt</span>？</strong><a class="headerlink" href="#131-ai-prompt" title="Permanent link">¶</a></h4>
+<h5 id="1311-ai-prompt">1.3.1.1 <strong>为什么让<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>优化<span><span class="heti-spacing"> </span>Prompt</span>？</strong><a class="headerlink" href="#1311-ai-prompt" title="Permanent link">¶</a></h5>
+<p><span>AI<span class="heti-spacing"> </span></span>擅长从少量输入中提取规律，可以快速调整语言风格和细节，帮助用户优化<span><span class="heti-spacing"> </span>Prompt</span>，尤其在任务需求模糊或缺乏清晰指令的情况下。</p>
+<h5 id="1312">1.3.1.2 <strong>具体方法</strong><a class="headerlink" href="#1312" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>直接请求<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>改进</strong></li>
+</ol>
+<ul>
+<li>提供初始<span><span class="heti-spacing"> </span>Prompt</span>，让<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>提出优化建议。  </li>
+<li>
+<p>示例：<br/>
+<strong>原始<span><span class="heti-spacing"> </span>Prompt</span></strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>请用简单的语言解释以下数学题的解法。
+</code></pre></div></td></tr></table></div>
+<p><strong>请求优化</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>请帮助优化这段 Prompt，让它更适合小学六年级学生。
+</code></pre></div></td></tr></table></div>
+<p><strong>优化结果</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a>你是一位小学数学老师，请用通俗易懂的语言，结合生活中的例子，解释以下数学题的解法。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>通过几轮交互微调<span><span class="heti-spacing"> </span>Prompt</span></strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>第<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>轮优化</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>这个 Prompt 比较适合初学者，但可以增加一些生活化的例子来提升吸引力。
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><strong>第<span class="heti-skip"><span class="heti-spacing"> </span>2<span class="heti-spacing"> </span></span>轮优化</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a>结合生活中的实例补充，如“通过买苹果来计算总价”，使得讲解更加生动。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="3">
+<li><strong>自动化优化工具</strong></li>
+</ol>
+<ul>
+<li>使用如<span class="heti-skip"><span class="heti-spacing"> </span>OpenAI<span class="heti-spacing"> </span></span>提供的<span><span class="heti-spacing"> </span>API</span>，通过动态调整测试多个版本的<span><span class="heti-spacing"> </span>Prompt</span>，找到最佳解决方案。</li>
+</ul>
+<hr/>
+<h4 id="132">1.3.2 <strong>结合外部工具提升效率</strong><a class="headerlink" href="#132" title="Permanent link">¶</a></h4>
+<h5 id="1321-api">1.3.2.1 <strong>调用<span class="heti-skip"><span class="heti-spacing"> </span>API<span class="heti-spacing"> </span></span>或代码执行实现复杂功能</strong><a class="headerlink" href="#1321-api" title="Permanent link">¶</a></h5>
+<p>大模型对计算和实时数据的支持有限，因此结合外部工具，如<span class="heti-skip"><span class="heti-spacing"> </span>API<span class="heti-spacing"> </span></span>调用或代码执行，可以提升任务的准确性。</p>
+<ol>
+<li><strong>请求生成代码来执行计算</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>任务</strong>：求解多项式的所有实根。<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>请用 Python 编写代码来计算以下多项式的所有实根：
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>多项式：3x^3 - 5x^2 + 2x - 7
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a>输出 Python 代码并解释其作用。
+</code></pre></div></td></tr></table></div>
+<p><strong>输出结果</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="n">coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">]</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="n">roots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"实根为："</span><span class="p">,</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">roots</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isreal</span><span class="p">(</span><span class="n">r</span><span class="p">)])</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>解释</strong>：此代码使用<span class="heti-skip"><span class="heti-spacing"> </span>NumPy<span class="heti-spacing"> </span></span>的 <code>roots</code> 函数计算多项式的所有根，并过滤出实根。</p>
+</li>
+</ul>
+<ol start="2">
+<li><strong>结合外部数据或工具</strong></li>
+</ol>
+<ul>
+<li>示例：使用向量数据库查询知识库中的信息，作为生成答案的补充。</li>
+</ul>
+<h5 id="1322-markdown-latex">1.3.2.2 <strong>输出成<span class="heti-skip"><span class="heti-spacing"> </span>Markdown<span class="heti-spacing"> </span></span>或<span class="heti-skip"><span class="heti-spacing"> </span>LaTeX<span class="heti-spacing"> </span></span>文档的场景与技巧</strong><a class="headerlink" href="#1322-markdown-latex" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong><span>Markdown<span class="heti-spacing"> </span></span>格式化</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>任务</strong>：生成会议纪要。<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a>请将以下会议记录总结为 Markdown 格式，包括发言人、主要观点和后续任务。
+</code></pre></div></td></tr></table></div>
+<p><strong>输出</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Markdown</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span>
+<span class="normal"><a href="#__codelineno-28-4">4</a></span>
+<span class="normal"><a href="#__codelineno-28-5">5</a></span>
+<span class="normal"><a href="#__codelineno-28-6">6</a></span>
+<span class="normal"><a href="#__codelineno-28-7">7</a></span>
+<span class="normal"><a href="#__codelineno-28-8">8</a></span>
+<span class="normal"><a href="#__codelineno-28-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="gu">### 会议纪要</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="gu">#### 发言人及观点</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="k">-</span><span class="w"> </span><span class="gs">**张三**</span>：建议增加市场营销预算。
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="k">-</span><span class="w"> </span><span class="gs">**李四**</span>：强调优化产品质量的重要性。
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="gu">#### 后续任务</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="k">-</span><span class="w"> </span>制定新一季度的营销策略（负责人：张三）。
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="k">-</span><span class="w"> </span>调查用户对当前产品的满意度（负责人：李四）。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong><span>LaTeX<span class="heti-spacing"> </span></span>格式化</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>任务</strong>：生成数学公式。<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a>请用 LaTeX 格式书写以下公式并解释：$(a+b)^2 = a^2 + 2ab + b^2$。
+</code></pre></div></td></tr></table></div>
+<p><strong>输出</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">TeX</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="sb">\[</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="o">(</span><span class="nb">a</span><span class="o">+</span><span class="nb">b</span><span class="o">)</span><span class="nb">^</span><span class="m">2</span><span class="nb"> </span><span class="o">=</span><span class="nb"> a^</span><span class="m">2</span><span class="nb"> </span><span class="o">+</span><span class="nb"> </span><span class="m">2</span><span class="nb">ab </span><span class="o">+</span><span class="nb"> b^</span><span class="m">2</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="s">\]</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a>这是一个基本的平方展开公式，常用于多项式的计算。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<hr/>
+<h4 id="133-prompt">1.3.3 <strong>增强<span class="heti-skip"><span class="heti-spacing"> </span>Prompt<span class="heti-spacing"> </span></span>的灵活性</strong><a class="headerlink" href="#133-prompt" title="Permanent link">¶</a></h4>
+<h5 id="1331">1.3.3.1 <strong>为开放式任务设置兜底策略</strong><a class="headerlink" href="#1331" title="Permanent link">¶</a></h5>
+<p>开放式任务（如写故事或推荐方案）容易导致模型“跑题”，通过兜底策略可提高稳定性。</p>
+<ol>
+<li><strong>明确不符合条件时的回复</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a>现在你是一个向客户推荐电影的助手。如果客户的信息不足以给出推荐，请回答：“抱歉，我无法根据您的描述推荐电影。”。
+</code></pre></div></td></tr></table></div>
+<p><strong>输入</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a>客户：帮我推荐一部电影。
+</code></pre></div></td></tr></table></div>
+<p><strong>输出</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a>抱歉，我无法根据您的描述推荐电影。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>定义容错机制</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：当生成结果不符合格式时，要求重新生成。  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span>
+<span class="normal"><a href="#__codelineno-34-4">4</a></span>
+<span class="normal"><a href="#__codelineno-34-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a>如果以下内容的输出格式错误，请重新生成并确保符合要求：
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a>输出格式：
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a>- 任务描述
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a>- 任务要点
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a>- 任务建议
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<h5 id="1332">1.3.3.2 <strong>添加强调词与符号提升指令权重</strong><a class="headerlink" href="#1332" title="Permanent link">¶</a></h5>
+<p>使用特殊符号（如<strong>加粗</strong>）或强调词（如“务必”<heti-adjacent class="heti-adjacent-quarter">、</heti-adjacent>“严格”）标注关键内容。</p>
+<ol>
+<li><strong>示例</strong>：  </li>
+</ol>
+<p><strong>任务</strong>：总结文章并强调关键概念。<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code> ```text
+ 请总结以下文章，并**加粗**每个要点中的关键概念，以 Markdown 列表形式输出。
+ ```
+
+ **输出**：
+
+ ```markdown
+ - **要点一**：机器学习是通过数据训练模型的**方法**。
+ - **要点二**：深度学习是机器学习的**分支**，以多层神经网络为核心。
+ ```
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h3 id="14">1.4 <strong>实用案例</strong><a class="headerlink" href="#14" title="Permanent link">¶</a></h3>
+<h4 id="141">1.4.1 <strong>常见场景与解决方案</strong><a class="headerlink" href="#141" title="Permanent link">¶</a></h4>
+<h5 id="1411">1.4.1.1 <strong>生成长篇的文章</strong><a class="headerlink" href="#1411" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>逐步生成长文内容</strong></li>
+</ol>
+<ul>
+<li>方法：先生成目录，再逐部分扩展内容。</li>
+<li>
+<p>示例：<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a>请为以下主题生成一份详细的文章目录，然后基于目录逐段扩展内容：
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a>主题：如何优化个人时间管理
+</code></pre></div></td></tr></table></div>
+<p><strong>输出目录示例</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Markdown</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span>
+<span class="normal"><a href="#__codelineno-38-6">6</a></span>
+<span class="normal"><a href="#__codelineno-38-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="k">-</span><span class="w"> </span>第一部分：时间管理的重要性
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="k">-</span><span class="w"> </span>第二部分：常见时间管理误区
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="k">-</span><span class="w"> </span>第三部分：高效时间管理的方法
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>1. 设定目标与优先级
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>2. 使用工具与技术
+<a id="__codelineno-38-6" name="__codelineno-38-6"></a><span class="w">  </span><span class="k">-</span><span class="w"> </span>3. 培养时间管理习惯
+<a id="__codelineno-38-7" name="__codelineno-38-7"></a><span class="k">-</span><span class="w"> </span>第四部分：案例分析与应用
+</code></pre></div></td></tr></table></div>
+<p><strong>扩展内容<span><span class="heti-spacing"> </span>Prompt</span></strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a>请详细撰写第一部分“时间管理的重要性”的内容，控制在 300 字左右。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>在生成时添加引用文献</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a>请为以下主题生成一篇 500 字的文章，并在文章末尾附上相关参考文献：
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a>主题：人工智能如何改变教育行业
+</code></pre></div></td></tr></table></div>
+<p><strong>输出</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Markdown</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span>
+<span class="normal"><a href="#__codelineno-41-3">3</a></span>
+<span class="normal"><a href="#__codelineno-41-4">4</a></span>
+<span class="normal"><a href="#__codelineno-41-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="gu">### 人工智能如何改变教育行业</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a>（文章内容）
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="gu">#### 参考文献</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="k">-</span><span class="w"> </span>李四，《人工智能与教育》，2023年出版。
+<a id="__codelineno-41-5" name="__codelineno-41-5"></a><span class="k">-</span><span class="w"> </span>OpenAI，《AI在教育领域的应用》，2021年。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<hr/>
+<h5 id="1412">1.4.1.2 <strong>解释代码并生成辅助图表</strong><a class="headerlink" href="#1412" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>生成代码解释</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span>
+<span class="normal"><a href="#__codelineno-42-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a>以下是 Python 代码片段，请解释其作用：
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a>```python
+<a id="__codelineno-42-3" name="__codelineno-42-3"></a>nested_dict = lambda: defaultdict(nested_dict)
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span>
+<span class="normal"><a href="#__codelineno-43-2">2</a></span>
+<span class="normal"><a href="#__codelineno-43-3">3</a></span>
+<span class="normal"><a href="#__codelineno-43-4">4</a></span>
+<span class="normal"><a href="#__codelineno-43-5">5</a></span>
+<span class="normal"><a href="#__codelineno-43-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1"></a>**输出**：
+<a id="__codelineno-43-2" name="__codelineno-43-2"></a>```text
+<a id="__codelineno-43-3" name="__codelineno-43-3"></a>此代码定义了一个嵌套字典的递归结构，可以动态创建任意深度的字典层级。
+<a id="__codelineno-43-4" name="__codelineno-43-4"></a>示例用法：
+<a id="__codelineno-43-5" name="__codelineno-43-5"></a>data = nested_dict()
+<a id="__codelineno-43-6" name="__codelineno-43-6"></a>data['level1']['level2'] = "value"
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>生成辅助图表</strong></li>
+</ol>
+<ul>
+<li>
+<p>示例：<br/>
+<strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1">1</a></span>
+<span class="normal"><a href="#__codelineno-44-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1"></a>请根据以下描述生成一段 mermaid 格式的代码，用于展示函数调用关系：
+<a id="__codelineno-44-2" name="__codelineno-44-2"></a>描述：函数 A 调用函数 B，函数 B 调用函数 C 和 D，函数 D 返回结果。
+</code></pre></div></td></tr></table></div>
+<p><strong>输出</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
+<span class="normal"><a href="#__codelineno-45-2">2</a></span>
+<span class="normal"><a href="#__codelineno-45-3">3</a></span>
+<span class="normal"><a href="#__codelineno-45-4">4</a></span>
+<span class="normal"><a href="#__codelineno-45-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a>graph TD
+<a id="__codelineno-45-2" name="__codelineno-45-2"></a>A --&gt; B
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a>B --&gt; C
+<a id="__codelineno-45-4" name="__codelineno-45-4"></a>B --&gt; D
+<a id="__codelineno-45-5" name="__codelineno-45-5"></a>D --&gt; Result
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<hr/>
+<h4 id="142-prompt">1.4.2 <strong><span>Prompt<span class="heti-spacing"> </span></span>的限制与应对策略</strong><a class="headerlink" href="#142-prompt" title="Permanent link">¶</a></h4>
+<h5 id="1421">1.4.2.1 <strong>设计拒答策略提升可靠性</strong><a class="headerlink" href="#1421" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>避免幻觉现象</strong></li>
+</ol>
+<ul>
+<li>
+<p>提示模型不要回答其无法确定的内容。<br/>
+<strong>示例</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
+<span class="normal"><a href="#__codelineno-46-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a>如果你不知道以下问题的答案，请回复“信息不足”。
+<a id="__codelineno-46-2" name="__codelineno-46-2"></a>问题：谁是第一个登上月球的机器人？
+</code></pre></div></td></tr></table></div>
+<p><strong>输出</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1"></a>信息不足。
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<ol start="2">
+<li><strong>多次生成以确认答案一致性</strong></li>
+</ol>
+<ul>
+<li>
+<p><strong>Prompt</strong>：  </p>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
+<span class="normal"><a href="#__codelineno-48-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1"></a>请多次生成以下问题的答案，并确保答案一致。如果答案不一致，请回复“无法确定答案”。
+<a id="__codelineno-48-2" name="__codelineno-48-2"></a>问题：2023 年世界人口总数是多少？
+</code></pre></div></td></tr></table></div>
+</li>
+</ul>
+<hr/>
+<h5 id="1422-ai">1.4.2.2 <strong>多个<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>协作</strong><a class="headerlink" href="#1422-ai" title="Permanent link">¶</a></h5>
+<ol>
+<li><strong>框架与内容协作</strong></li>
+</ol>
+<ul>
+<li>
+<p>通过不同模型协作优化内容生成。<br/>
+<strong>示例流程</strong>：</p>
+<ul>
+<li><strong>Prompt 1</strong>：让<span class="heti-skip"><span class="heti-spacing"> </span>ChatGPT<span class="heti-spacing"> </span></span>提供文章框架。  </li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
+<span class="normal"><a href="#__codelineno-49-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a>请为以下主题生成详细的文章框架：
+<a id="__codelineno-49-2" name="__codelineno-49-2"></a>主题：如何提升团队合作效率
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Prompt 2</strong>：将框架内容交给另一个模型优化表达。  </li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1"></a>请根据以下框架撰写详细内容，并调整为更专业的语言。
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Prompt 3</strong>：使用另一个工具（如<span class="heti-skip"><span class="heti-spacing"> </span>Grammarly<span class="heti-spacing"> </span></span>或其他<span><span class="heti-spacing"> </span>AI</span>）校对和优化语言风格。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>代码优化协作</strong></li>
+</ol>
+<ul>
+<li><strong>Prompt</strong>：  </li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1">1</a></span>
+<span class="normal"><a href="#__codelineno-51-2">2</a></span>
+<span class="normal"><a href="#__codelineno-51-3">3</a></span>
+<span class="normal"><a href="#__codelineno-51-4">4</a></span>
+<span class="normal"><a href="#__codelineno-51-5">5</a></span>
+<span class="normal"><a href="#__codelineno-51-6">6</a></span>
+<span class="normal"><a href="#__codelineno-51-7">7</a></span>
+<span class="normal"><a href="#__codelineno-51-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1"></a>    请优化以下代码，使其运行效率更高，并提供注释说明：
+<a id="__codelineno-51-2" name="__codelineno-51-2"></a>    ```python
+<a id="__codelineno-51-3" name="__codelineno-51-3"></a>        def factorial(n):
+<a id="__codelineno-51-4" name="__codelineno-51-4"></a>            if n == 0:
+<a id="__codelineno-51-5" name="__codelineno-51-5"></a>                return 1
+<a id="__codelineno-51-6" name="__codelineno-51-6"></a>            else:
+<a id="__codelineno-51-7" name="__codelineno-51-7"></a>                return n * factorial(n-1)
+<a id="__codelineno-51-8" name="__codelineno-51-8"></a>    ```
+</code></pre></div></td></tr></table></div>
+<hr/>
+<h3 id="15">1.5 <strong>我曾经用法</strong><a class="headerlink" href="#15" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>输出文档</strong>：通过<span class="heti-skip"><span class="heti-spacing"> </span>Markdown<span class="heti-spacing"> </span></span>或<span class="heti-skip"><span class="heti-spacing"> </span>LaTeX<span class="heti-spacing"> </span></span>生成格式化文档。</li>
+<li><strong>生成<span><span class="heti-spacing"> </span>README</span></strong>：让<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>阅读代码并撰写说明。</li>
+<li><strong>引用文献写论文</strong>：利用<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>上网查询资料，提高学术内容质量。</li>
+</ul>
+<h2 id="2-prompt"><span>2<span class="heti-spacing"> </span></span>常用的<span><span class="heti-spacing"> </span>Prompt</span><a class="headerlink" href="#2-prompt" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<p>请参考 <a href="https://wncfht.github.io/notes/Technology/prompt/">常用<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>记录<span class="heti-skip"><span class="heti-spacing"> </span>- wnc<span class="heti-spacing"> </span></span>的咖啡馆</a></p>
+<div id="__comments"></div>
+<!-- <h3>颜色主题调整</h3>
+    <div class="tx-switch">
+    <button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+    <button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+    <button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+    <button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+    <button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+    <button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+    <button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+    <button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+    <button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+    <button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+    <button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+    <button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+    <button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+    <button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+    </div> -->
+<!-- Giscus -->
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDONBPLqs4Cja0c" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="WncFht/notes" data-repo-id="R_kgDONBPLqg" data-strict="0" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
+</script>
+<script>
+    var buttons = document.querySelectorAll("button[data-md-color-primary]")
+    buttons.forEach(function(button) {
+            button.addEventListener("click", function() {
+            var attr = this.getAttribute("data-md-color-primary")
+            document.body.setAttribute("data-md-color-primary", attr)
+            localStorage.setItem("data-md-color-primary",attr);
+            })
+    })
+    </script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+</script>
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+        giscus.setAttribute("data-theme", theme) 
+    }
+    
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+        var ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+            var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    
+            /* Instruct Giscus to change theme */
+            var frame = document.querySelector(".giscus-frame")
+            frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+            )
+        }
+        })
+    })
+    </script>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  回到页面顶部
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+        Copyright © 2024 <a href="https://github.com/WncFht" rel="noopener" target="_blank">WncFht</a>
+</div>
+    
+    
+      Powered by
+      <a href="https://www.mkdocs.org/" rel="noopener" target="_blank">
+        MkDocs
+      </a>
+      with theme
+      <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+        Material
+      </a>
+      modified by
+      <a href="https://github.com/WncFht" rel="noopener" target="_blank">
+        WncFht
+      </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/WncFht" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.action.view", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script src="../../js/katex.js"></script>
+<script src="https://cdn.tonycrane.cc/utils/katex.min.js"></script>
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
