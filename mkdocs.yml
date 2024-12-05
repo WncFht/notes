@@ -1,8 +1,8 @@
 site_name: wnc 的咖啡馆
-site_url: https://WncFht.github.io/test/
+site_url: https://WncFht.github.io/notes/
 site_author: wnc
 repo_name: wnc's café
-repo_url: https://github.com/WncFht/test/
+repo_url: https://github.com/WncFht/notes/
 edit_uri: edit/main/docs/
 
 theme:
