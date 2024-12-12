@@ -255,7 +255,7 @@ not_in_nav:
 
 nav:
   - Home: index.md
-  - Computer Basic: CS Basic/index.md
+  - Computer Basic: CS_Basic/index.md
   - Computer Vision: CV/index.md
   - AI: AI/index.md
   - Robot: Robot/index.md
