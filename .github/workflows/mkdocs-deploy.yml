@@ -16,13 +16,12 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Install plugins from TonyCrane
         run: |
-          pip install mkdocs-material
-          pip install mkdocs-glightbox
-          pip install mkdocs-statistics-plugin
-          pip install mkdocs-heti-plugin
-          pip install mkdocs-include-dir-to-nav
-          pip install mkdocs-git-revision-date-localized-plugin
+          git clone https://github.com/TonyCrane/mkdocs-toolchain
+          pip install mkdocs-toolchain/mkdocs-toc-plugin
+          rm -rf mkdocs-toolchain
       - name: Build site
         run: mkdocs build
       - name: Deploy to GitHub Pages

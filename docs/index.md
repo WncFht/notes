@@ -1,12 +1,26 @@
 ---
-statistics: True
+hide:
+    - date
+    - navigation
+    - toc
+home: true
+nostatistics: true
 comments: false
 ---
 
-# Welcome to wnc's note!
+<br><br><br><br><br><br>
 
-[:octicons-link-16: 朋友们!](links/) / 
-[:material-chart-line: 站点统计](javascript:toggle_statistics();)
+<h1 style="text-align: center;">
+<span style="font-size:50px;">
+Welcome to wnc's note!
+</span>
+</h1>
+
+
+<span style="display: block; text-align: center; font-size: 18px;">
+[:octicons-link-16: My friends!](./links/index.md) / 
+[:material-chart-line: Statistics](javascript:toggle_statistics();)
+</span>
 
 <div id="statistics" markdown="1" class="card" style="width: 27em; border-color: transparent; opacity: 0; font-size: 75%">
 <div style="padding-left: 1em;" markdown="1">
