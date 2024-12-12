@@ -146,8 +146,6 @@ validation:
     absolute_links: ignore
     unrecognized_links: ignore
 
-copyright: Copyright &copy; 2024 <a href="https://github.com/WncFht" target="_blank" rel="noopener">WncFht</a>
-
 extra:
   social:
     # - icon: fontawesome/brands/twitter
@@ -213,9 +211,9 @@ plugins:
   - statistics:
       words_per_minute: 200
   - heti
-  - include_dir_to_nav:
-      sort_file: true
-      sort_directory: true
+  # - include_dir_to_nav:
+  #     sort_file: true
+  #     sort_directory: true
   - toc
   # - obsidian_support
   # - rss
@@ -239,11 +237,11 @@ nav:
   - Home:
       - index.md
       - 友链: links.md
-  - 计算机基础: CS basic
-  - 传统计算机视觉: traditional cv
-  - AI: AI
-  - Robot: Robot
-  - 环境配置: Environment
-  - 一些工具: Technology
-  - 总结: summary
+  - Computer Basic: CS basic/index.md
+  - Computer Vision: CV/index.md
+  - AI: AI/index.md
+  - Robot: Robot/index.md
+  - Environmet Setup: Environment/index.md
+  - 一些工具: Technology/index.md
+  - 总结: summary/index.md
   - Links: links/index.md
