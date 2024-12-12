@@ -64,4 +64,3 @@ function toggle_statistics() {
     }
 }
 </script>
-
