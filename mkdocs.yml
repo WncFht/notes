@@ -150,12 +150,24 @@ extra:
   social:
     # - icon: fontawesome/brands/twitter
     #   link: https://twitter.com/
-    - icon: fontawesome/brands/github
+    - icon: /fontawesome/brands/github
       link: https://github.com/WncFht
-    # - icon: fontawesome/brands/bilibili
-    #   link: https://space.bilibili.com/1407028951?spm_id_from=333.1007.0.0
-    # - icon: fontawesome/solid/paper-plane
-    #   link: mailto:<@qq.com> #联系方式
+      name: GitHub
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/496058922?spm_id_from=333.1007.0.0
+      name: Bilibili
+    - icon: /fontawesome/brands/zhihu
+      link: https://www.zhihu.com/people/fht-64
+      name: Zhihu
+    - icon: /fontawesome/brands/qq
+      link: assets/images/qq.jpg
+      name: QQ
+    - icon: /fontawesome/brands/weixin
+      link: assets/images/WeChat.jpg
+      name: WeChat
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:2130212584@qq.com
+      name: Email
   # analytics:
   #   provider: google
   #   property: YOUR-ANALYTICS-ID
