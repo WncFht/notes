@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="wnc 的个人网站" name="description"/>
+<meta content="wnc" name="author"/>
+<link href="https://WncFht.github.io/notes/CS%20basic/CS61C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E7%A1%AC%E4%BB%B6%E8%BD%AF%E4%BB%B6%E6%8E%A5%E5%8F%A3/" rel="canonical"/>
+<link href="../../../assets/images/avatar.jpg" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.48" name="generator"/>
+<title>计算机组成与设计硬件软件接口 - wnc 的咖啡馆</title>
+<link href="../../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link href="../../../css/toc_extra.css" rel="stylesheet"/>
+<link href="../../../css/heti.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet"/>
+<link href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css" rel="stylesheet"/>
+<link href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css" rel="stylesheet"/>
+<link href="../../../css/custom.css" rel="stylesheet"/>
+<link href="../../../css/tasklist.css" rel="stylesheet"/>
+<link href="../../../css/card.css" rel="stylesheet"/>
+<link href="../../../css/flink.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="wnc 的咖啡馆">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            wnc 的咖啡馆
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              计算机组成与设计硬件软件接口
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="follow system" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="follow system">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"></path></svg>
+</label>
+<input aria-label="light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="white" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+<input aria-label="darkmode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="darkmode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    wnc's café
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../CS Basic/index.md">
+        
+  
+    
+  
+  Computer Basic
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../CV/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+    
+  
+  Computer Vision
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../AI/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+    
+  
+  AI
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../Robot/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+    
+  
+  Robot
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../Environment/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+    
+  
+  Environmet Setup
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../Tools/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16h-2v-1H8v1H6v-1H2v5h20v-5h-4zm2-8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v4h4v-2h2v2h8v-2h2v2h4v-4c0-1.1-.9-2-2-2m-5 0H9V6h6z"></path></svg>
+    
+  
+  Tools
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../Summaries/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1zM5 8v11h14V8zm2 2h10v2H7z"></path></svg>
+    
+  
+  Summaries
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../Links/index.md">
+        
+  
+    
+  
+  Links
+
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="wnc 的咖啡馆">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+</a>
+    wnc 的咖啡馆
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    wnc's café
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+<span class="md-ellipsis">
+    Home
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../CS Basic/index.md">
+<span class="md-ellipsis">
+    Computer Basic
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../CV/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+<span class="md-ellipsis">
+    Computer Vision
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../AI/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+<span class="md-ellipsis">
+    AI
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Robot/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+<span class="md-ellipsis">
+    Robot
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Environment/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
+<span class="md-ellipsis">
+    Environmet Setup
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Tools/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16h-2v-1H8v1H6v-1H2v5h20v-5h-4zm2-8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v4h4v-2h2v2h8v-2h2v2h4v-4c0-1.1-.9-2-2-2m-5 0H9V6h6z"></path></svg>
+<span class="md-ellipsis">
+    Tools
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Summaries/">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v14c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1zM5 8v11h14V8zm2 2h10v2H7z"></path></svg>
+<span class="md-ellipsis">
+    Summaries
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../Links/index.md">
+<span class="md-ellipsis">
+    Links
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      1 计算机抽象及相关技术
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+<span class="md-ellipsis">
+      2 指令: 计算机的语言
+    </span>
+</a>
+<nav aria-label="2 指令: 计算机的语言" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21">
+<span class="md-ellipsis">
+      2.1 引言
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22">
+<span class="md-ellipsis">
+      2.2 计算机硬件的操作
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23">
+<span class="md-ellipsis">
+      2.3 计算机硬件的操作数
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24">
+<span class="md-ellipsis">
+      2.4 有符号数与无符号数
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25">
+<span class="md-ellipsis">
+      2.5 计算机中的指令表示
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26">
+<span class="md-ellipsis">
+      2.6 逻辑操作
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#27">
+<span class="md-ellipsis">
+      2.7 用于决策的指令
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#28">
+<span class="md-ellipsis">
+      2.8 计算机硬件对过程的支持
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#29">
+<span class="md-ellipsis">
+      2.9 人机交互
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#210-risc-v">
+<span class="md-ellipsis">
+      2.10 对大立即数的 RISC-V 的编址和寻址
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#211">
+<span class="md-ellipsis">
+      2.11 指令与并行性：同步
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#212">
+<span class="md-ellipsis">
+      2.12 翻译并启动程序
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#213-c">
+<span class="md-ellipsis">
+      2.13 以 C 排序程序为例的汇总整理
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#214">
+<span class="md-ellipsis">
+      2.14 数组与指针
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#215-c-java">
+<span class="md-ellipsis">
+      2.15 高级专题: 编译 C 语言和解释 Java 程序
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#216-mips">
+<span class="md-ellipsis">
+      2.16 实例: MIPS 指令
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#217-x-86">
+<span class="md-ellipsis">
+      2.17 实例: x 86 指令
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#218-risc-v">
+<span class="md-ellipsis">
+      2.18 实例: RISC-V 指令系统的剩余部分
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#219">
+<span class="md-ellipsis">
+      2.19 谬误与陷阱
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#220">
+<span class="md-ellipsis">
+      2.20 本章小结
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+<span class="md-ellipsis">
+      3 计算机的算数运算
+    </span>
+</a>
+<nav aria-label="3 计算机的算数运算" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31">
+<span class="md-ellipsis">
+      3.1 引言
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32">
+<span class="md-ellipsis">
+      3.2 加法和减法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33">
+<span class="md-ellipsis">
+      3.3 乘法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34">
+<span class="md-ellipsis">
+      3.4 除法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#35">
+<span class="md-ellipsis">
+      3.5 浮点运算
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#36">
+<span class="md-ellipsis">
+      3.6 并行性与计算机算数: 子字并行
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#37-x-86-simd">
+<span class="md-ellipsis">
+      3.7 实例: x 86 中的 SIMD 扩展和高级向量扩展
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#38">
+<span class="md-ellipsis">
+      3.8 加速: 子字并行和矩阵乘法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#39">
+<span class="md-ellipsis">
+      3.9 谬误与陷阱
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#310">
+<span class="md-ellipsis">
+      3.10 本章小结
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+<span class="md-ellipsis">
+      4 处理器
+    </span>
+</a>
+<nav aria-label="4 处理器" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41">
+<span class="md-ellipsis">
+      4.1 引言
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42">
+<span class="md-ellipsis">
+      4.2 逻辑设计的一般方法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43">
+<span class="md-ellipsis">
+      4.3 建立数据通路
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#44">
+<span class="md-ellipsis">
+      4.4 一个简单的实现方案
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#45">
+<span class="md-ellipsis">
+      4.5 流水线概述
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#46">
+<span class="md-ellipsis">
+      4.6 流水线数据通路和控制
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#47">
+<span class="md-ellipsis">
+      4.7 数据冒险: 前递与停顿
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#48">
+<span class="md-ellipsis">
+      4.8 控制冒险
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#49">
+<span class="md-ellipsis">
+      4.9 例外
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#410">
+<span class="md-ellipsis">
+      4.10 指令间的并行性
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#411-armcortex-a-53-intel-core-i-7">
+<span class="md-ellipsis">
+      4.11 实例: armCortex-A 53 和 Intel Core i 7 流水线结构
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#412_1">
+<span class="md-ellipsis">
+      4.12 加速: 指令集并行和矩阵乘法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#413">
+<span class="md-ellipsis">
+      4.13 高级专题: 数字设计概述——使用硬件设计语言进行流水线建模以及更多流水线示例
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#414">
+<span class="md-ellipsis">
+      4.14 谬误与陷阱
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#415">
+<span class="md-ellipsis">
+      4.15 本章小结
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#416">
+<span class="md-ellipsis">
+      4.16 历史视角和扩展阅读
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5">
+<span class="md-ellipsis">
+      5 大而快: 层次化存储
+    </span>
+</a>
+<nav aria-label="5 大而快: 层次化存储" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51">
+<span class="md-ellipsis">
+      5.1 引言
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52">
+<span class="md-ellipsis">
+      5.2 存储技术
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-cache">
+<span class="md-ellipsis">
+      5.3 cache 基础
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#54-cache">
+<span class="md-ellipsis">
+      5.4 cache 的性能评估和改进
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#55">
+<span class="md-ellipsis">
+      5.5 可靠的存储器曾测
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#56">
+<span class="md-ellipsis">
+      5.6 虚拟机
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#57">
+<span class="md-ellipsis">
+      5.7 虚拟内存
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#58">
+<span class="md-ellipsis">
+      5.8 存储层次结构的一般框架
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#59-cache">
+<span class="md-ellipsis">
+      5.9 使用有限状态自动机控制简单的 cache
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#510-cache">
+<span class="md-ellipsis">
+      5.10 并行和存储层次结构: cache 一致性
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#511">
+<span class="md-ellipsis">
+      5.11 并行与存储层次结构: 廉价磁盘冗余阵列
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#512">
+<span class="md-ellipsis">
+      5.12 高级专题: 实现缓存控制器
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#513-arm-cortex-a-53-intel-core-i-7">
+<span class="md-ellipsis">
+      5.13 实例: ARM Cortex-A 53 和 Intel Core i 7 的存储层次结构
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#514-risc-v">
+<span class="md-ellipsis">
+      5.14 实例: RISC-V 系统其他部分和特殊指令
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#515-cache">
+<span class="md-ellipsis">
+      5.15 加速: cache 分块和矩阵乘法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#516">
+<span class="md-ellipsis">
+      5.16 谬误与陷阱
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#517">
+<span class="md-ellipsis">
+      5.17 本身小结
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#518">
+<span class="md-ellipsis">
+      5.18 历史视角和拓展阅读
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6">
+<span class="md-ellipsis">
+      6 并行处理器: 从客户端到云
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/CS basic/CS61C/计算机组成与设计硬件软件接口.md" title="edit.link.title">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+</a>
+<div><h1 id="_1">计算机组成与设计硬件软件接口<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>2978<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>13<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> <span>4<span class="heti-spacing"> </span></span>张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>15<span class="heti-spacing"> </span></span>分钟</p>
+</div>
+<h2 id="1"><span>1<span class="heti-spacing"> </span></span>计算机抽象及相关技术<a class="headerlink" href="#1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h2 id="2"><span>2<span class="heti-spacing"> </span></span>指令<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>计算机的语言<a class="headerlink" href="#2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h3 id="21"><span>2.1<span class="heti-spacing"> </span></span>引言<a class="headerlink" href="#21" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<p>设计原则<span><span class="heti-spacing"> </span>:</span></p>
+<ul>
+<li>简单源于规整</li>
+<li>更少则更快</li>
+<li>优秀的设计需要适当的折中</li>
+</ul>
+<h3 id="22"><span>2.2<span class="heti-spacing"> </span></span>计算机硬件的操作<a class="headerlink" href="#22" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<p><span>Java<span class="heti-spacing"> </span></span>编译器<span class="heti-skip"><span class="heti-spacing"> </span>: Just In Time<span class="heti-spacing"> </span></span>编译器</p>
+<h3 id="23"><span>2.3<span class="heti-spacing"> </span></span>计算机硬件的操作数<a class="headerlink" href="#23" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li>寄存器<ul>
+<li>大小为<span class="heti-skip"><span class="heti-spacing"> </span>64 bits<span class="heti-spacing"> </span></span>双字</li>
+<li>数量有限通常为<span class="heti-skip"><span class="heti-spacing"> </span>32<span class="heti-spacing"> </span></span>个</li>
+<li><span>x +<span class="heti-spacing"> </span></span>寄存器编号</li>
+</ul>
+</li>
+</ul>
+<h4 id="231"><span>2.3.1<span class="heti-spacing"> </span></span>存储器操作数<a class="headerlink" href="#231" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p>在内存和寄存器之间传输指令<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>数据传输指令<br/>
+指令提供内存地址<br/>
+载入指令（load）:ld</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a>Ld x9, 8(x22)
+</span></code></pre></div>
+<p><span>X 22<span class="heti-spacing"> </span></span>基址寄存器<br/>
+8 偏移量<br/>
+字节地址: 0 8 16 24<br/>
+RICS- V 是小端编址: 只在以双字形式和八个单独字节访问相同数据时会有影响 ^da8be4</p>
+<p>存储指令（store）存储双字</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a>sd x9, 96(x22)
+</span></code></pre></div>
+<ul>
+<li>对齐限制<span><span class="heti-spacing"> </span>:</span><ul>
+<li>字的起始地址是<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>的倍数</li>
+<li>双字的起始地址是<span class="heti-skip"><span class="heti-spacing"> </span>8<span class="heti-spacing"> </span></span>的倍数</li>
+<li>但是<span class="heti-skip"><span class="heti-spacing"> </span>risc-v and Intel x 86<span class="heti-spacing"> </span></span>没有</li>
+<li><span>MIPS<span class="heti-spacing"> </span></span>有<br/>
+Gibibyte (<span class="arithmatex">\(\displaystyle 2^{30}\)</span>) and tebibyte (<span class="arithmatex">\(\displaystyle 2^{40}\)</span>)<br/>
+如果变量比寄存器数量更多，那么会把一些放到内存，即寄存器换出。</li>
+</ul>
+</li>
+</ul>
+<h4 id="232"><span>2.3.2<span class="heti-spacing"> </span></span>常数或立即数操作数<a class="headerlink" href="#232" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a>ld x9, AddConstant4(x3)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a>Add x22, x22, x9
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a># Equals to 
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos="5 "></span></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos="6 "></span></a>addi x22, x22, 4 # x22 = x22 + 4
+</span></code></pre></div>
+<p>常数称为算数指令操作数<br/>
+X0 可以用来表示 0<br/>
+其实还有 RV 32<br/>
+基址寄存器也被称为下标寄存器<br/>
+我们假设指令都是 64 位</p>
+<h3 id="24"><span>2.4<span class="heti-spacing"> </span></span>有符号数与无符号数<a class="headerlink" href="#24" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li>Binary digit Or bit</li>
+<li>Least significant bit </li>
+<li>Most significant bit</li>
+<li>sign and magnitude</li>
+<li>补码转化<span><span class="heti-spacing"> </span>:</span><ol>
+<li>拓展符号位</li>
+<li>取反</li>
+<li>加一</li>
+</ol>
+</li>
+</ul>
+<h3 id="25"><span>2.5<span class="heti-spacing"> </span></span>计算机中的指令表示<a class="headerlink" href="#25" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li>字段</li>
+<li>指令<span class="heti-skip"><span class="heti-spacing"> </span>32<span class="heti-spacing"> </span></span>位长</li>
+<li>指令的数字表示<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>机器语言</li>
+<li>指令序列<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>机器码</li>
+<li><span>C<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>java<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>0 xnnnn<span class="heti-spacing"> </span></span>来表示十六进制数</li>
+<li>RISC-V:（R）<ul>
+<li>funct7 + rs 2 + rs 1 + funct 3 + rd + opcode</li>
+<li><span>rd:<span class="heti-spacing"> </span></span>目的操作数寄存器</li>
+<li><span>rs 1:<span class="heti-spacing"> </span></span>第一个原操作数寄存器</li>
+<li><span>rs 2:<span class="heti-spacing"> </span></span>第二个原操作数寄存器</li>
+<li><span>funct 7 (3):<span class="heti-spacing"> </span></span>操作码字段</li>
+</ul>
+</li>
+<li>对不同的指令使用不同的指令格式</li>
+<li>I<ul>
+<li>immediate + rs 1 + funct 3 + rd + opcode</li>
+<li>超过<span class="heti-skip"><span class="heti-spacing"> </span>32<span class="heti-spacing"> </span></span>个寄存器的话，<span>rd and rs 1<span class="heti-spacing"> </span></span>都要增加额外的一位</li>
+<li>ld</li>
+</ul>
+</li>
+<li>S<ul>
+<li>immediate + rs 2 + rs 1 + funct 3 + immediate + opcode</li>
+</ul>
+</li>
+<li><span>Reg<span class="heti-spacing"> </span></span>表示<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>到<span class="heti-skip"><span class="heti-spacing"> </span>31<span class="heti-spacing"> </span></span>之间的寄存器编号</li>
+<li>没有<span class="heti-skip"><span class="heti-spacing"> </span>subi<span class="heti-spacing"> </span></span>因为可以通过加负数来实现</li>
+<li>计算机构建基于两个关键原则<span><span class="heti-spacing"> </span>:</span><ul>
+<li>指令由数字形式表示</li>
+<li>程序和数据一样保存在存储器中进行读写</li>
+</ul>
+</li>
+<li>程序会以二进制数据文件的形式来发布<ul>
+<li>二进制兼容性让行业围绕少数几个指令系统结构形成联盟</li>
+</ul>
+</li>
+</ul>
+<h3 id="26"><span>2.6<span class="heti-spacing"> </span></span>逻辑操作<a class="headerlink" href="#26" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li>sll, slli</li>
+<li>srl, srli</li>
+<li>sra, srai</li>
+<li>and, andi </li>
+<li>or, ori </li>
+<li>xor, xori</li>
+<li>not</li>
+<li>位移指令用的<span class="heti-skip"><span class="heti-spacing"> </span>I<span class="heti-spacing"> </span></span>型格式<span><span class="heti-spacing"> </span>:</span><ul>
+<li>但它的格式有变化<span><span class="heti-spacing"> </span>:</span><ul>
+<li>funct 6 + immediate + rs 1 + funct 3 + rd + opcode</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>算数右移用的是符号位</li>
+<li><span>AND<span class="heti-spacing"> </span></span>实现了掩码</li>
+</ul>
+<h3 id="27"><span>2.7<span class="heti-spacing"> </span></span>用于决策的指令<a class="headerlink" href="#27" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li>beq</li>
+<li>bne</li>
+</ul>
+<h4 id="271"><span>2.7.1<span class="heti-spacing"> </span></span>循环<a class="headerlink" href="#271" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<div class="language-c highlight"><span class="filename">C</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">save</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
+<p>I -&gt; x 22<br/>
+K -&gt; x 24<br/>
+Save -&gt; x 25</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a>loop: slli, x10, x22, 3
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a>Add x10, x10, x25
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos="3 "></span></a>Ld x9, 0(x10)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos="4 "></span></a>Ben x9, x24, Exit
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos="5 "></span></a>Addi x22, x22, l
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos="6 "></span></a>Beq x0, x0, loop
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos="7 "></span></a>Exit:
+</span></code></pre></div>
+<p>基本块<span><span class="heti-spacing"> </span>:</span> </p>
+<ul>
+<li>除了在指令序列的结尾，序列中没有分支。</li>
+<li>除了在序列起始处，序列中没有分支目标和分支标签。</li>
+<li>对于符号<span><span class="heti-spacing"> </span>:</span><ul>
+<li><span>RISC-V<span class="heti-spacing"> </span></span>用不同的指令</li>
+<li><span>MIPS<span class="heti-spacing"> </span></span>设置临时寄存器</li>
+<li><span>ARM<span class="heti-spacing"> </span></span>条件代码或标志位</li>
+</ul>
+</li>
+<li>不过也会有缺点<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>过多的指令设置条件代码，会让流水线执行困难</li>
+</ul>
+<h4 id="272"><span>2.7.2<span class="heti-spacing"> </span></span>边界检查的简便方法<a class="headerlink" href="#272" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p>将符号数当作无符号数处理</p>
+<h4 id="273-caseswitch"><span>2.7.3 Case/switch<span class="heti-spacing"> </span></span>语句<a class="headerlink" href="#273-caseswitch" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<ul>
+<li>编码形成指令序列的地址表<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>分支地址表<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>分支表</li>
+<li>间接跳转指令<span><span class="heti-spacing"> </span>jalr</span></li>
+</ul>
+<h3 id="28"><span>2.8<span class="heti-spacing"> </span></span>计算机硬件对过程的支持<a class="headerlink" href="#28" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<ul>
+<li>Procedure</li>
+<li>执行过程的六个步骤<span><span class="heti-spacing"> </span>:</span><ul>
+<li>将参数放在过程可以访问到的位置</li>
+<li>将控制转交给过程</li>
+<li>获取过程所需的存储资源</li>
+<li>执行所需的任务</li>
+<li>将结果值放在调用程序可以访问到的位置</li>
+<li>将控制返回到初始点，因为过程可以从程序中的多个点调用</li>
+</ul>
+</li>
+<li><span>x 10~x 17:<span class="heti-spacing"> </span></span>参数寄存器，用于传递参数或返回值</li>
+<li><span>x 1:<span class="heti-spacing"> </span></span>返回地址寄存器，用于返回到起始点</li>
+<li><span>jal<span class="heti-spacing"> </span></span>跳转<span class="heti-skip"><span class="heti-spacing"> </span>-<span class="heti-spacing"> </span></span>链接指令 </li>
+</ul>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a>Jal x1, ProcedureAddress
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a>Jalr x0, 0(x1)
+</span></code></pre></div>
+<p>调用者将参数值放入<span><span class="heti-spacing"> </span>x 10~x 17</span><br/>
+过程是被调用者<br/>
+Program counter:PC<br/>
+指令地址寄存器</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a>jal x0, Label // unconditionally branch to Label
+</span></code></pre></div>
+<h4 id="281"><span>2.8.1<span class="heti-spacing"> </span></span>使用更多的寄存器<a class="headerlink" href="#281" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<ul>
+<li>Stack</li>
+<li>Stack pointer x2:sp</li>
+<li>压栈弹栈</li>
+</ul>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a>leaf_example:
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a>Addi sp, sp, -14
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a>Sd x5, 16(sp)
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos=" 4 "></span></a>Sd x6, 8(sp)
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos=" 5 "></span></a>Sd x20, 0(sp)
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos=" 6 "></span></a>Add x5, x10, x11
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos=" 7 "></span></a>Add x6, x12, x13
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos=" 8 "></span></a>Sub x20, x5, x6
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos=" 9 "></span></a>Addi x10, x20, 0
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos="10 "></span></a>Ld x20, 0(sp)
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><a href="#__codelineno-7-11"><span class="linenos" data-linenos="11 "></span></a>Ld x6, 8(sp)
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><a href="#__codelineno-7-12"><span class="linenos" data-linenos="12 "></span></a>Ld x5, 16(sp)
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><a href="#__codelineno-7-13"><span class="linenos" data-linenos="13 "></span></a>Addi sp, sp, 24
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><a href="#__codelineno-7-14"><span class="linenos" data-linenos="14 "></span></a>Jalr x0, 0(x1)
+</span></code></pre></div>
+<ul>
+<li><span>X 5~x 7, x 28~x 31:<span class="heti-spacing"> </span></span>临时寄存器</li>
+<li><span>x 8~x 9, x 18~x 27:<span class="heti-spacing"> </span></span>保存寄存器</li>
+</ul>
+<h4 id="282"><span>2.8.2<span class="heti-spacing"> </span></span>嵌套过程<a class="headerlink" href="#282" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<ul>
+<li>Leaf procedure </li>
+<li>将所有必须保存的寄存器压栈，防止冲突</li>
+</ul>
+<div class="language-C highlight"><span class="filename">C</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">fact</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos="4 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<p>n -&gt; x 10</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a>fact:
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a>    addi sp, sp, -16
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a>    Sd x1, 8(sp)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos=" 4 "></span></a>    Sd x10, 0(sp)
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos=" 5 "></span></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos=" 6 "></span></a>    Addi x5, x10, -1
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos=" 7 "></span></a>    Bge x5, x0, L1
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos=" 8 "></span></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos=" 9 "></span></a>    Addi x10, x0, 1
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><a href="#__codelineno-9-10"><span class="linenos" data-linenos="10 "></span></a>    Addi sp, sp, 16
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><a href="#__codelineno-9-11"><span class="linenos" data-linenos="11 "></span></a>    Jalr x0, 0(x1)
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><a href="#__codelineno-9-12"><span class="linenos" data-linenos="12 "></span></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><a href="#__codelineno-9-13"><span class="linenos" data-linenos="13 "></span></a>L1: addi x10, x10, -1
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a><a href="#__codelineno-9-14"><span class="linenos" data-linenos="14 "></span></a>    Jal x1, fact
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a><a href="#__codelineno-9-15"><span class="linenos" data-linenos="15 "></span></a>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a><a href="#__codelineno-9-16"><span class="linenos" data-linenos="16 "></span></a>addi x6, x10, 0
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a><a href="#__codelineno-9-17"><span class="linenos" data-linenos="17 "></span></a>Ld x10, 0(sp)
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18"></a><a href="#__codelineno-9-18"><span class="linenos" data-linenos="18 "></span></a>Ld x1, 8(sp)
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19"></a><a href="#__codelineno-9-19"><span class="linenos" data-linenos="19 "></span></a>Addi sp, sp, 16
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20"></a><a href="#__codelineno-9-20"><span class="linenos" data-linenos="20 "></span></a>Mul x10, x10, x6
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21"></a><a href="#__codelineno-9-21"><span class="linenos" data-linenos="21 "></span></a>Jalr x0, 0(x1)
+</span></code></pre></div>
+<ul>
+<li>一些编译器保留一个寄存器<span class="heti-skip"><span class="heti-spacing"> </span>x 3<span class="heti-spacing"> </span></span>用作全局指针<span><span class="heti-spacing"> </span>gp</span> </li>
+</ul>
+<h4 id="283"><span>2.8.3<span class="heti-spacing"> </span></span>在栈中位新数据分配空间<a class="headerlink" href="#283" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p>栈也用于存储过程的局部变量<br/>
+过程帧/活动记录</p>
+<p>没看懂</p>
+<h4 id="284"><span>2.8.4<span class="heti-spacing"> </span></span>在堆中为新数据分配空间<a class="headerlink" href="#284" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p>Static data segment<br/>
+text segment<br/>
+像链表等数据结构往往会随生命周期增长和缩短，所以会把他们存在堆里 (heap)</p>
+<ul>
+<li>malloc ()</li>
+<li>free ()<br/>
+详细阐述没看</li>
+</ul>
+<h3 id="29"><span>2.9<span class="heti-spacing"> </span></span>人机交互<a class="headerlink" href="#29" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<p>ASCII: american standard code for information interchange<br/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292045828.png"><img alt="QQ_1724935497889.png" src="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292045828.png"/></a></p>
+<p>加载无符号字节<span><span class="heti-spacing"> </span>(lbu)</span><br/>
+存储字节 (sb)</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a>lbu x12, 0(x10)
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a>sb x12, 0(x11)
+</span></code></pre></div>
+<p>字符串的表示有三种选择<span><span class="heti-spacing"> </span>:</span></p>
+<ol>
+<li>第一个位置保留来给出字符串的长度</li>
+<li>用额外的变量来存储长度（如结构体）</li>
+<li>字符串的最后一个位置用字符标记结尾<br/>
+其中 C 语言用第三种，使用值为 0 的字节来终止字符串（null in ASCII）</li>
+</ol>
+<div class="language-C highlight"><span class="filename">C</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="kt">void</span><span class="w"> </span><span class="nf">strcpy</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">x</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">y</span><span class="p">[])</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos="5 "></span></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">)</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><a href="#__codelineno-11-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><a href="#__codelineno-11-7"><span class="linenos" data-linenos="7 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<p>x -&gt; x 10<br/>
+y -&gt; x 11<br/>
+i -&gt; x 19</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos=" 1 "></span></a>strcpy:
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos=" 2 "></span></a>    addi sp, sp, -8
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos=" 3 "></span></a>    sd x19, 0(sp)
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos=" 4 "></span></a>    add x19, x0, x0
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos=" 5 "></span></a>L1: add x5, x19, x11
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><a href="#__codelineno-12-6"><span class="linenos" data-linenos=" 6 "></span></a>    lbu x6, 0(x5)
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><a href="#__codelineno-12-7"><span class="linenos" data-linenos=" 7 "></span></a>    add x7, x19, x10
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><a href="#__codelineno-12-8"><span class="linenos" data-linenos=" 8 "></span></a>    sb x6, 0(x7)
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><a href="#__codelineno-12-9"><span class="linenos" data-linenos=" 9 "></span></a>    beq x6, x0, L2
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><a href="#__codelineno-12-10"><span class="linenos" data-linenos="10 "></span></a>    addi x19, x19, 1
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a><a href="#__codelineno-12-11"><span class="linenos" data-linenos="11 "></span></a>    jal x0, L1
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a><a href="#__codelineno-12-12"><span class="linenos" data-linenos="12 "></span></a>L2: ld x19, 0(sp)
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a><a href="#__codelineno-12-13"><span class="linenos" data-linenos="13 "></span></a>    addi sp, sp, 8
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14"></a><a href="#__codelineno-12-14"><span class="linenos" data-linenos="14 "></span></a>    jalr x0, 0(x1)
+</span></code></pre></div>
+<p><span>load half unsigned<span class="heti-spacing"> </span></span>加载半字<span><span class="heti-spacing"> </span>: lh</span><br/>
+lhu<br/>
+sh<br/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292110629.png"><img alt="QQ_1724937038460.png" src="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292110629.png"/></a></p>
+<h3 id="210-risc-v"><span>2.10<span class="heti-spacing"> </span></span>对大立即数的<span class="heti-skip"><span class="heti-spacing"> </span>RISC-V<span class="heti-spacing"> </span></span>的编址和寻址<a class="headerlink" href="#210-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="2101"><span>2.10.1<span class="heti-spacing"> </span></span>大立即数<a class="headerlink" href="#2101" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p><span>load upper immediate<span class="heti-spacing"> </span></span>取立即数高位<span><span class="heti-spacing"> </span>lui</span><br/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292114678.png"><img alt="QQ_1724937286434.png" src="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292114678.png"/></a><br/>
+lui 可以加载 12~31 位<br/>
+addi 可以加载 0~11 位</p>
+<h4 id="2102"><span>2.10.2<span class="heti-spacing"> </span></span>分支中的寻址<a class="headerlink" href="#2102" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<p>分支指令使用<span class="heti-skip"><span class="heti-spacing"> </span>SB<span class="heti-spacing"> </span></span>型的指令格式<br/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292119303.png"><img alt="QQ_1724937558366.png" src="https://cdn.jsdelivr.net/gh/WncFht/picture/202408292119303.png"/></a></p>
+<h3 id="211"><span>2.11<span class="heti-spacing"> </span></span>指令与并行性：同步<a class="headerlink" href="#211" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="212"><span>2.12<span class="heti-spacing"> </span></span>翻译并启动程序<a class="headerlink" href="#212" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="2121"><span>2.12.1<span class="heti-spacing"> </span></span>编译器<a class="headerlink" href="#2121" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2122"><span>2.12.2<span class="heti-spacing"> </span></span>汇编器<a class="headerlink" href="#2122" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2123"><span>2.12.3<span class="heti-spacing"> </span></span>链接器<a class="headerlink" href="#2123" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2124"><span>2.12.4<span class="heti-spacing"> </span></span>加载器<a class="headerlink" href="#2124" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2125"><span>2.12.5<span class="heti-spacing"> </span></span>动态链接库<a class="headerlink" href="#2125" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h5 id="21251-java"><span>2.12.5.1<span class="heti-spacing"> </span></span>启动<span class="heti-skip"><span class="heti-spacing"> </span>Java<span class="heti-spacing"> </span></span>程序<a class="headerlink" href="#21251-java" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h5>
+<h3 id="213-c"><span>2.13<span class="heti-spacing"> </span></span>以<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>排序程序为例的汇总整理<a class="headerlink" href="#213-c" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="2131-swap"><span>2.13.1 swap<span class="heti-spacing"> </span></span>过程<a class="headerlink" href="#2131-swap" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2132-sort"><span>2.13.2 sort<span class="heti-spacing"> </span></span>过程<a class="headerlink" href="#2132-sort" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="214"><span>2.14<span class="heti-spacing"> </span></span>数组与指针<a class="headerlink" href="#214" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="2141-clear"><span>2.14.1<span class="heti-spacing"> </span></span>用数组实现<span><span class="heti-spacing"> </span>clear</span><a class="headerlink" href="#2141-clear" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2142-clear"><span>2.14.2<span class="heti-spacing"> </span></span>用指针实现<span><span class="heti-spacing"> </span>clear</span><a class="headerlink" href="#2142-clear" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2143-clear"><span>2.14.3<span class="heti-spacing"> </span></span>比较两个版本的<span><span class="heti-spacing"> </span>clear</span><a class="headerlink" href="#2143-clear" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="215-c-java"><span>2.15<span class="heti-spacing"> </span></span>高级专题<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>编译<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>语言和解释<span class="heti-skip"><span class="heti-spacing"> </span>Java<span class="heti-spacing"> </span></span>程序<a class="headerlink" href="#215-c-java" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="216-mips"><span>2.16<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: MIPS<span class="heti-spacing"> </span></span>指令<a class="headerlink" href="#216-mips" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="217-x-86"><span>2.17<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: x 86<span class="heti-spacing"> </span></span>指令<a class="headerlink" href="#217-x-86" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="2171-intel-x-86"><span>2.17.1 Intel x 86<span class="heti-spacing"> </span></span>的演变<a class="headerlink" href="#2171-intel-x-86" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2172-x-86"><span>2.17.2 x 86<span class="heti-spacing"> </span></span>寄存器和寻址模式<a class="headerlink" href="#2172-x-86" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2173-x-86"><span>2.17.3 x 86<span class="heti-spacing"> </span></span>整数操作<a class="headerlink" href="#2173-x-86" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2174-x-86"><span>2.17.4 x 86<span class="heti-spacing"> </span></span>指令编码<a class="headerlink" href="#2174-x-86" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="2175-x-86"><span>2.17.5 x 86<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#2175-x-86" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="218-risc-v"><span>2.18<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: RISC-V<span class="heti-spacing"> </span></span>指令系统的剩余部分<a class="headerlink" href="#218-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="219"><span>2.19<span class="heti-spacing"> </span></span>谬误与陷阱<a class="headerlink" href="#219" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="220"><span>2.20<span class="heti-spacing"> </span></span>本章小结<a class="headerlink" href="#220" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h2 id="3"><span>3<span class="heti-spacing"> </span></span>计算机的算数运算<a class="headerlink" href="#3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h3 id="31"><span>3.1<span class="heti-spacing"> </span></span>引言<a class="headerlink" href="#31" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="32"><span>3.2<span class="heti-spacing"> </span></span>加法和减法<a class="headerlink" href="#32" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="33"><span>3.3<span class="heti-spacing"> </span></span>乘法<a class="headerlink" href="#33" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="331"><span>3.3.1<span class="heti-spacing"> </span></span>串行版的乘法算法及其硬件实现<a class="headerlink" href="#331" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="332"><span>3.3.2<span class="heti-spacing"> </span></span>带符号乘法<a class="headerlink" href="#332" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="333"><span>3.3.3<span class="heti-spacing"> </span></span>快速乘法<a class="headerlink" href="#333" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="334-risc-v"><span>3.3.4 RISC-V<span class="heti-spacing"> </span></span>中的乘法<a class="headerlink" href="#334-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="335"><span>3.3.5<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#335" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="34"><span>3.4<span class="heti-spacing"> </span></span>除法<a class="headerlink" href="#34" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="341"><span>3.4.1<span class="heti-spacing"> </span></span>除法算法及硬件实现<a class="headerlink" href="#341" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="342"><span>3.4.2<span class="heti-spacing"> </span></span>有符号除法<a class="headerlink" href="#342" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="343"><span>3.4.3<span class="heti-spacing"> </span></span>快速除法<a class="headerlink" href="#343" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="344-risc-v"><span>3.4.4 RISC-V<span class="heti-spacing"> </span></span>中的除法<a class="headerlink" href="#344-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="345"><span>3.4.5<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#345" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="35"><span>3.5<span class="heti-spacing"> </span></span>浮点运算<a class="headerlink" href="#35" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="351"><span>3.5.1<span class="heti-spacing"> </span></span>浮点表示<a class="headerlink" href="#351" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="352"><span>3.5.2<span class="heti-spacing"> </span></span>例外和中断<a class="headerlink" href="#352" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="353-ieee-754"><span>3.5.3 IEEE 754<span class="heti-spacing"> </span></span>浮点数标准<a class="headerlink" href="#353-ieee-754" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="354"><span>3.5.4<span class="heti-spacing"> </span></span>浮点加法<a class="headerlink" href="#354" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="355"><span>3.5.5<span class="heti-spacing"> </span></span>浮点除法<a class="headerlink" href="#355" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="356-risc-v"><span>3.5.6 RISC-V<span class="heti-spacing"> </span></span>中的浮点指令<a class="headerlink" href="#356-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="357"><span>3.5.7<span class="heti-spacing"> </span></span>精确算数<a class="headerlink" href="#357" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="358"><span>3.5.8<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#358" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="36"><span>3.6<span class="heti-spacing"> </span></span>并行性与计算机算数<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>子字并行<a class="headerlink" href="#36" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="37-x-86-simd"><span>3.7<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: x 86<span class="heti-spacing"> </span></span>中的<span class="heti-skip"><span class="heti-spacing"> </span>SIMD<span class="heti-spacing"> </span></span>扩展和高级向量扩展<a class="headerlink" href="#37-x-86-simd" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="38"><span>3.8<span class="heti-spacing"> </span></span>加速<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>子字并行和矩阵乘法<a class="headerlink" href="#38" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="39"><span>3.9<span class="heti-spacing"> </span></span>谬误与陷阱<a class="headerlink" href="#39" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="310"><span>3.10<span class="heti-spacing"> </span></span>本章小结<a class="headerlink" href="#310" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h2 id="4"><span>4<span class="heti-spacing"> </span></span>处理器<a class="headerlink" href="#4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h3 id="41"><span>4.1<span class="heti-spacing"> </span></span>引言<a class="headerlink" href="#41" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="411-risc-v"><span>4.1.1<span class="heti-spacing"> </span></span>一种基本的<span class="heti-skip"><span class="heti-spacing"> </span>RISC-V<span class="heti-spacing"> </span></span>实现<a class="headerlink" href="#411-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="412"><span>4.1.2<span class="heti-spacing"> </span></span>实现概述<a class="headerlink" href="#412" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="42"><span>4.2<span class="heti-spacing"> </span></span>逻辑设计的一般方法<a class="headerlink" href="#42" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="43"><span>4.3<span class="heti-spacing"> </span></span>建立数据通路<a class="headerlink" href="#43" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="44"><span>4.4<span class="heti-spacing"> </span></span>一个简单的实现方案<a class="headerlink" href="#44" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="441-alu"><span>4.4.1 ALU<span class="heti-spacing"> </span></span>控制<a class="headerlink" href="#441-alu" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="442"><span>4.4.2<span class="heti-spacing"> </span></span>设计主控制单元<a class="headerlink" href="#442" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="443"><span>4.4.3<span class="heti-spacing"> </span></span>数据通路操作<a class="headerlink" href="#443" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="444"><span>4.4.4<span class="heti-spacing"> </span></span>控制的结束<a class="headerlink" href="#444" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="445"><span>4.4.5<span class="heti-spacing"> </span></span>为什么现在不适用单周期实现<a class="headerlink" href="#445" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="45"><span>4.5<span class="heti-spacing"> </span></span>流水线概述<a class="headerlink" href="#45" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="451"><span>4.5.1<span class="heti-spacing"> </span></span>面向流水线的指令系统设计<a class="headerlink" href="#451" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="452"><span>4.5.2<span class="heti-spacing"> </span></span>流水下冒险<a class="headerlink" href="#452" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="453"><span>4.5.3<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#453" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="46"><span>4.6<span class="heti-spacing"> </span></span>流水线数据通路和控制<a class="headerlink" href="#46" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="461"><span>4.6.1<span class="heti-spacing"> </span></span>流水线的图形化表示<a class="headerlink" href="#461" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="462"><span>4.6.2<span class="heti-spacing"> </span></span>流水线控制<a class="headerlink" href="#462" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="47"><span>4.7<span class="heti-spacing"> </span></span>数据冒险<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>前递与停顿<a class="headerlink" href="#47" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="48"><span>4.8<span class="heti-spacing"> </span></span>控制冒险<a class="headerlink" href="#48" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="481"><span>4.8.1<span class="heti-spacing"> </span></span>假设分支不发生<a class="headerlink" href="#481" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="482"><span>4.8.2<span class="heti-spacing"> </span></span>缩短分支延迟<a class="headerlink" href="#482" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="483"><span>4.8.3<span class="heti-spacing"> </span></span>动态分支预测<a class="headerlink" href="#483" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="484"><span>4.8.4<span class="heti-spacing"> </span></span>流水线总结<a class="headerlink" href="#484" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="49"><span>4.9<span class="heti-spacing"> </span></span>例外<a class="headerlink" href="#49" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="491-risc-v"><span>4.9.1 RISC-V<span class="heti-spacing"> </span></span>体系结构中如何处理例外<a class="headerlink" href="#491-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="492"><span>4.9.2<span class="heti-spacing"> </span></span>流水线实现中的例外<a class="headerlink" href="#492" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="410"><span>4.10<span class="heti-spacing"> </span></span>指令间的并行性<a class="headerlink" href="#410" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="4101"><span>4.10.1<span class="heti-spacing"> </span></span>推测的概念<a class="headerlink" href="#4101" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="4102"><span>4.10.2<span class="heti-spacing"> </span></span>静态多发射<a class="headerlink" href="#4102" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="4103"><span>4.10.3<span class="heti-spacing"> </span></span>动态多发射处理器<a class="headerlink" href="#4103" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="4104"><span>4.10.4<span class="heti-spacing"> </span></span>高级流水线和能效<a class="headerlink" href="#4104" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="411-armcortex-a-53-intel-core-i-7"><span>4.11<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: armCortex-A 53<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>Intel Core i 7<span class="heti-spacing"> </span></span>流水线结构<a class="headerlink" href="#411-armcortex-a-53-intel-core-i-7" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="4111-arm-cortex-a-53">4.11.1 ARM Cortex-A 53<a class="headerlink" href="#4111-arm-cortex-a-53" title="Permanent link">¶</a></h4>
+<h4 id="4112-intel-core-i-7-920">4.11.2 Intel Core i 7 920<a class="headerlink" href="#4112-intel-core-i-7-920" title="Permanent link">¶</a></h4>
+<h4 id="4113-intel-core-i-7"><span>4.11.3 Intel Core i 7<span class="heti-spacing"> </span></span>处理器的性能<a class="headerlink" href="#4113-intel-core-i-7" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="412_1"><span>4.12<span class="heti-spacing"> </span></span>加速<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>指令集并行和矩阵乘法<a class="headerlink" href="#412_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="413"><span>4.13<span class="heti-spacing"> </span></span>高级专题<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>数字设计概述——使用硬件设计语言进行流水线建模以及更多流水线示例<a class="headerlink" href="#413" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="414"><span>4.14<span class="heti-spacing"> </span></span>谬误与陷阱<a class="headerlink" href="#414" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="415"><span>4.15<span class="heti-spacing"> </span></span>本章小结<a class="headerlink" href="#415" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="416"><span>4.16<span class="heti-spacing"> </span></span>历史视角和扩展阅读<a class="headerlink" href="#416" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h2 id="5"><span>5<span class="heti-spacing"> </span></span>大而快<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>层次化存储<a class="headerlink" href="#5" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h3 id="51"><span>5.1<span class="heti-spacing"> </span></span>引言<a class="headerlink" href="#51" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="52"><span>5.2<span class="heti-spacing"> </span></span>存储技术<a class="headerlink" href="#52" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="521-sram"><span>5.2.1 SRAM<span class="heti-spacing"> </span></span>存储技术<a class="headerlink" href="#521-sram" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="522-dram"><span>5.2.2 DRAM<span class="heti-spacing"> </span></span>存储技术<a class="headerlink" href="#522-dram" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="523"><span>5.2.3<span class="heti-spacing"> </span></span>闪存<a class="headerlink" href="#523" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="524"><span>5.2.4<span class="heti-spacing"> </span></span>磁盘<a class="headerlink" href="#524" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="53-cache"><span>5.3 cache<span class="heti-spacing"> </span></span>基础<a class="headerlink" href="#53-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="531-cache"><span>5.3.1 cache<span class="heti-spacing"> </span></span>访问<a class="headerlink" href="#531-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="532-cache"><span>5.3.2<span class="heti-spacing"> </span></span>处理<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>失效<a class="headerlink" href="#532-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="533"><span>5.3.3<span class="heti-spacing"> </span></span>处理写操作<a class="headerlink" href="#533" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="534-cache-intrinsity-fastmath"><span>5.3.4 cache<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: Intrinsity FastMATH<span class="heti-spacing"> </span></span>处理器<a class="headerlink" href="#534-cache-intrinsity-fastmath" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="535"><span>5.3.5<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#535" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="54-cache"><span>5.4 cache<span class="heti-spacing"> </span></span>的性能评估和改进<a class="headerlink" href="#54-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="541-cache"><span>5.4.1<span class="heti-spacing"> </span></span>使用更为灵活的替换策略降低<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>失效率<a class="headerlink" href="#541-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="542-cache"><span>5.4.2<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>中查找数据块<a class="headerlink" href="#542-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="543"><span>5.4.3<span class="heti-spacing"> </span></span>选择替换的数据块<a class="headerlink" href="#543" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="544-cache"><span>5.4.4<span class="heti-spacing"> </span></span>使用多级<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>减少失效代价<a class="headerlink" href="#544-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="545"><span>5.4.5<span class="heti-spacing"> </span></span>通过分块进行软件优化<a class="headerlink" href="#545" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="546"><span>5.4.6<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#546" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="55"><span>5.5<span class="heti-spacing"> </span></span>可靠的存储器曾测<a class="headerlink" href="#55" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="551"><span>5.5.1<span class="heti-spacing"> </span></span>失效的定义<a class="headerlink" href="#551" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="552-1-2"><span>5.5.2<span class="heti-spacing"> </span></span>纠正<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>位错、检测<span class="heti-skip"><span class="heti-spacing"> </span>2<span class="heti-spacing"> </span></span>位错的汉明编码<a class="headerlink" href="#552-1-2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="56"><span>5.6<span class="heti-spacing"> </span></span>虚拟机<a class="headerlink" href="#56" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="561"><span>5.6.1<span class="heti-spacing"> </span></span>虚拟机监视器的必备条件<a class="headerlink" href="#561" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="562"><span>5.6.2<span class="heti-spacing"> </span></span>指令系统体系结构（缺乏）对虚拟机的支持、<a class="headerlink" href="#562" title="Permanent link">¶</a></h4>
+<h4 id="563"><span>5.6.3<span class="heti-spacing"> </span></span>保护和指令系统体系结构<a class="headerlink" href="#563" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="57"><span>5.7<span class="heti-spacing"> </span></span>虚拟内存<a class="headerlink" href="#57" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="571"><span>5.7.1<span class="heti-spacing"> </span></span>页的存放和查找<a class="headerlink" href="#571" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="572"><span>5.7.2<span class="heti-spacing"> </span></span>缺页失效<a class="headerlink" href="#572" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="573"><span>5.7.3<span class="heti-spacing"> </span></span>支持大虚拟地址空间的虚拟存储<a class="headerlink" href="#573" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="574"><span>5.7.4<span class="heti-spacing"> </span></span>关于写<a class="headerlink" href="#574" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="575-tlb"><span>5.7.5<span class="heti-spacing"> </span></span>加快地址转换<span><span class="heti-spacing"> </span>:TLB</span><a class="headerlink" href="#575-tlb" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="576-intrinsity-fastmath-tlb">5.7.6 Intrinsity FastMATH TLB<a class="headerlink" href="#576-intrinsity-fastmath-tlb" title="Permanent link">¶</a></h4>
+<h4 id="577-tlb-cache"><span>5.7.7<span class="heti-spacing"> </span></span>继承虚拟存储、<span>TLB<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>cache</span><a class="headerlink" href="#577-tlb-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="578"><span>5.7.8<span class="heti-spacing"> </span></span>虚拟存储中的保护<a class="headerlink" href="#578" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="579-tlb"><span>5.7.9<span class="heti-spacing"> </span></span>处理<span class="heti-skip"><span class="heti-spacing"> </span>TLB<span class="heti-spacing"> </span></span>失效和缺页失败<a class="headerlink" href="#579-tlb" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="5710"><span>5.7.10<span class="heti-spacing"> </span></span>总结<a class="headerlink" href="#5710" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="58"><span>5.8<span class="heti-spacing"> </span></span>存储层次结构的一般框架<a class="headerlink" href="#58" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="581"><span>5.8.1<span class="heti-spacing"> </span></span>问题一<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>块可以被放在何处<a class="headerlink" href="#581" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="582"><span>5.8.2<span class="heti-spacing"> </span></span>问题二<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>如何找到块<a class="headerlink" href="#582" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="583-cache"><span>5.8.3<span class="heti-spacing"> </span></span>问题三<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>当<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>发生失效时替换哪一块<a class="headerlink" href="#583-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="584"><span>5.8.4<span class="heti-spacing"> </span></span>问题四<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>写操作如何处理<a class="headerlink" href="#584" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="585-c"><span>5.8.5 C:<span class="heti-spacing"> </span></span>一种理解存储层次结构的直观模型<a class="headerlink" href="#585-c" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="59-cache"><span>5.9<span class="heti-spacing"> </span></span>使用有限状态自动机控制简单的<span><span class="heti-spacing"> </span>cache</span><a class="headerlink" href="#59-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="591-cache"><span>5.9.1<span class="heti-spacing"> </span></span>一个简单的<span><span class="heti-spacing"> </span>cache</span><a class="headerlink" href="#591-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="592"><span>5.9.2<span class="heti-spacing"> </span></span>有限状态自动机<a class="headerlink" href="#592" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="593-cache"><span>5.9.3<span class="heti-spacing"> </span></span>使用有限转台自动机作为简单的<span class="heti-skip"><span class="heti-spacing"> </span>cache<span class="heti-spacing"> </span></span>控制器<a class="headerlink" href="#593-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="510-cache"><span>5.10<span class="heti-spacing"> </span></span>并行和存储层次结构<span class="heti-skip"><span class="heti-spacing"> </span>: cache<span class="heti-spacing"> </span></span>一致性<a class="headerlink" href="#510-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h4 id="5101"><span>5.10.1<span class="heti-spacing"> </span></span>实行一致性的基本方案<a class="headerlink" href="#5101" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h4 id="5102"><span>5.10.2<span class="heti-spacing"> </span></span>监听协议<a class="headerlink" href="#5102" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
+<h3 id="511"><span>5.11<span class="heti-spacing"> </span></span>并行与存储层次结构<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>廉价磁盘冗余阵列<a class="headerlink" href="#511" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="512"><span>5.12<span class="heti-spacing"> </span></span>高级专题<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>实现缓存控制器<a class="headerlink" href="#512" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="513-arm-cortex-a-53-intel-core-i-7"><span>5.13<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: ARM Cortex-A 53<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>Intel Core i 7<span class="heti-spacing"> </span></span>的存储层次结构<a class="headerlink" href="#513-arm-cortex-a-53-intel-core-i-7" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="514-risc-v"><span>5.14<span class="heti-spacing"> </span></span>实例<span class="heti-skip"><span class="heti-spacing"> </span>: RISC-V<span class="heti-spacing"> </span></span>系统其他部分和特殊指令<a class="headerlink" href="#514-risc-v" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="515-cache"><span>5.15<span class="heti-spacing"> </span></span>加速<span class="heti-skip"><span class="heti-spacing"> </span>: cache<span class="heti-spacing"> </span></span>分块和矩阵乘法<a class="headerlink" href="#515-cache" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="516"><span>5.16<span class="heti-spacing"> </span></span>谬误与陷阱<a class="headerlink" href="#516" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="517"><span>5.17<span class="heti-spacing"> </span></span>本身小结<a class="headerlink" href="#517" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h3 id="518"><span>5.18<span class="heti-spacing"> </span></span>历史视角和拓展阅读<a class="headerlink" href="#518" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h2 id="6"><span>6<span class="heti-spacing"> </span></span>并行处理器<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>从客户端到云<a class="headerlink" href="#6" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2></div>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 13, 2024 01:35:36</span>
+</span>
+<span class="md-source-file__fact">
+<span class="md-icon" title="Created">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 13, 2024 01:35:36</span>
+</span>
+</aside>
+<div id="__comments"></div>
+<!-- <h3>颜色主题调整</h3>
+    <div class="tx-switch">
+    <button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+    <button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+    <button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+    <button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+    <button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+    <button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+    <button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+    <button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+    <button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+    <button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+    <button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+    <button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+    <button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+    <button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+    </div> -->
+<!-- Giscus -->
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDONBPLqs4Cja0c" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="WncFht/notes" data-repo-id="R_kgDONBPLqg" data-strict="0" data-theme="preferred_color_scheme" src="https://giscus.app/client.js">
+</script>
+<script>
+    var buttons = document.querySelectorAll("button[data-md-color-primary]")
+    buttons.forEach(function(button) {
+            button.addEventListener("click", function() {
+            var attr = this.getAttribute("data-md-color-primary")
+            document.body.setAttribute("data-md-color-primary", attr)
+            localStorage.setItem("data-md-color-primary",attr);
+            })
+    })
+    </script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+</script>
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+        giscus.setAttribute("data-theme", theme) 
+    }
+    
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+        var ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+            var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    
+            /* Instruct Giscus to change theme */
+            var frame = document.querySelector(".giscus-frame")
+            frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+            )
+        }
+        })
+    })
+    </script>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+        Copyright © 2024 - Present <a href="https://github.com/WncFht/" rel="noopener" target="_blank">WncFht</a>
+</div>
+    
+    
+      Powered by
+      <a href="https://www.mkdocs.org/" rel="noopener" target="_blank">
+        MkDocs
+      </a>
+      with theme
+      <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+        Material
+      </a>
+      modified by
+      <a href="https://github.com/WncFht" rel="noopener" target="_blank">
+        WncFht
+      </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/WncFht" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.action.view", "content.footnote.tooltips", "content.tabs.link", "header.autohide", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script src="../../../js/katex.js"></script>
+<script src="../../../js/mathjax.js"></script>
+<script src="../../../js/tablesort.js"></script>
+<script src="../../../js/toc.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+<script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml-full.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-svg-full.js"></script>
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
