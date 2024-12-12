@@ -53,6 +53,10 @@
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
+         <loc>https://WncFht.github.io/notes/CS%20basic/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
          <loc>https://WncFht.github.io/notes/CS%20basic/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/</loc>
          <lastmod>2024-12-12</lastmod>
     </url>
@@ -129,7 +133,23 @@
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
+         <loc>https://WncFht.github.io/notes/CV/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
+         <loc>https://WncFht.github.io/notes/CV/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
+         <loc>https://WncFht.github.io/notes/Environment/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
          <loc>https://WncFht.github.io/notes/Environment/Ubuntu_setup/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
+         <loc>https://WncFht.github.io/notes/Environment/environment/</loc>
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
@@ -137,7 +157,7 @@
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
-         <loc>https://WncFht.github.io/notes/Environment/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</loc>
+         <loc>https://WncFht.github.io/notes/Robot/</loc>
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
@@ -150,6 +170,10 @@
     </url>
     <url>
          <loc>https://WncFht.github.io/notes/Robot/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
+         <loc>https://WncFht.github.io/notes/Technology/</loc>
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
@@ -186,6 +210,10 @@
     </url>
     <url>
          <loc>https://WncFht.github.io/notes/links/</loc>
+         <lastmod>2024-12-12</lastmod>
+    </url>
+    <url>
+         <loc>https://WncFht.github.io/notes/summary/</loc>
          <lastmod>2024-12-12</lastmod>
     </url>
     <url>
@@ -238,10 +266,6 @@
     </url>
     <url>
          <loc>https://WncFht.github.io/notes/summary/high%20school/%E4%B8%80%E4%BA%9B%E8%B5%84%E6%BA%90/</loc>
-         <lastmod>2024-12-12</lastmod>
-    </url>
-    <url>
-         <loc>https://WncFht.github.io/notes/traditional%20cv/%E8%A7%86%E8%A7%89SLAM%E5%8D%81%E5%9B%9B%E8%AE%B2/</loc>
          <lastmod>2024-12-12</lastmod>
     </url>
 </urlset>

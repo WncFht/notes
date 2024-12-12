@@ -5,23 +5,25 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="wnc 的个人网站" name="description"/>
 <meta content="wnc" name="author"/>
-<link href="https://WncFht.github.io/notes/Robot/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" rel="canonical"/>
-<link href="../../assets/images/avatar.jpg" rel="icon"/>
+<link href="https://WncFht.github.io/notes/Environment/" rel="canonical"/>
+<link href="../Robot/" rel="prev"/>
+<link href="../Technology/" rel="next"/>
+<link href="../assets/images/avatar.jpg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.48" name="generator"/>
-<title>相机标定 - wnc 的咖啡馆</title>
-<link href="../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
-<link href="../../css/toc_extra.css" rel="stylesheet"/>
-<link href="../../css/heti.css" rel="stylesheet"/>
+<title>Environmet Setup - wnc 的咖啡馆</title>
+<link href="../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link href="../css/toc_extra.css" rel="stylesheet"/>
+<link href="../css/heti.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/lxgw/lxgwscreen.css" rel="stylesheet"/>
-<link href="../../css/custom.css" rel="stylesheet"/>
-<link href="../../css/tasklist.css" rel="stylesheet"/>
-<link href="../../css/card.css" rel="stylesheet"/>
-<link href="../../css/flink.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+<link href="../css/custom.css" rel="stylesheet"/>
+<link href="../css/tasklist.css" rel="stylesheet"/>
+<link href="../css/card.css" rel="stylesheet"/>
+<link href="../css/flink.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -30,7 +32,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -41,7 +43,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
+<a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href=".." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -57,7 +59,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              相机标定
+              Environmet Setup
             
           </span>
 </div>
@@ -129,7 +131,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../..">
+<a class="md-tabs__link" href="..">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
     
   
@@ -138,7 +140,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../CS Basic/index.md">
+<a class="md-tabs__link" href="../CS Basic/index.md">
         
   
     
@@ -148,7 +150,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../CV/">
+<a class="md-tabs__link" href="../CV/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
     
   
@@ -157,7 +159,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../AI/">
+<a class="md-tabs__link" href="../AI/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
     
   
@@ -166,7 +168,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../">
+<a class="md-tabs__link" href="../Robot/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
     
   
@@ -174,8 +176,8 @@
 
       </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../Environment/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="./">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
     
   
@@ -184,7 +186,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../Technology/">
+<a class="md-tabs__link" href="../Technology/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16h-2v-1H8v1H6v-1H2v5h20v-5h-4zm2-8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v4h4v-2h2v2h8v-2h2v2h4v-4c0-1.1-.9-2-2-2m-5 0H9V6h6z"></path></svg>
     
   
@@ -193,7 +195,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../Summary/index.md">
+<a class="md-tabs__link" href="../Summary/index.md">
         
   
     
@@ -203,7 +205,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../Links/index.md">
+<a class="md-tabs__link" href="../Links/index.md">
         
   
     
@@ -222,7 +224,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
+<a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href=".." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
 </a>
     wnc 的咖啡馆
@@ -241,7 +243,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../..">
+<a class="md-nav__link" href="..">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
 <span class="md-ellipsis">
     Home
@@ -258,7 +260,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../links.md">
+<a class="md-nav__link" href="../links.md">
 <span class="md-ellipsis">
     友链
   </span>
@@ -268,14 +270,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS Basic/index.md">
+<a class="md-nav__link" href="../CS Basic/index.md">
 <span class="md-ellipsis">
     Computer Basic
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CV/">
+<a class="md-nav__link" href="../CV/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
 <span class="md-ellipsis">
     Computer Vision
@@ -283,7 +285,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../AI/">
+<a class="md-nav__link" href="../AI/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
 <span class="md-ellipsis">
     AI
@@ -291,15 +293,16 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../">
+<a class="md-nav__link" href="../Robot/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
 <span class="md-ellipsis">
     Robot
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../Environment/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="./">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"></path></svg>
 <span class="md-ellipsis">
     Environmet Setup
@@ -307,7 +310,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../Technology/">
+<a class="md-nav__link" href="../Technology/">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16h-2v-1H8v1H6v-1H2v5h20v-5h-4zm2-8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v4h4v-2h2v2h8v-2h2v2h4v-4c0-1.1-.9-2-2-2m-5 0H9V6h6z"></path></svg>
 <span class="md-ellipsis">
     一些工具
@@ -315,14 +318,14 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../Summary/index.md">
+<a class="md-nav__link" href="../Summary/index.md">
 <span class="md-ellipsis">
     总结
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../Links/index.md">
+<a class="md-nav__link" href="../Links/index.md">
 <span class="md-ellipsis">
     Links
   </span>
@@ -343,21 +346,116 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Robot/相机标定.md" title="edit.link.title">
+<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Environment/index.md" title="edit.link.title">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
 </a>
-<h1>相机标定</h1>
-<div><div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>73<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> <span>1<span class="heti-spacing"> </span></span>张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间不到<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>分钟</p>
+<h1>Environmet Setup</h1>
+<div><div class="index-item-wrapper">
+<div class="title-wrapper">
+<button onclick="buttonHandler(0)">
+<span class="twemoji" style="margin-right: 4px; font-size: 0.8em;">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M12.78 6.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.28a.75.75 0 0 1 1.06-1.06L8 9.94l3.72-3.72a.75.75 0 0 1 1.06 0z" fill-rule="evenodd"></path></svg>
+</span>envirtonment
+        </button>
 </div>
-<p>Calibration</p>
-<ul>
-<li><a href="https://github.com/SHU-FLYMAN/CalibCamera/tree/master?tab=readme-ov-file"><span>GitHub - SHU-FLYMAN/CalibCamera:<span class="heti-spacing"> </span></span>基于张正友标定法的单目相机标定理论到实践</a></li>
-<li><a href="https://blog.csdn.net/m0_60763146/article/details/139042404#:~:text=%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E6%96%B9%E6%B3%95%E6%9C%89%EF%BC%9A%E4%BC%A0%E7%BB%9F">一文吃透相机标定（Camera calibration）<span>-CSDN<span class="heti-spacing"> </span></span>博客</a></li>
-<li><a href="https://blog.csdn.net/a083614/article/details/78579163">最详细、最完整的相机标定讲解<span class="heti-skip"><span class="heti-spacing"> </span>-CSDN<span class="heti-spacing"> </span></span>博客</a></li>
-<li><a href="https://blog.csdn.net/baidu_38172402/article/details/81949447">相机标定（Camera calibration）原理、步骤<span class="heti-skip"><span class="heti-spacing"> </span>_<span class="heti-spacing"> </span></span>视觉相机 示教目的<span class="heti-skip"><span class="heti-spacing"> </span>-CSDN<span class="heti-spacing"> </span></span>博客</a><br/>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/picture/QQ_1727828014037.png"><img alt="QQ_1727828014037.png" src="https://raw.githubusercontent.com/WncFht/picture/main/picture/QQ_1727828014037.png"/></a> </li>
-</ul></div>
+<ul class="content-item-wrapper">
+<li>
+<div class="item-primary"><a href="environment" target="_self">environment</a></div>
+<div class="item-status"></div>
+<div class="item-main-content">
+<span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5z"></path></svg></span> 227 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13z"></path></svg></span> 1 mins
+            </div>
+<div class="item-metadata">
+</div>
+<div class="item-actions">1734015859</div>
+</li>
+</ul>
+<div class="title-wrapper">
+<button onclick="buttonHandler(1)">
+<span class="twemoji" style="margin-right: 4px; font-size: 0.8em;">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M12.78 6.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.28a.75.75 0 0 1 1.06-1.06L8 9.94l3.72-3.72a.75.75 0 0 1 1.06 0z" fill-rule="evenodd"></path></svg>
+</span>software
+        </button>
+</div>
+<ul class="content-item-wrapper">
+<li>
+<div class="item-primary"><a href="obsidian_setup" target="_self">obsidian</a></div>
+<div class="item-status"></div>
+<div class="item-main-content">
+<span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5z"></path></svg></span> 301 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13z"></path></svg></span> 1 mins
+            </div>
+<div class="item-metadata">
+</div>
+<div class="item-actions">1734015859</div>
+</li>
+</ul>
+<div class="title-wrapper">
+<button onclick="buttonHandler(2)">
+<span class="twemoji" style="margin-right: 4px; font-size: 0.8em;">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M12.78 6.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.28a.75.75 0 0 1 1.06-1.06L8 9.94l3.72-3.72a.75.75 0 0 1 1.06 0z" fill-rule="evenodd"></path></svg>
+</span>Ubuntu
+        </button>
+</div>
+<ul class="content-item-wrapper">
+<li>
+<div class="item-primary"><a href="Ubuntu_setup" target="_self">Ubuntu</a></div>
+<div class="item-status"></div>
+<div class="item-main-content">
+<span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5z"></path></svg></span> 77 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><path d="m278.9 511.5-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2 43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6 144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"></path></svg></span> <span>14</span> <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13z"></path></svg></span> 0 mins
+            </div>
+<div class="item-metadata">
+</div>
+<div class="item-actions">1734015859</div>
+</li>
+</ul>
+</div>
+<script>
+function buttonHandler(i) {
+    let content = document.getElementsByClassName("content-item-wrapper")[i];
+    let button = document.getElementsByClassName("title-wrapper")[i].getElementsByTagName("button")[0];
+    if (content.style.display == "none") {
+        content.style.display = "block";
+        button.children[0].children[0].style.transform = "rotate(0deg)";
+    } else {
+        content.style.display = "none";
+        button.children[0].children[0].style.transform = "rotate(-90deg)";
+    }
+}
+function produce_time() {
+    let time = document.getElementsByClassName("item-actions");
+    for (let i = 0; i < time.length; i++) {
+        let timestamp;
+        if (time[i].childElementCount > 0) {
+            timestamp = time[i].children[0].innerHTML;
+        } else {
+            timestamp = time[i].innerHTML;
+        }
+        let date = new Date(parseInt(timestamp) * 1000);
+        let now = new Date();
+        let diff = now.getTime() - date.getTime();
+        let years = Math.floor(diff / (24 * 3600 * 1000 * 365));
+        let months = Math.floor(diff / (24 * 3600 * 1000 * 30));
+        let days = Math.floor(diff / (24 * 3600 * 1000));
+        let hours = Math.floor((diff % (24 * 3600 * 1000)) / (3600 * 1000));
+        let minutes = Math.floor((diff % (3600 * 1000)) / (60 * 1000));
+        let seconds = Math.floor((diff % (60 * 1000)) / 1000);
+        if (years > 0) {
+            time[i].innerHTML = years + " years ago";
+        } else if (months > 0) {
+            time[i].innerHTML = months + " months ago";
+        } else if (days > 0) {
+            time[i].innerHTML = days + " days ago";
+        } else if (hours > 0) {
+            time[i].innerHTML = hours + " hours ago";
+        } else if (minutes > 0) {
+            time[i].innerHTML = minutes + " minutes ago";
+        } else {
+            time[i].innerHTML = seconds + " seconds ago";
+        }
+    }
+}
+produce_time();
+</script></div>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
@@ -479,10 +577,10 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.action.view", "content.footnote.tooltips", "content.tabs.link", "header.autohide", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
-<script src="../../js/katex.js"></script>
-<script src="../../js/mathjax.js"></script>
+<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.action.view", "content.footnote.tooltips", "content.tabs.link", "header.autohide", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+<script src="../js/katex.js"></script>
+<script src="../js/mathjax.js"></script>
 <script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
