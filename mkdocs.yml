@@ -237,7 +237,7 @@ nav:
   - Home:
       - index.md
       - 友链: links.md
-  - Computer Basic: CS basic/index.md
+  - Computer Basic: CS Basic/index.md
   - Computer Vision: CV/index.md
   - AI: AI/index.md
   - Robot: Robot/index.md
