@@ -1,0 +1,16 @@
+body {
+      font-family: "LXGW WenKai", sans-serif;
+      /* Lite version */
+      /* font-family: "LXGW WenKai Lite", sans-serif; */
+      /* TC version */
+      /* font-family: "LXGW WenKai TC", sans-serif; */
+      /* Screen version */
+      /* font-family: "LXGW WenKai Screen", sans-serif; */
+    }
+
+button.md-top {
+  font-family: LXGW WenKai; /* 修改字体 */
+  font-size: 16px; /* 修改字体大小 */
+  font-weight: bold; /* 修改字体粗细 */
+  color: #518FC1; /* 修改字体颜色 */
+}
