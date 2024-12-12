@@ -180,6 +180,8 @@ extra_javascript:
   - js/katex.js
   - js/mathjax.js
   - js/tablesort.js
+  - js/toc.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   # - https://cdn.tonycrane.cc/utils/katex.min.js
   - https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
@@ -195,7 +197,6 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-svg-full.js
   # - js/custom.js
   # - js/heti.js
-  - js/toc.js
 
 plugins:
   - blogging:

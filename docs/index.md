@@ -23,7 +23,7 @@ Welcome to wnc's note!
 [:material-chart-line: Statistics](javascript:toggle_statistics();)
 </span>
 
-<div id="statistics" markdown="1" class="card" style="width: 27em; border-color: transparent; opacity: 0; font-size: 75%">
+<div id="statistics" markdown="1" class="card" style="width: 27em; border-color: transparent; opacity: 0; margin-left: auto; margin-right: 0; font-size: 110%">
 <div style="padding-left: 1em;" markdown="1">
 页面总数：{{ pages }}  
 总字数：{{ words }}  
