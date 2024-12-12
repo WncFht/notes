@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zh">
+<html class="no-js" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="wnc 的个人网站" name="description"/>
 <meta content="wnc" name="author"/>
 <link href="https://WncFht.github.io/notes/Technology/SSH/" rel="canonical"/>
 <link href="../Makeflie/" rel="prev"/>
 <link href="../Tabby%20%2B%20Zsh/" rel="next"/>
-<link href="../../assets/images/favicon.png" rel="icon"/>
+<link href="../../assets/images/avatar.jpg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.48" name="generator"/>
 <title>SSH配置指南 - wnc 的咖啡馆</title>
 <link href="../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link href="../../css/toc_extra.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css" rel="stylesheet"/>
@@ -31,19 +33,19 @@
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
     body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="indigo" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
 <a class="md-skip" href="#ssh">
-          跳转至
+          Skip to content
         </a>
 </div>
 <div data-md-component="announce">
 </div>
 <header class="md-header" data-md-component="header">
-<nav aria-label="页眉" class="md-header__inner md-grid">
+<nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
 </a>
@@ -67,12 +69,16 @@
 </div>
 </div>
 <form class="md-header__option" data-md-component="palette">
-<input aria-label="切换至夜间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换至夜间模式">
+<input aria-label="follow system" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="follow system">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"></path></svg>
+</label>
+<input aria-label="light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="white" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="light mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
 </label>
-<input aria-label="切换至日间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_0" hidden="" title="切换至日间模式">
+<input aria-label="darkmode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="darkmode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
 </label>
 </form>
@@ -84,22 +90,26 @@
 <label class="md-search__overlay" for="__search"></label>
 <div class="md-search__inner" role="search">
 <form class="md-search__form" name="search">
-<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
 <label class="md-search__icon md-icon" for="__search">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </label>
-<nav aria-label="查找" class="md-search__options">
-<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 </button>
 </nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
 </form>
 <div class="md-search__output">
 <div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
 <div class="md-search-result" data-md-component="search-result">
 <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
 <ol class="md-search-result__list" role="presentation"></ol>
 </div>
@@ -108,9 +118,9 @@
 </div>
 </div>
 <div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="前往仓库">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
 </div>
 <div class="md-source__repository">
     wnc's café
@@ -120,7 +130,7 @@
 </nav>
 </header>
 <div class="md-container" data-md-component="container">
-<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
@@ -203,6 +213,16 @@
 
         </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../links/">
+        
+  
+    
+  
+  Links
+
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -211,7 +231,7 @@
 <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
 <a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
@@ -219,9 +239,9 @@
     wnc 的咖啡馆
   </label>
 <div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="前往仓库">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
 </div>
 <div class="md-source__repository">
     wnc's café
@@ -248,7 +268,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../links/">
+<a class="md-nav__link" href="../../links.md">
 <span class="md-ellipsis">
     友链
   </span>
@@ -772,10 +792,10 @@
     SSH配置指南
   </span>
 </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -1104,6 +1124,13 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../links/">
+<span class="md-ellipsis">
+    Links
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -1112,10 +1139,10 @@
 <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="目录" class="md-nav md-nav--secondary">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -1295,9 +1322,9 @@
 <a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Technology/SSH.md" title="edit.link.title">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
 </a>
-<h1 id="ssh"><span>SSH<span class="heti-spacing"> </span></span>配置指南<a class="headerlink" href="#ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
+<div><h1 id="ssh"><span>SSH<span class="heti-spacing"> </span></span>配置指南<a class="headerlink" href="#ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>641<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>195<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> <span>1<span class="heti-spacing"> </span></span>张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>641<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>195<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> <span>1<span class="heti-spacing"> </span></span>张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>6<span class="heti-spacing"> </span></span>分钟</p>
 </div>
 <h2 id="ssh_1">一、<span>SSH<span class="heti-spacing"> </span></span>基础概念<a class="headerlink" href="#ssh_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1-ssh"><span>1. SSH<span class="heti-spacing"> </span></span>工作原理<a class="headerlink" href="#1-ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
@@ -1324,125 +1351,73 @@
 5. 服务器验证结果，完成认证</p>
 <h3 id="3"><span>3.<span class="heti-spacing"> </span></span>安全建议<a class="headerlink" href="#3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <h4 id="31"><span>3.1<span class="heti-spacing"> </span></span>基本安全设置<a class="headerlink" href="#31" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># /etc/ssh/sshd_config 安全配置</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>PermitRootLogin<span class="w"> </span>no<span class="w">                 </span><span class="c1"># 禁止root直接登录</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>PasswordAuthentication<span class="w"> </span>no<span class="w">          </span><span class="c1"># 禁用密码认证</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>PubkeyAuthentication<span class="w"> </span>yes<span class="w">          </span><span class="c1"># 启用公钥认证</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>PermitEmptyPasswords<span class="w"> </span>no<span class="w">           </span><span class="c1"># 禁止空密码</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>Protocol<span class="w"> </span><span class="m">2</span><span class="w">                        </span><span class="c1"># 只使用SSH2协议</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>MaxAuthTries<span class="w"> </span><span class="m">3</span><span class="w">                    </span><span class="c1"># 最大认证尝试次数</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>LoginGraceTime<span class="w"> </span><span class="m">30</span><span class="w">                 </span><span class="c1"># 登录超时时间</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>X11Forwarding<span class="w"> </span>no<span class="w">                  </span><span class="c1"># 禁用X11转发（除非需要）</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>AllowUsers<span class="w"> </span>user1<span class="w"> </span>user2<span class="w">            </span><span class="c1"># 限制允许登录的用户</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># /etc/ssh/sshd_config 安全配置</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a>PermitRootLogin<span class="w"> </span>no<span class="w">                 </span><span class="c1"># 禁止root直接登录</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>PasswordAuthentication<span class="w"> </span>no<span class="w">          </span><span class="c1"># 禁用密码认证</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a>PubkeyAuthentication<span class="w"> </span>yes<span class="w">          </span><span class="c1"># 启用公钥认证</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a>PermitEmptyPasswords<span class="w"> </span>no<span class="w">           </span><span class="c1"># 禁止空密码</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a>Protocol<span class="w"> </span><span class="m">2</span><span class="w">                        </span><span class="c1"># 只使用SSH2协议</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a>MaxAuthTries<span class="w"> </span><span class="m">3</span><span class="w">                    </span><span class="c1"># 最大认证尝试次数</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a>LoginGraceTime<span class="w"> </span><span class="m">30</span><span class="w">                 </span><span class="c1"># 登录超时时间</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a>X11Forwarding<span class="w"> </span>no<span class="w">                  </span><span class="c1"># 禁用X11转发（除非需要）</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>AllowUsers<span class="w"> </span>user1<span class="w"> </span>user2<span class="w">            </span><span class="c1"># 限制允许登录的用户</span>
+</span></code></pre></div>
 <h4 id="32"><span>3.2<span class="heti-spacing"> </span></span>密钥管理<a class="headerlink" href="#32" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
-<span class="normal"><a href="#__codelineno-1-2">2</a></span>
-<span class="normal"><a href="#__codelineno-1-3">3</a></span>
-<span class="normal"><a href="#__codelineno-1-4">4</a></span>
-<span class="normal"><a href="#__codelineno-1-5">5</a></span>
-<span class="normal"><a href="#__codelineno-1-6">6</a></span>
-<span class="normal"><a href="#__codelineno-1-7">7</a></span>
-<span class="normal"><a href="#__codelineno-1-8">8</a></span>
-<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># 生成强密钥</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_email@example.com"</span><span class="w"> </span>-a<span class="w"> </span><span class="m">100</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># 密钥权限设置</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.ssh
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_ed25519
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>~/.ssh/id_ed25519.pub
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/authorized_keys
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/known_hosts
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 生成强密钥</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_email@example.com"</span><span class="w"> </span>-a<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 密钥权限设置</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos="5 "></span></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.ssh
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos="6 "></span></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_ed25519
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos="7 "></span></a>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>~/.ssh/id_ed25519.pub
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos="8 "></span></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/authorized_keys
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos="9 "></span></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/known_hosts
+</span></code></pre></div>
 <h3 id="ssh_2">常用的<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>命令<a class="headerlink" href="#ssh_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p><a href="https://www.cainiaojc.com/ssh/ssh-index.html"><span>SSH<span class="heti-spacing"> </span></span>教程 菜鸟教程</a></p>
 <h2 id="_1">二、完整配置指南<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1-linux"><span>1. Linux<span class="heti-spacing"> </span></span>服务器配置<a class="headerlink" href="#1-linux" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-2-10">10</a></span>
-<span class="normal"><a href="#__codelineno-2-11">11</a></span>
-<span class="normal"><a href="#__codelineno-2-12">12</a></span>
-<span class="normal"><a href="#__codelineno-2-13">13</a></span>
-<span class="normal"><a href="#__codelineno-2-14">14</a></span>
-<span class="normal"><a href="#__codelineno-2-15">15</a></span>
-<span class="normal"><a href="#__codelineno-2-16">16</a></span>
-<span class="normal"><a href="#__codelineno-2-17">17</a></span>
-<span class="normal"><a href="#__codelineno-2-18">18</a></span>
-<span class="normal"><a href="#__codelineno-2-19">19</a></span>
-<span class="normal"><a href="#__codelineno-2-20">20</a></span>
-<span class="normal"><a href="#__codelineno-2-21">21</a></span>
-<span class="normal"><a href="#__codelineno-2-22">22</a></span>
-<span class="normal"><a href="#__codelineno-2-23">23</a></span>
-<span class="normal"><a href="#__codelineno-2-24">24</a></span>
-<span class="normal"><a href="#__codelineno-2-25">25</a></span>
-<span class="normal"><a href="#__codelineno-2-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 1. 安装SSH服务器</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># 2. 配置SSH服务</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1"># 3. 基本安全配置</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a>Port<span class="w"> </span><span class="m">22</span><span class="w">                          </span><span class="c1"># 可以修改为非标准端口</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a>ListenAddress<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w">            </span><span class="c1"># 监听地址</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a>Protocol<span class="w"> </span><span class="m">2</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12"></a>PermitRootLogin<span class="w"> </span>no
-<a id="__codelineno-2-13" name="__codelineno-2-13"></a>PasswordAuthentication<span class="w"> </span>no
-<a id="__codelineno-2-14" name="__codelineno-2-14"></a>PubkeyAuthentication<span class="w"> </span>yes
-<a id="__codelineno-2-15" name="__codelineno-2-15"></a>AuthorizedKeysFile<span class="w"> </span>.ssh/authorized_keys
-<a id="__codelineno-2-16" name="__codelineno-2-16"></a>UsePAM<span class="w"> </span>yes
-<a id="__codelineno-2-17" name="__codelineno-2-17"></a>X11Forwarding<span class="w"> </span>no
-<a id="__codelineno-2-18" name="__codelineno-2-18"></a>PrintMotd<span class="w"> </span>no
-<a id="__codelineno-2-19" name="__codelineno-2-19"></a>AcceptEnv<span class="w"> </span>LANG<span class="w"> </span>LC_*
-<a id="__codelineno-2-20" name="__codelineno-2-20"></a>Subsystem<span class="w"> </span>sftp<span class="w"> </span>/usr/lib/openssh/sftp-server
-<a id="__codelineno-2-21" name="__codelineno-2-21"></a>
-<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="c1"># 4. 重启SSH服务</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
-<a id="__codelineno-2-24" name="__codelineno-2-24"></a>
-<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="c1"># 5. 检查服务状态</span>
-<a id="__codelineno-2-26" name="__codelineno-2-26"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>sshd
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 1. 安装SSH服务器</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos=" 2 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos=" 3 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos=" 4 "></span></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># 2. 配置SSH服务</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos=" 6 "></span></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos=" 7 "></span></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="c1"># 3. 基本安全配置</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos=" 9 "></span></a>Port<span class="w"> </span><span class="m">22</span><span class="w">                          </span><span class="c1"># 可以修改为非标准端口</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><a href="#__codelineno-2-10"><span class="linenos" data-linenos="10 "></span></a>ListenAddress<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w">            </span><span class="c1"># 监听地址</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><a href="#__codelineno-2-11"><span class="linenos" data-linenos="11 "></span></a>Protocol<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><a href="#__codelineno-2-12"><span class="linenos" data-linenos="12 "></span></a>PermitRootLogin<span class="w"> </span>no
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><a href="#__codelineno-2-13"><span class="linenos" data-linenos="13 "></span></a>PasswordAuthentication<span class="w"> </span>no
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><a href="#__codelineno-2-14"><span class="linenos" data-linenos="14 "></span></a>PubkeyAuthentication<span class="w"> </span>yes
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><a href="#__codelineno-2-15"><span class="linenos" data-linenos="15 "></span></a>AuthorizedKeysFile<span class="w"> </span>.ssh/authorized_keys
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><a href="#__codelineno-2-16"><span class="linenos" data-linenos="16 "></span></a>UsePAM<span class="w"> </span>yes
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><a href="#__codelineno-2-17"><span class="linenos" data-linenos="17 "></span></a>X11Forwarding<span class="w"> </span>no
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><a href="#__codelineno-2-18"><span class="linenos" data-linenos="18 "></span></a>PrintMotd<span class="w"> </span>no
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><a href="#__codelineno-2-19"><span class="linenos" data-linenos="19 "></span></a>AcceptEnv<span class="w"> </span>LANG<span class="w"> </span>LC_*
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><a href="#__codelineno-2-20"><span class="linenos" data-linenos="20 "></span></a>Subsystem<span class="w"> </span>sftp<span class="w"> </span>/usr/lib/openssh/sftp-server
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><a href="#__codelineno-2-21"><span class="linenos" data-linenos="21 "></span></a>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a><a href="#__codelineno-2-22"><span class="linenos" data-linenos="22 "></span></a><span class="c1"># 4. 重启SSH服务</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><a href="#__codelineno-2-23"><span class="linenos" data-linenos="23 "></span></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><a href="#__codelineno-2-24"><span class="linenos" data-linenos="24 "></span></a>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a><a href="#__codelineno-2-25"><span class="linenos" data-linenos="25 "></span></a><span class="c1"># 5. 检查服务状态</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a><a href="#__codelineno-2-26"><span class="linenos" data-linenos="26 "></span></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>sshd
+</span></code></pre></div>
 <h3 id="2-windows-ssh"><span>2. Windows SSH<span class="heti-spacing"> </span></span>配置<a class="headerlink" href="#2-windows-ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <h4 id="21-openssh"><span>2.1<span class="heti-spacing"> </span></span>安装<span><span class="heti-spacing"> </span>OpenSSH</span><a class="headerlink" href="#21-openssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<p></p><div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-3-10">10</a></span>
-<span class="normal"><a href="#__codelineno-3-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c"># 使用PowerShell安装OpenSSH</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c"># 检查OpenSSH状态</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">Name</span> <span class="o">-like</span> <span class="s1">'OpenSSH*'</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c"># 安装客户端和服务器</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Client</span><span class="p">~~~~</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Server</span><span class="p">~~~~</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c"># 启动SSH服务</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="nb">Start-Service</span> <span class="n">sshd</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">sshd</span> <span class="n">-StartupType</span> <span class="s1">'Automatic'</span>
-</code></pre></div></td></tr></table></div>
+<p></p><div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c"># 使用PowerShell安装OpenSSH</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="c"># 检查OpenSSH状态</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">Name</span> <span class="o">-like</span> <span class="s1">'OpenSSH*'</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos=" 4 "></span></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c"># 安装客户端和服务器</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Client</span><span class="p">~~~~</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Server</span><span class="p">~~~~</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">0</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><a href="#__codelineno-3-8"><span class="linenos" data-linenos=" 8 "></span></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><a href="#__codelineno-3-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c"># 启动SSH服务</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><a href="#__codelineno-3-10"><span class="linenos" data-linenos="10 "></span></a><span class="nb">Start-Service</span> <span class="n">sshd</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><a href="#__codelineno-3-11"><span class="linenos" data-linenos="11 "></span></a><span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">sshd</span> <span class="n">-StartupType</span> <span class="s1">'Automatic'</span>
+</span></code></pre></div>
 如果有网络问题可以<strong>下载并安装<span class="heti-skip"><span class="heti-spacing"> </span>OpenSSH<span class="heti-spacing"> </span></span>的离线安装包</strong>：  
 <ul>
 <li>您可以尝试从<span class="heti-skip"><span class="heti-spacing"> </span>GitHub<span class="heti-spacing"> </span></span>上下载<span class="heti-skip"><span class="heti-spacing"> </span>OpenSSH<span class="heti-spacing"> </span></span>的离线安装包，并按照以下步骤进行安装：  <ol>
@@ -1456,327 +1431,220 @@
 </li>
 </ul>
 <h4 id="22-windows-ssh"><span>2.2<span class="heti-spacing"> </span></span>配置<span class="heti-skip"><span class="heti-spacing"> </span>Windows SSH<span class="heti-spacing"> </span></span>服务<a class="headerlink" href="#22-windows-ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
-<span class="normal"><a href="#__codelineno-4-2">2</a></span>
-<span class="normal"><a href="#__codelineno-4-3">3</a></span>
-<span class="normal"><a href="#__codelineno-4-4">4</a></span>
-<span class="normal"><a href="#__codelineno-4-5">5</a></span>
-<span class="normal"><a href="#__codelineno-4-6">6</a></span>
-<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c"># 编辑SSH配置文件</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">notepad</span> <span class="s2">"$env:ProgramData\ssh\sshd_config"</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c"># 基本配置内容与Linux类似，但路径需要调整</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">PubkeyAuthentication</span> <span class="n">yes</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="n">PasswordAuthentication</span> <span class="n">no</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="n">Subsystem</span> <span class="n">sftp</span> <span class="n">sftp-server</span><span class="p">.</span><span class="n">exe</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># 编辑SSH配置文件</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">notepad</span> <span class="s2">"$env:ProgramData\ssh\sshd_config"</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># 基本配置内容与Linux类似，但路径需要调整</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">PubkeyAuthentication</span> <span class="n">yes</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">PasswordAuthentication</span> <span class="n">no</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">Subsystem</span> <span class="n">sftp</span> <span class="n">sftp-server</span><span class="p">.</span><span class="n">exe</span>
+</span></code></pre></div>
 <h3 id="3-ssh"><span>3. SSH<span class="heti-spacing"> </span></span>客户端配置<a class="headerlink" href="#3-ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <h4 id="31-ssh"><span>3.1<span class="heti-spacing"> </span></span>创建<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>配置文件<a class="headerlink" href="#31-ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-5-10">10</a></span>
-<span class="normal"><a href="#__codelineno-5-11">11</a></span>
-<span class="normal"><a href="#__codelineno-5-12">12</a></span>
-<span class="normal"><a href="#__codelineno-5-13">13</a></span>
-<span class="normal"><a href="#__codelineno-5-14">14</a></span>
-<span class="normal"><a href="#__codelineno-5-15">15</a></span>
-<span class="normal"><a href="#__codelineno-5-16">16</a></span>
-<span class="normal"><a href="#__codelineno-5-17">17</a></span>
-<span class="normal"><a href="#__codelineno-5-18">18</a></span>
-<span class="normal"><a href="#__codelineno-5-19">19</a></span>
-<span class="normal"><a href="#__codelineno-5-20">20</a></span>
-<span class="normal"><a href="#__codelineno-5-21">21</a></span>
-<span class="normal"><a href="#__codelineno-5-22">22</a></span>
-<span class="normal"><a href="#__codelineno-5-23">23</a></span>
-<span class="normal"><a href="#__codelineno-5-24">24</a></span>
-<span class="normal"><a href="#__codelineno-5-25">25</a></span>
-<span class="normal"><a href="#__codelineno-5-26">26</a></span>
-<span class="normal"><a href="#__codelineno-5-27">27</a></span>
-<span class="normal"><a href="#__codelineno-5-28">28</a></span>
-<span class="normal"><a href="#__codelineno-5-29">29</a></span>
-<span class="normal"><a href="#__codelineno-5-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># ~/.ssh/config</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="c1"># 全局设置</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>Host<span class="w"> </span>*
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span>ServerAliveInterval<span class="w"> </span><span class="m">60</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span>ServerAliveCountMax<span class="w"> </span><span class="m">3</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span>HashKnownHosts<span class="w"> </span>yes
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span>GSSAPIAuthentication<span class="w"> </span>no
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># GitHub</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a>Host<span class="w"> </span>github.com
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">    </span>HostName<span class="w"> </span>github.com
-<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">    </span>User<span class="w"> </span>git
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/github_ed25519
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">    </span>AddKeysToAgent<span class="w"> </span>yes
-<a id="__codelineno-5-15" name="__codelineno-5-15"></a>
-<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="c1"># 开发服务器</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17"></a>Host<span class="w"> </span>dev
-<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="w">    </span>HostName<span class="w"> </span>dev.example.com
-<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="w">    </span>User<span class="w"> </span>developer
-<a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="w">    </span>Port<span class="w"> </span><span class="m">22</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/dev_ed25519
-<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="w">    </span>ForwardAgent<span class="w"> </span>yes
-<a id="__codelineno-5-23" name="__codelineno-5-23"></a>
-<a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="c1"># 生产服务器</span>
-<a id="__codelineno-5-25" name="__codelineno-5-25"></a>Host<span class="w"> </span>prod
-<a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="w">    </span>HostName<span class="w"> </span>prod.example.com
-<a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="w">    </span>User<span class="w"> </span>deployer
-<a id="__codelineno-5-28" name="__codelineno-5-28"></a><span class="w">    </span>Port<span class="w"> </span><span class="m">22</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29"></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/prod_ed25519
-<a id="__codelineno-5-30" name="__codelineno-5-30"></a><span class="w">    </span>ForwardAgent<span class="w"> </span>no
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># ~/.ssh/config</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="c1"># 全局设置</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a>Host<span class="w"> </span>*
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">    </span>ServerAliveInterval<span class="w"> </span><span class="m">60</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span>ServerAliveCountMax<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">    </span>HashKnownHosts<span class="w"> </span>yes
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">    </span>GSSAPIAuthentication<span class="w"> </span>no
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos=" 8 "></span></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><a href="#__codelineno-5-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># GitHub</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><a href="#__codelineno-5-10"><span class="linenos" data-linenos="10 "></span></a>Host<span class="w"> </span>github.com
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><a href="#__codelineno-5-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">    </span>HostName<span class="w"> </span>github.com
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><a href="#__codelineno-5-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">    </span>User<span class="w"> </span>git
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><a href="#__codelineno-5-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/github_ed25519
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><a href="#__codelineno-5-14"><span class="linenos" data-linenos="14 "></span></a><span class="w">    </span>AddKeysToAgent<span class="w"> </span>yes
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><a href="#__codelineno-5-15"><span class="linenos" data-linenos="15 "></span></a>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><a href="#__codelineno-5-16"><span class="linenos" data-linenos="16 "></span></a><span class="c1"># 开发服务器</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a><a href="#__codelineno-5-17"><span class="linenos" data-linenos="17 "></span></a>Host<span class="w"> </span>dev
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a><a href="#__codelineno-5-18"><span class="linenos" data-linenos="18 "></span></a><span class="w">    </span>HostName<span class="w"> </span>dev.example.com
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><a href="#__codelineno-5-19"><span class="linenos" data-linenos="19 "></span></a><span class="w">    </span>User<span class="w"> </span>developer
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><a href="#__codelineno-5-20"><span class="linenos" data-linenos="20 "></span></a><span class="w">    </span>Port<span class="w"> </span><span class="m">22</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a><a href="#__codelineno-5-21"><span class="linenos" data-linenos="21 "></span></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/dev_ed25519
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a><a href="#__codelineno-5-22"><span class="linenos" data-linenos="22 "></span></a><span class="w">    </span>ForwardAgent<span class="w"> </span>yes
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a><a href="#__codelineno-5-23"><span class="linenos" data-linenos="23 "></span></a>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24"></a><a href="#__codelineno-5-24"><span class="linenos" data-linenos="24 "></span></a><span class="c1"># 生产服务器</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25"></a><a href="#__codelineno-5-25"><span class="linenos" data-linenos="25 "></span></a>Host<span class="w"> </span>prod
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26"></a><a href="#__codelineno-5-26"><span class="linenos" data-linenos="26 "></span></a><span class="w">    </span>HostName<span class="w"> </span>prod.example.com
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27"></a><a href="#__codelineno-5-27"><span class="linenos" data-linenos="27 "></span></a><span class="w">    </span>User<span class="w"> </span>deployer
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28"></a><a href="#__codelineno-5-28"><span class="linenos" data-linenos="28 "></span></a><span class="w">    </span>Port<span class="w"> </span><span class="m">22</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29"></a><a href="#__codelineno-5-29"><span class="linenos" data-linenos="29 "></span></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/prod_ed25519
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30"></a><a href="#__codelineno-5-30"><span class="linenos" data-linenos="30 "></span></a><span class="w">    </span>ForwardAgent<span class="w"> </span>no
+</span></code></pre></div>
 <h2 id="_2">三、具体实践，用笔记本连台式机<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="_3">台式电脑（服务端）配置：<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <ol>
 <li><strong>安装并启动<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>服务</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span>
-<span class="normal"><a href="#__codelineno-6-6">6</a></span>
-<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># Ubuntu/Debian系统</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="c1"># 检查SSH服务状态</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># Ubuntu/Debian系统</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos="3 "></span></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ssh
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos="4 "></span></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>ssh
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos="5 "></span></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos="6 "></span></a><span class="c1"># 检查SSH服务状态</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos="7 "></span></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+</span></code></pre></div>
 <ol start="2">
 <li><strong>配置<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>服务</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span>
-<span class="normal"><a href="#__codelineno-7-4">4</a></span>
-<span class="normal"><a href="#__codelineno-7-5">5</a></span>
-<span class="normal"><a href="#__codelineno-7-6">6</a></span>
-<span class="normal"><a href="#__codelineno-7-7">7</a></span>
-<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># 编辑SSH服务器配置</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="c1"># 添加或修改以下配置</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a>PermitRootLogin<span class="w"> </span>no
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a>PasswordAuthentication<span class="w"> </span>no
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a>PubkeyAuthentication<span class="w"> </span>yes
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a>AllowUsers<span class="w"> </span>your_username<span class="w">    </span><span class="c1"># 替换为您的用户名</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 编辑SSH服务器配置</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 添加或修改以下配置</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos="5 "></span></a>PermitRootLogin<span class="w"> </span>no
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos="6 "></span></a>PasswordAuthentication<span class="w"> </span>no
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos="7 "></span></a>PubkeyAuthentication<span class="w"> </span>yes
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos="8 "></span></a>AllowUsers<span class="w"> </span>your_username<span class="w">    </span><span class="c1"># 替换为您的用户名</span>
+</span></code></pre></div>
 <ol start="3">
 <li><strong>设置固定<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>或动态<span><span class="heti-spacing"> </span>DNS</span></strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span>
-<span class="normal"><a href="#__codelineno-8-3">3</a></span>
-<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># 查看当前IP</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a>ip<span class="w"> </span>addr<span class="w"> </span>show
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># 如果是动态IP，建议设置静态IP或使用动态DNS服务</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 查看当前IP</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a>ip<span class="w"> </span>addr<span class="w"> </span>show
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 如果是动态IP，建议设置静态IP或使用动态DNS服务</span>
+</span></code></pre></div>
 <h3 id="_4">笔记本（客户端）配置：<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <ol>
 <li><strong>生成<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>密钥对</strong>（如果还没有）:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_laptop"</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_laptop"</span>
+</span></code></pre></div>
 <ol start="2">
 <li><strong>将公钥复制到台式机</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
-<span class="normal"><a href="#__codelineno-10-2">2</a></span>
-<span class="normal"><a href="#__codelineno-10-3">3</a></span>
-<span class="normal"><a href="#__codelineno-10-4">4</a></span>
-<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># 方法1：使用ssh-copy-id</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span>username@desktop_ip
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1"># 方法2：手动复制</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>username@desktop_ip<span class="w"> </span><span class="s2">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 方法1：使用ssh-copy-id</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a>ssh-copy-id<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span>username@desktop_ip
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 方法2：手动复制</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos="5 "></span></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>username@desktop_ip<span class="w"> </span><span class="s2">"mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys"</span>
+</span></code></pre></div>
 <ol start="3">
 <li><strong>配置<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>客户端</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-11-10">10</a></span>
-<span class="normal"><a href="#__codelineno-11-11">11</a></span>
-<span class="normal"><a href="#__codelineno-11-12">12</a></span>
-<span class="normal"><a href="#__codelineno-11-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># 编辑 ~/.ssh/config</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a>nano<span class="w"> </span>~/.ssh/config
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="c1"># 添加以下配置</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a>Host<span class="w"> </span>desktop
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">    </span>HostName<span class="w"> </span><span class="m">192</span>.168.1.xxx<span class="w">  </span><span class="c1"># 替换为台式机的IP</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">    </span>User<span class="w"> </span>your_username<span class="w">      </span><span class="c1"># 替换为您的用户名</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">    </span>Port<span class="w"> </span><span class="m">22</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/id_ed25519
-<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">    </span>ForwardX11<span class="w"> </span>yes<span class="w">         </span><span class="c1"># 如果需要图形界面转发</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">    </span>ForwardAgent<span class="w"> </span>yes
-<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w">    </span>Compression<span class="w"> </span>yes
-<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">    </span>ServerAliveInterval<span class="w"> </span><span class="m">60</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 编辑 ~/.ssh/config</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos=" 2 "></span></a>nano<span class="w"> </span>~/.ssh/config
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 添加以下配置</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos=" 5 "></span></a>Host<span class="w"> </span>desktop
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><a href="#__codelineno-11-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">    </span>HostName<span class="w"> </span><span class="m">192</span>.168.1.xxx<span class="w">  </span><span class="c1"># 替换为台式机的IP</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><a href="#__codelineno-11-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">    </span>User<span class="w"> </span>your_username<span class="w">      </span><span class="c1"># 替换为您的用户名</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><a href="#__codelineno-11-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">    </span>Port<span class="w"> </span><span class="m">22</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><a href="#__codelineno-11-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">    </span>IdentityFile<span class="w"> </span>~/.ssh/id_ed25519
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><a href="#__codelineno-11-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">    </span>ForwardX11<span class="w"> </span>yes<span class="w">         </span><span class="c1"># 如果需要图形界面转发</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><a href="#__codelineno-11-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">    </span>ForwardAgent<span class="w"> </span>yes
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><a href="#__codelineno-11-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">    </span>Compression<span class="w"> </span>yes
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><a href="#__codelineno-11-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">    </span>ServerAliveInterval<span class="w"> </span><span class="m">60</span>
+</span></code></pre></div>
 <h3 id="_5">常用连接命令：<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
 <ol>
 <li><strong>基本连接</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
-<span class="normal"><a href="#__codelineno-12-2">2</a></span>
-<span class="normal"><a href="#__codelineno-12-3">3</a></span>
-<span class="normal"><a href="#__codelineno-12-4">4</a></span>
-<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># 从笔记本连接到台式机</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a>ssh<span class="w"> </span>desktop
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># 使用图形界面转发</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a>ssh<span class="w"> </span>-X<span class="w"> </span>desktop
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 从笔记本连接到台式机</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a>ssh<span class="w"> </span>desktop
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 使用图形界面转发</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos="5 "></span></a>ssh<span class="w"> </span>-X<span class="w"> </span>desktop
+</span></code></pre></div>
 <ol start="2">
 <li><strong>文件传输</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
-<span class="normal"><a href="#__codelineno-13-2">2</a></span>
-<span class="normal"><a href="#__codelineno-13-3">3</a></span>
-<span class="normal"><a href="#__codelineno-13-4">4</a></span>
-<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1"># 从笔记本复制文件到台式机</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2"></a>scp<span class="w"> </span>/path/to/local/file<span class="w"> </span>desktop:/path/to/remote/
-<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1"># 从台式机复制文件到笔记本</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5"></a>scp<span class="w"> </span>desktop:/path/to/remote/file<span class="w"> </span>/path/to/local/
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 从笔记本复制文件到台式机</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a>scp<span class="w"> </span>/path/to/local/file<span class="w"> </span>desktop:/path/to/remote/
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 从台式机复制文件到笔记本</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos="5 "></span></a>scp<span class="w"> </span>desktop:/path/to/remote/file<span class="w"> </span>/path/to/local/
+</span></code></pre></div>
 <ol start="3">
 <li><strong>端口转发</strong>:</li>
 </ol>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
-<span class="normal"><a href="#__codelineno-14-2">2</a></span>
-<span class="normal"><a href="#__codelineno-14-3">3</a></span>
-<span class="normal"><a href="#__codelineno-14-4">4</a></span>
-<span class="normal"><a href="#__codelineno-14-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c1"># 本地端口转发</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:80<span class="w"> </span>desktop
-<a id="__codelineno-14-3" name="__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="c1"># 远程端口转发</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5"></a>ssh<span class="w"> </span>-R<span class="w"> </span><span class="m">8080</span>:localhost:80<span class="w"> </span>desktop
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 本地端口转发</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:80<span class="w"> </span>desktop
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><a href="#__codelineno-14-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 远程端口转发</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><a href="#__codelineno-14-5"><span class="linenos" data-linenos="5 "></span></a>ssh<span class="w"> </span>-R<span class="w"> </span><span class="m">8080</span>:localhost:80<span class="w"> </span>desktop
+</span></code></pre></div>
 <h2 id="_6">四、高级操作<a class="headerlink" href="#_6" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1-ssh_1"><span>1. SSH<span class="heti-spacing"> </span></span>端口转发<a class="headerlink" href="#1-ssh_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <h4 id="11"><span>1.1<span class="heti-spacing"> </span></span>本地端口转发<a class="headerlink" href="#11" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
-<span class="normal"><a href="#__codelineno-15-2">2</a></span>
-<span class="normal"><a href="#__codelineno-15-3">3</a></span>
-<span class="normal"><a href="#__codelineno-15-4">4</a></span>
-<span class="normal"><a href="#__codelineno-15-5">5</a></span>
-<span class="normal"><a href="#__codelineno-15-6">6</a></span>
-<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1"># 将本地8080端口转发到远程80端口</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:80<span class="w"> </span>user@remote
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="c1"># 使用配置文件设置</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a>Host<span class="w"> </span>tunnel
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">    </span>HostName<span class="w"> </span>remote.example.com
-<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span>LocalForward<span class="w"> </span><span class="m">8080</span><span class="w"> </span>localhost:80
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 将本地8080端口转发到远程80端口</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos="2 "></span></a>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">8080</span>:localhost:80<span class="w"> </span>user@remote
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><a href="#__codelineno-15-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 使用配置文件设置</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><a href="#__codelineno-15-5"><span class="linenos" data-linenos="5 "></span></a>Host<span class="w"> </span>tunnel
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><a href="#__codelineno-15-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">    </span>HostName<span class="w"> </span>remote.example.com
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><a href="#__codelineno-15-7"><span class="linenos" data-linenos="7 "></span></a><span class="w">    </span>LocalForward<span class="w"> </span><span class="m">8080</span><span class="w"> </span>localhost:80
+</span></code></pre></div>
 <h4 id="12"><span>1.2<span class="heti-spacing"> </span></span>远程端口转发<a class="headerlink" href="#12" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h4>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
-<span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span>
-<span class="normal"><a href="#__codelineno-16-4">4</a></span>
-<span class="normal"><a href="#__codelineno-16-5">5</a></span>
-<span class="normal"><a href="#__codelineno-16-6">6</a></span>
-<span class="normal"><a href="#__codelineno-16-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1"># 将远程3000端口转发到本地3000端口</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2"></a>ssh<span class="w"> </span>-R<span class="w"> </span><span class="m">3000</span>:localhost:3000<span class="w"> </span>user@remote
-<a id="__codelineno-16-3" name="__codelineno-16-3"></a>
-<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="c1"># 配置文件设置</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5"></a>Host<span class="w"> </span>remote-tunnel
-<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">    </span>HostName<span class="w"> </span>remote.example.com
-<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">    </span>RemoteForward<span class="w"> </span><span class="m">3000</span><span class="w"> </span>localhost:3000
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 将远程3000端口转发到本地3000端口</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos="2 "></span></a>ssh<span class="w"> </span>-R<span class="w"> </span><span class="m">3000</span>:localhost:3000<span class="w"> </span>user@remote
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><a href="#__codelineno-16-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><a href="#__codelineno-16-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 配置文件设置</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><a href="#__codelineno-16-5"><span class="linenos" data-linenos="5 "></span></a>Host<span class="w"> </span>remote-tunnel
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><a href="#__codelineno-16-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">    </span>HostName<span class="w"> </span>remote.example.com
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><a href="#__codelineno-16-7"><span class="linenos" data-linenos="7 "></span></a><span class="w">    </span>RemoteForward<span class="w"> </span><span class="m">3000</span><span class="w"> </span>localhost:3000
+</span></code></pre></div>
 <h3 id="2-ssh"><span>2. SSH<span class="heti-spacing"> </span></span>代理转发<a class="headerlink" href="#2-ssh" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
-<span class="normal"><a href="#__codelineno-17-2">2</a></span>
-<span class="normal"><a href="#__codelineno-17-3">3</a></span>
-<span class="normal"><a href="#__codelineno-17-4">4</a></span>
-<span class="normal"><a href="#__codelineno-17-5">5</a></span>
-<span class="normal"><a href="#__codelineno-17-6">6</a></span>
-<span class="normal"><a href="#__codelineno-17-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1"># 启用代理转发</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a>ssh<span class="w"> </span>-A<span class="w"> </span>user@remote
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a>
-<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="c1"># 配置文件设置</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5"></a>Host<span class="w"> </span>*
-<a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">    </span>ForwardAgent<span class="w"> </span>yes
-<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">    </span>AddKeysToAgent<span class="w"> </span>yes
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 启用代理转发</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a>ssh<span class="w"> </span>-A<span class="w"> </span>user@remote
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a><a href="#__codelineno-17-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a><a href="#__codelineno-17-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 配置文件设置</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a><a href="#__codelineno-17-5"><span class="linenos" data-linenos="5 "></span></a>Host<span class="w"> </span>*
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a><a href="#__codelineno-17-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">    </span>ForwardAgent<span class="w"> </span>yes
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a><a href="#__codelineno-17-7"><span class="linenos" data-linenos="7 "></span></a><span class="w">    </span>AddKeysToAgent<span class="w"> </span>yes
+</span></code></pre></div>
 <h3 id="3_1"><span>3.<span class="heti-spacing"> </span></span>跳板机配置<a class="headerlink" href="#3_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
-<span class="normal"><a href="#__codelineno-18-2">2</a></span>
-<span class="normal"><a href="#__codelineno-18-3">3</a></span>
-<span class="normal"><a href="#__codelineno-18-4">4</a></span>
-<span class="normal"><a href="#__codelineno-18-5">5</a></span>
-<span class="normal"><a href="#__codelineno-18-6">6</a></span>
-<span class="normal"><a href="#__codelineno-18-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="c1"># 通过跳板机连接</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2"></a>ssh<span class="w"> </span>-J<span class="w"> </span>jumphost<span class="w"> </span>user@target
-<a id="__codelineno-18-3" name="__codelineno-18-3"></a>
-<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="c1"># 配置文件设置</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5"></a>Host<span class="w"> </span>target
-<a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="w">    </span>HostName<span class="w"> </span>target.example.com
-<a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="w">    </span>ProxyJump<span class="w"> </span>jumphost
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 通过跳板机连接</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos="2 "></span></a>ssh<span class="w"> </span>-J<span class="w"> </span>jumphost<span class="w"> </span>user@target
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><a href="#__codelineno-18-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 配置文件设置</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><a href="#__codelineno-18-5"><span class="linenos" data-linenos="5 "></span></a>Host<span class="w"> </span>target
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><a href="#__codelineno-18-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">    </span>HostName<span class="w"> </span>target.example.com
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><a href="#__codelineno-18-7"><span class="linenos" data-linenos="7 "></span></a><span class="w">    </span>ProxyJump<span class="w"> </span>jumphost
+</span></code></pre></div>
 <h2 id="_7">五、故障排查<a class="headerlink" href="#_7" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1"><span>1.<span class="heti-spacing"> </span></span>最佳实践<a class="headerlink" href="#1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
-<span class="normal"><a href="#__codelineno-19-2">2</a></span>
-<span class="normal"><a href="#__codelineno-19-3">3</a></span>
-<span class="normal"><a href="#__codelineno-19-4">4</a></span>
-<span class="normal"><a href="#__codelineno-19-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1"># 1. 使用SSH配置文件管理连接</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="c1"># 2. 为不同用途使用不同的密钥</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="c1"># 3. 定期轮换密钥</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="c1"># 4. 使用ssh-agent管理密钥</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="c1"># 5. 备份SSH配置和密钥</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 1. 使用SSH配置文件管理连接</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a><span class="c1"># 2. 为不同用途使用不同的密钥</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a><span class="c1"># 3. 定期轮换密钥</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><a href="#__codelineno-19-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 4. 使用ssh-agent管理密钥</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><a href="#__codelineno-19-5"><span class="linenos" data-linenos="5 "></span></a><span class="c1"># 5. 备份SSH配置和密钥</span>
+</span></code></pre></div>
 <h3 id="2_1"><span>2.<span class="heti-spacing"> </span></span>常见问题解决<a class="headerlink" href="#2_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-20-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="c1"># 连接被拒绝</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2"></a>ssh<span class="w"> </span>-v<span class="w"> </span>user@host<span class="w">  </span><span class="c1"># 查看详细连接信息</span>
-<a id="__codelineno-20-3" name="__codelineno-20-3"></a>
-<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="c1"># 权限问题</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5"></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.ssh<span class="w">     </span><span class="c1"># 检查权限</span>
-<a id="__codelineno-20-6" name="__codelineno-20-6"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_ed25519
-<a id="__codelineno-20-7" name="__codelineno-20-7"></a>
-<a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="c1"># 密钥问题</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9"></a>ssh-add<span class="w"> </span>-l<span class="w">        </span><span class="c1"># 查看已加载的密钥</span>
-<a id="__codelineno-20-10" name="__codelineno-20-10"></a>ssh-add<span class="w"> </span>~/.ssh/id_ed25519<span class="w">  </span><span class="c1"># 添加密钥到agent</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 连接被拒绝</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><a href="#__codelineno-20-2"><span class="linenos" data-linenos=" 2 "></span></a>ssh<span class="w"> </span>-v<span class="w"> </span>user@host<span class="w">  </span><span class="c1"># 查看详细连接信息</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><a href="#__codelineno-20-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a><a href="#__codelineno-20-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 权限问题</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a><a href="#__codelineno-20-5"><span class="linenos" data-linenos=" 5 "></span></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.ssh<span class="w">     </span><span class="c1"># 检查权限</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><a href="#__codelineno-20-6"><span class="linenos" data-linenos=" 6 "></span></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_ed25519
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a><a href="#__codelineno-20-7"><span class="linenos" data-linenos=" 7 "></span></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8"></a><a href="#__codelineno-20-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="c1"># 密钥问题</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a><a href="#__codelineno-20-9"><span class="linenos" data-linenos=" 9 "></span></a>ssh-add<span class="w"> </span>-l<span class="w">        </span><span class="c1"># 查看已加载的密钥</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10"></a><a href="#__codelineno-20-10"><span class="linenos" data-linenos="10 "></span></a>ssh-add<span class="w"> </span>~/.ssh/id_ed25519<span class="w">  </span><span class="c1"># 添加密钥到agent</span>
+</span></code></pre></div>
 <h3 id="3_2"><span>3.<span class="heti-spacing"> </span></span>日志查看<a class="headerlink" href="#3_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
-<span class="normal"><a href="#__codelineno-21-2">2</a></span>
-<span class="normal"><a href="#__codelineno-21-3">3</a></span>
-<span class="normal"><a href="#__codelineno-21-4">4</a></span>
-<span class="normal"><a href="#__codelineno-21-5">5</a></span>
-<span class="normal"><a href="#__codelineno-21-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="c1"># 服务器端</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/auth.log<span class="w">    </span><span class="c1"># Debian/Ubuntu</span>
-<a id="__codelineno-21-3" name="__codelineno-21-3"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/secure<span class="w">      </span><span class="c1"># CentOS/RHEL</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4"></a>
-<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="c1"># 客户端调试</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6"></a>ssh<span class="w"> </span>-vvv<span class="w"> </span>user@host<span class="w">  </span><span class="c1"># 最详细的调试信息</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 服务器端</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/auth.log<span class="w">    </span><span class="c1"># Debian/Ubuntu</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><a href="#__codelineno-21-3"><span class="linenos" data-linenos="3 "></span></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/secure<span class="w">      </span><span class="c1"># CentOS/RHEL</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><a href="#__codelineno-21-4"><span class="linenos" data-linenos="4 "></span></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><a href="#__codelineno-21-5"><span class="linenos" data-linenos="5 "></span></a><span class="c1"># 客户端调试</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><a href="#__codelineno-21-6"><span class="linenos" data-linenos="6 "></span></a>ssh<span class="w"> </span>-vvv<span class="w"> </span>user@host<span class="w">  </span><span class="c1"># 最详细的调试信息</span>
+</span></code></pre></div></div>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 12, 2024 22:31:47</span>
+</span>
+<span class="md-source-file__fact">
+<span class="md-icon" title="Created">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 12, 2024 22:31:47</span>
+</span>
+</aside>
 <div id="__comments"></div>
 <!-- <h3>颜色主题调整</h3>
     <div class="tx-switch">
@@ -1842,11 +1710,12 @@
     </script>
 </article>
 </div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
 </div>
 <button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
-  回到页面顶部
+  Back to top
 </button>
 </main>
 <footer class="md-footer">
@@ -1883,7 +1752,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.action.view", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.action.view", "content.footnote.tooltips", "content.tabs.link", "header.autohide", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
 <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
 <script src="../../js/katex.js"></script>
 <script src="../../js/mathjax.js"></script>

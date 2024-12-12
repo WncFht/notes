@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zh">
+<html class="no-js" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="wnc 的个人网站" name="description"/>
 <meta content="wnc" name="author"/>
 <link href="https://WncFht.github.io/notes/Technology/chezmoi/" rel="canonical"/>
 <link href="../Tabby%20%2B%20Zsh/" rel="prev"/>
 <link href="../mkdocs%20material/" rel="next"/>
-<link href="../../assets/images/favicon.png" rel="icon"/>
+<link href="../../assets/images/avatar.jpg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.48" name="generator"/>
 <title>用 chezmoi 实现跨设备同步配置 - wnc 的咖啡馆</title>
 <link href="../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link href="../../css/toc_extra.css" rel="stylesheet"/>
 <link href="../../css/heti.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" rel="stylesheet"/>
 <link href="https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css" rel="stylesheet"/>
@@ -31,19 +33,19 @@
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
     body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="indigo" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
 <a class="md-skip" href="#chezmoi">
-          跳转至
+          Skip to content
         </a>
 </div>
 <div data-md-component="announce">
 </div>
 <header class="md-header" data-md-component="header">
-<nav aria-label="页眉" class="md-header__inner md-grid">
+<nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="wnc 的咖啡馆" class="md-header__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
 </a>
@@ -67,12 +69,16 @@
 </div>
 </div>
 <form class="md-header__option" data-md-component="palette">
-<input aria-label="切换至夜间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换至夜间模式">
+<input aria-label="follow system" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="follow system">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"></path></svg>
+</label>
+<input aria-label="light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="white" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="light mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
 </label>
-<input aria-label="切换至日间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_0" hidden="" title="切换至日间模式">
+<input aria-label="darkmode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="darkmode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
 </label>
 </form>
@@ -84,22 +90,26 @@
 <label class="md-search__overlay" for="__search"></label>
 <div class="md-search__inner" role="search">
 <form class="md-search__form" name="search">
-<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
 <label class="md-search__icon md-icon" for="__search">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </label>
-<nav aria-label="查找" class="md-search__options">
-<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 </button>
 </nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
 </form>
 <div class="md-search__output">
 <div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
 <div class="md-search-result" data-md-component="search-result">
 <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
 <ol class="md-search-result__list" role="presentation"></ol>
 </div>
@@ -108,9 +118,9 @@
 </div>
 </div>
 <div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="前往仓库">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
 </div>
 <div class="md-source__repository">
     wnc's café
@@ -120,7 +130,7 @@
 </nav>
 </header>
 <div class="md-container" data-md-component="container">
-<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
@@ -203,6 +213,16 @@
 
         </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../links/">
+        
+  
+    
+  
+  Links
+
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -211,7 +231,7 @@
 <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
 <a aria-label="wnc 的咖啡馆" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="wnc 的咖啡馆">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
@@ -219,9 +239,9 @@
     wnc 的咖啡馆
   </label>
 <div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="前往仓库">
+<a class="md-source" data-md-component="source" href="https://github.com/WncFht/notes/" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21h18v-2H2M20 8h-2V5h2m0-2H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
 </div>
 <div class="md-source__repository">
     wnc's café
@@ -248,7 +268,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../links/">
+<a class="md-nav__link" href="../../links.md">
 <span class="md-ellipsis">
     友链
   </span>
@@ -786,10 +806,10 @@
     用 chezmoi 实现跨设备同步配置
   </span>
 </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -1143,6 +1163,13 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../links/">
+<span class="md-ellipsis">
+    Links
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -1151,10 +1178,10 @@
 <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="目录" class="md-nav md-nav--secondary">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -1373,9 +1400,9 @@
 <a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Technology/chezmoi.md" title="edit.link.title">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
 </a>
-<h1 id="chezmoi">用<span class="heti-skip"><span class="heti-spacing"> </span>chezmoi<span class="heti-spacing"> </span></span>实现跨设备同步配置<a class="headerlink" href="#chezmoi" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
+<div><h1 id="chezmoi">用<span class="heti-skip"><span class="heti-spacing"> </span>chezmoi<span class="heti-spacing"> </span></span>实现跨设备同步配置<a class="headerlink" href="#chezmoi" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>512<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>142<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>512<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>142<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>分钟</p>
 </div>
 <p>本指南将帮助你使用<span class="heti-skip"><span class="heti-spacing"> </span>chezmoi<span class="heti-spacing"> </span></span>管理你的配置文件（dotfiles<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，并使用包管理器维护软件列表。</p>
 <h2 id="_1">前期准备<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
@@ -1388,59 +1415,35 @@
 </ul>
 <h3 id="2"><span>2.<span class="heti-spacing"> </span></span>重要的配置文件<a class="headerlink" href="#2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p><strong><span>Windows<span class="heti-spacing"> </span></span>常用配置文件</strong>:</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span>
-<span class="normal"><a href="#__codelineno-0-12">12</a></span>
-<span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span>
-<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>%USERPROFILE%/
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>├── .gitconfig                        # Git配置
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a>├── .ssh/                            # SSH配置
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a>├── Documents/
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a>│   └── PowerShell/
-<a id="__codelineno-0-6" name="__codelineno-0-6"></a>│       └── Microsoft.PowerShell_profile.ps1  # PowerShell配置
-<a id="__codelineno-0-7" name="__codelineno-0-7"></a>├── AppData/
-<a id="__codelineno-0-8" name="__codelineno-0-8"></a>│   ├── Roaming/
-<a id="__codelineno-0-9" name="__codelineno-0-9"></a>│   │   └── Code/
-<a id="__codelineno-0-10" name="__codelineno-0-10"></a>│   │       └── User/
-<a id="__codelineno-0-11" name="__codelineno-0-11"></a>│   │           └── settings.json    # VSCode配置
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a>│   └── Local/
-<a id="__codelineno-0-13" name="__codelineno-0-13"></a>└── .config/
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    └── scoop/
-<a id="__codelineno-0-15" name="__codelineno-0-15"></a>        └── config.json              # Scoop配置
-</code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a>%USERPROFILE%/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a>├── .gitconfig                        # Git配置
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>├── .ssh/                            # SSH配置
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a>├── Documents/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a>│   └── PowerShell/
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a>│       └── Microsoft.PowerShell_profile.ps1  # PowerShell配置
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a>├── AppData/
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a>│   ├── Roaming/
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a>│   │   └── Code/
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>│   │       └── User/
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>│   │           └── settings.json    # VSCode配置
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><a href="#__codelineno-0-12"><span class="linenos" data-linenos="12 "></span></a>│   └── Local/
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><a href="#__codelineno-0-13"><span class="linenos" data-linenos="13 "></span></a>└── .config/
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><a href="#__codelineno-0-14"><span class="linenos" data-linenos="14 "></span></a>    └── scoop/
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><a href="#__codelineno-0-15"><span class="linenos" data-linenos="15 "></span></a>        └── config.json              # Scoop配置
+</span></code></pre></div>
 <p><strong><span>Ubuntu<span class="heti-spacing"> </span></span>常用配置文件</strong>:</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>~/
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a>├── .bashrc                          # Bash配置
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a>├── .zshrc                           # Zsh配置
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a>├── .gitconfig                       # Git配置
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a>├── .ssh/                           # SSH配置
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a>└── .config/
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    ├── Code/
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a>    │   └── User/
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a>    │       └── settings.json       # VSCode配置
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a>    └── tabby/
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        └── config.yaml            # Tabby终端配置
-</code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos=" 1 "></span></a>~/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos=" 2 "></span></a>├── .bashrc                          # Bash配置
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos=" 3 "></span></a>├── .zshrc                           # Zsh配置
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos=" 4 "></span></a>├── .gitconfig                       # Git配置
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos=" 5 "></span></a>├── .ssh/                           # SSH配置
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos=" 6 "></span></a>└── .config/
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos=" 7 "></span></a>    ├── Code/
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><a href="#__codelineno-1-8"><span class="linenos" data-linenos=" 8 "></span></a>    │   └── User/
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><a href="#__codelineno-1-9"><span class="linenos" data-linenos=" 9 "></span></a>    │       └── settings.json       # VSCode配置
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><a href="#__codelineno-1-10"><span class="linenos" data-linenos="10 "></span></a>    └── tabby/
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><a href="#__codelineno-1-11"><span class="linenos" data-linenos="11 "></span></a>        └── config.yaml            # Tabby终端配置
+</span></code></pre></div>
 <h2 id="github"><span>GitHub<span class="heti-spacing"> </span></span>设置<a class="headerlink" href="#github" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1-github"><span>1.<span class="heti-spacing"> </span></span>创建<span class="heti-skip"><span class="heti-spacing"> </span>GitHub<span class="heti-spacing"> </span></span>仓库<a class="headerlink" href="#1-github" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <ol>
@@ -1452,273 +1455,166 @@
 <li>创建仓库</li>
 </ol>
 <h3 id="2-ssh"><span>2.<span class="heti-spacing"> </span></span>配置<span class="heti-skip"><span class="heti-spacing"> </span>SSH<span class="heti-spacing"> </span></span>密钥（如果还没有）<a class="headerlink" href="#2-ssh" title="Permanent link">¶</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span>
-<span class="normal"><a href="#__codelineno-2-5">5</a></span>
-<span class="normal"><a href="#__codelineno-2-6">6</a></span>
-<span class="normal"><a href="#__codelineno-2-7">7</a></span>
-<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 生成SSH密钥</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_email@example.com"</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># 将公钥添加到GitHub</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># 1. 复制公钥内容</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1"># 2. 访问 GitHub → Settings → SSH and GPG keys → New SSH key</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1"># 3. 粘贴公钥内容并保存</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 生成SSH密钥</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">"your_email@example.com"</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 将公钥添加到GitHub</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos="5 "></span></a><span class="c1"># 1. 复制公钥内容</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos="6 "></span></a>cat<span class="w"> </span>~/.ssh/id_ed25519.pub
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos="7 "></span></a><span class="c1"># 2. 访问 GitHub → Settings → SSH and GPG keys → New SSH key</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos="8 "></span></a><span class="c1"># 3. 粘贴公钥内容并保存</span>
+</span></code></pre></div>
 <h2 id="windows"><span>Windows<span class="heti-spacing"> </span></span>配置<a class="headerlink" href="#windows" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1_1"><span>1.<span class="heti-spacing"> </span></span>安装必要工具<a class="headerlink" href="#1_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>使用<span><span class="heti-spacing"> </span>PowerShell</span>（以管理员身份运行<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
-<span class="normal"><a href="#__codelineno-3-2">2</a></span>
-<span class="normal"><a href="#__codelineno-3-3">3</a></span>
-<span class="normal"><a href="#__codelineno-3-4">4</a></span>
-<span class="normal"><a href="#__codelineno-3-5">5</a></span>
-<span class="normal"><a href="#__codelineno-3-6">6</a></span>
-<span class="normal"><a href="#__codelineno-3-7">7</a></span>
-<span class="normal"><a href="#__codelineno-3-8">8</a></span>
-<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c"># 安装Scoop</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nb">irm </span><span class="n">get</span><span class="p">.</span><span class="n">scoop</span><span class="p">.</span><span class="n">sh</span> <span class="p">|</span> <span class="nb">iex</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c"># 安装Git（如果还没有）</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">scoop</span> <span class="n">install</span> <span class="n">git</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7"></a>
-<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c"># 安装chezmoi</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="n">scoop</span> <span class="n">install</span> <span class="n">chezmoi</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># 安装Scoop</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">irm </span><span class="n">get</span><span class="p">.</span><span class="n">scoop</span><span class="p">.</span><span class="n">sh</span> <span class="p">|</span> <span class="nb">iex</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos="4 "></span></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos="5 "></span></a><span class="c"># 安装Git（如果还没有）</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">scoop</span> <span class="n">install</span> <span class="n">git</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos="7 "></span></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><a href="#__codelineno-3-8"><span class="linenos" data-linenos="8 "></span></a><span class="c"># 安装chezmoi</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><a href="#__codelineno-3-9"><span class="linenos" data-linenos="9 "></span></a><span class="n">scoop</span> <span class="n">install</span> <span class="n">chezmoi</span>
+</span></code></pre></div>
 <h3 id="2-chezmoi"><span>2.<span class="heti-spacing"> </span></span>初始化<span><span class="heti-spacing"> </span>chezmoi</span><a class="headerlink" href="#2-chezmoi" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span>
-<span class="normal"><a href="#__codelineno-4-13">13</a></span>
-<span class="normal"><a href="#__codelineno-4-14">14</a></span>
-<span class="normal"><a href="#__codelineno-4-15">15</a></span>
-<span class="normal"><a href="#__codelineno-4-16">16</a></span>
-<span class="normal"><a href="#__codelineno-4-17">17</a></span>
-<span class="normal"><a href="#__codelineno-4-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c"># 初始化chezmoi并克隆你的仓库</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">chezmoi</span> <span class="n">init</span> <span class="p">-</span><span class="n">-apply</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">yourusername</span><span class="p">/</span><span class="n">dotfiles</span><span class="p">.</span><span class="n">git</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="c"># 用 ssh 也可以</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c"># 查看chezmoi将进行的更改</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="n">chezmoi</span> <span class="nb">diff</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a>
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="c"># 将现有配置文件添加到chezmoi</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/.</span><span class="n">gitconfig</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/.</span><span class="n">ssh</span><span class="p">/</span><span class="n">config</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/</span><span class="n">Documents</span><span class="p">/</span><span class="n">PowerShell</span><span class="p">/</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell_profile</span><span class="p">.</span><span class="n">ps1</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/</span><span class="n">AppData</span><span class="p">/</span><span class="n">Roaming</span><span class="p">/</span><span class="n">Code</span><span class="p">/</span><span class="n">User</span><span class="p">/</span><span class="n">settings</span><span class="p">.</span><span class="n">json</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13"></a>
-<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="c"># 提交并推送更改</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="n">chezmoi</span> <span class="nb">cd</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Initial Windows config"</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="n">git</span> <span class="n">push</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c"># 初始化chezmoi并克隆你的仓库</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">chezmoi</span> <span class="n">init</span> <span class="p">-</span><span class="n">-apply</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">yourusername</span><span class="p">/</span><span class="n">dotfiles</span><span class="p">.</span><span class="n">git</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="c"># 用 ssh 也可以</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c"># 查看chezmoi将进行的更改</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">chezmoi</span> <span class="nb">diff</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="c"># 将现有配置文件添加到chezmoi</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/.</span><span class="n">gitconfig</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/.</span><span class="n">ssh</span><span class="p">/</span><span class="n">config</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/</span><span class="n">Documents</span><span class="p">/</span><span class="n">PowerShell</span><span class="p">/</span><span class="n">Microsoft</span><span class="p">.</span><span class="n">PowerShell_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><a href="#__codelineno-4-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">chezmoi</span> <span class="n">add</span> <span class="nv">$HOME</span><span class="p">/</span><span class="n">AppData</span><span class="p">/</span><span class="n">Roaming</span><span class="p">/</span><span class="n">Code</span><span class="p">/</span><span class="n">User</span><span class="p">/</span><span class="n">settings</span><span class="p">.</span><span class="n">json</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><a href="#__codelineno-4-13"><span class="linenos" data-linenos="13 "></span></a>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><a href="#__codelineno-4-14"><span class="linenos" data-linenos="14 "></span></a><span class="c"># 提交并推送更改</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><a href="#__codelineno-4-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">chezmoi</span> <span class="nb">cd</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><a href="#__codelineno-4-16"><span class="linenos" data-linenos="16 "></span></a><span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><a href="#__codelineno-4-17"><span class="linenos" data-linenos="17 "></span></a><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Initial Windows config"</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><a href="#__codelineno-4-18"><span class="linenos" data-linenos="18 "></span></a><span class="n">git</span> <span class="n">push</span>
+</span></code></pre></div>
 <h3 id="3"><span>3.<span class="heti-spacing"> </span></span>导出软件包列表<a class="headerlink" href="#3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
-<span class="normal"><a href="#__codelineno-5-2">2</a></span>
-<span class="normal"><a href="#__codelineno-5-3">3</a></span>
-<span class="normal"><a href="#__codelineno-5-4">4</a></span>
-<span class="normal"><a href="#__codelineno-5-5">5</a></span>
-<span class="normal"><a href="#__codelineno-5-6">6</a></span>
-<span class="normal"><a href="#__codelineno-5-7">7</a></span>
-<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c"># 导出Scoop包列表</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">scoop</span> <span class="n">export</span> <span class="p">&gt;</span> <span class="n">packages</span><span class="p">/</span><span class="n">scoop-packages</span><span class="p">.</span><span class="n">txt</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c"># 提交包列表</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">chezmoi</span> <span class="nb">cd</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">git</span> <span class="n">add</span> <span class="n">packages</span><span class="p">/</span><span class="n">scoop-packages</span><span class="p">.</span><span class="n">txt</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Add Windows package list"</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="n">git</span> <span class="n">push</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># 导出Scoop包列表</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">scoop</span> <span class="n">export</span> <span class="p">&gt;</span> <span class="n">packages</span><span class="p">/</span><span class="n">scoop-packages</span><span class="p">.</span><span class="n">txt</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># 提交包列表</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">chezmoi</span> <span class="nb">cd</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">git</span> <span class="n">add</span> <span class="n">packages</span><span class="p">/</span><span class="n">scoop-packages</span><span class="p">.</span><span class="n">txt</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">git</span> <span class="n">commit</span> <span class="n">-m</span> <span class="s2">"Add Windows package list"</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos="8 "></span></a><span class="n">git</span> <span class="n">push</span>
+</span></code></pre></div>
 <h2 id="ubuntu"><span>Ubuntu<span class="heti-spacing"> </span></span>配置<a class="headerlink" href="#ubuntu" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1_2"><span>1.<span class="heti-spacing"> </span></span>安装必要工具<a class="headerlink" href="#1_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span>
-<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># 安装Git（如果还没有）</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="c1"># 安装chezmoi</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsLS<span class="w"> </span>get.chezmoi.io<span class="k">)</span><span class="s2">"</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 安装Git（如果还没有）</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos="3 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos="4 "></span></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos="5 "></span></a><span class="c1"># 安装chezmoi</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos="6 "></span></a>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsLS<span class="w"> </span>get.chezmoi.io<span class="k">)</span><span class="s2">"</span>
+</span></code></pre></div>
 <p>参考这个网站<a href="https://www.chezmoi.io/install/"><span class="heti-skip"><span class="heti-spacing"> </span>Install - chezmoi<span class="heti-spacing"> </span></span></a>进行下载，我命令行一直不成功，直接选择对应的包就行了。</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>sudo dpkg -i chezmoi_2.54.0_linux_amd64.deb
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a>chezmoi --version
-</code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a>sudo dpkg -i chezmoi_2.54.0_linux_amd64.deb
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a>chezmoi --version
+</span></code></pre></div>
 <h3 id="2-chezmoi_1"><span>2.<span class="heti-spacing"> </span></span>初始化<span><span class="heti-spacing"> </span>chezmoi</span><a class="headerlink" href="#2-chezmoi_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-8-10">10</a></span>
-<span class="normal"><a href="#__codelineno-8-11">11</a></span>
-<span class="normal"><a href="#__codelineno-8-12">12</a></span>
-<span class="normal"><a href="#__codelineno-8-13">13</a></span>
-<span class="normal"><a href="#__codelineno-8-14">14</a></span>
-<span class="normal"><a href="#__codelineno-8-15">15</a></span>
-<span class="normal"><a href="#__codelineno-8-16">16</a></span>
-<span class="normal"><a href="#__codelineno-8-17">17</a></span>
-<span class="normal"><a href="#__codelineno-8-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># 初始化chezmoi并克隆你的仓库</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a>chezmoi<span class="w"> </span>init<span class="w"> </span>--apply<span class="w"> </span>https://github.com/yourusername/dotfiles.git
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># 查看chezmoi将进行的更改</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5"></a>chezmoi<span class="w"> </span>diff
-<a id="__codelineno-8-6" name="__codelineno-8-6"></a>
-<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="c1"># 将现有配置文件添加到chezmoi</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8"></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.bashrc
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.zshrc
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.gitconfig
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.ssh/config
-<a id="__codelineno-8-12" name="__codelineno-8-12"></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.config/Code/User/settings.json
-<a id="__codelineno-8-13" name="__codelineno-8-13"></a>
-<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="c1"># 提交并推送更改</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15"></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16"></a>git<span class="w"> </span>add<span class="w"> </span>.
-<a id="__codelineno-8-17" name="__codelineno-8-17"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Initial Ubuntu config"</span>
-<a id="__codelineno-8-18" name="__codelineno-8-18"></a>git<span class="w"> </span>push
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 初始化chezmoi并克隆你的仓库</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos=" 2 "></span></a>chezmoi<span class="w"> </span>init<span class="w"> </span>--apply<span class="w"> </span>https://github.com/yourusername/dotfiles.git
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 查看chezmoi将进行的更改</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos=" 5 "></span></a>chezmoi<span class="w"> </span>diff
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 将现有配置文件添加到chezmoi</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><a href="#__codelineno-8-8"><span class="linenos" data-linenos=" 8 "></span></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.bashrc
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><a href="#__codelineno-8-9"><span class="linenos" data-linenos=" 9 "></span></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.zshrc
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><a href="#__codelineno-8-10"><span class="linenos" data-linenos="10 "></span></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.gitconfig
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><a href="#__codelineno-8-11"><span class="linenos" data-linenos="11 "></span></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.ssh/config
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><a href="#__codelineno-8-12"><span class="linenos" data-linenos="12 "></span></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.config/Code/User/settings.json
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><a href="#__codelineno-8-13"><span class="linenos" data-linenos="13 "></span></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><a href="#__codelineno-8-14"><span class="linenos" data-linenos="14 "></span></a><span class="c1"># 提交并推送更改</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><a href="#__codelineno-8-15"><span class="linenos" data-linenos="15 "></span></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><a href="#__codelineno-8-16"><span class="linenos" data-linenos="16 "></span></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><a href="#__codelineno-8-17"><span class="linenos" data-linenos="17 "></span></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Initial Ubuntu config"</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><a href="#__codelineno-8-18"><span class="linenos" data-linenos="18 "></span></a>git<span class="w"> </span>push
+</span></code></pre></div>
 <h3 id="3_1"><span>3.<span class="heti-spacing"> </span></span>导出软件包列表<a class="headerlink" href="#3_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-9-10">10</a></span>
-<span class="normal"><a href="#__codelineno-9-11">11</a></span>
-<span class="normal"><a href="#__codelineno-9-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a>mkdir<span class="w"> </span>packages
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1"># 导出apt包列表</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a>dpkg<span class="w"> </span>--get-selections<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>deinstall<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/apt-packages.txt
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1"># 导出snap包列表</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7"></a>snap<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{if (NR&gt;1) print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/snap-packages.txt
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a>
-<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="c1"># 提交包列表</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10"></a>git<span class="w"> </span>add<span class="w"> </span>packages/apt-packages.txt<span class="w"> </span>packages/snap-packages.txt
-<a id="__codelineno-9-11" name="__codelineno-9-11"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add Ubuntu package lists"</span>
-<a id="__codelineno-9-12" name="__codelineno-9-12"></a>git<span class="w"> </span>push
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a>mkdir<span class="w"> </span>packages
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="c1"># 导出apt包列表</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos=" 4 "></span></a>dpkg<span class="w"> </span>--get-selections<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>deinstall<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/apt-packages.txt
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos=" 5 "></span></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="c1"># 导出snap包列表</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos=" 7 "></span></a>snap<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{if (NR&gt;1) print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/snap-packages.txt
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos=" 8 "></span></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># 提交包列表</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><a href="#__codelineno-9-10"><span class="linenos" data-linenos="10 "></span></a>git<span class="w"> </span>add<span class="w"> </span>packages/apt-packages.txt<span class="w"> </span>packages/snap-packages.txt
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><a href="#__codelineno-9-11"><span class="linenos" data-linenos="11 "></span></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add Ubuntu package lists"</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><a href="#__codelineno-9-12"><span class="linenos" data-linenos="12 "></span></a>git<span class="w"> </span>push
+</span></code></pre></div>
 <h2 id="_2">日常使用<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1_3"><span>1.<span class="heti-spacing"> </span></span>更新配置<a class="headerlink" href="#1_3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>当你修改了配置文件后：</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># 将更改添加到chezmoi</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.bashrc<span class="w">  </span><span class="c1"># 或其他修改的配置文件</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1"># 查看更改</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a>chezmoi<span class="w"> </span>diff
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="c1"># 提交并推送更改</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a>git<span class="w"> </span>add<span class="w"> </span>.
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Update bashrc"</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a>git<span class="w"> </span>push
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 将更改添加到chezmoi</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos=" 2 "></span></a>chezmoi<span class="w"> </span>add<span class="w"> </span>~/.bashrc<span class="w">  </span><span class="c1"># 或其他修改的配置文件</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 查看更改</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos=" 5 "></span></a>chezmoi<span class="w"> </span>diff
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><a href="#__codelineno-10-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><a href="#__codelineno-10-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 提交并推送更改</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><a href="#__codelineno-10-8"><span class="linenos" data-linenos=" 8 "></span></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><a href="#__codelineno-10-9"><span class="linenos" data-linenos=" 9 "></span></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><a href="#__codelineno-10-10"><span class="linenos" data-linenos="10 "></span></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Update bashrc"</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><a href="#__codelineno-10-11"><span class="linenos" data-linenos="11 "></span></a>git<span class="w"> </span>push
+</span></code></pre></div>
 <h3 id="2_1"><span>2.<span class="heti-spacing"> </span></span>在其他机器上同步<a class="headerlink" href="#2_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
-<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># 拉取并应用最新更改</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a>chezmoi<span class="w"> </span>update
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 拉取并应用最新更改</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a>chezmoi<span class="w"> </span>update
+</span></code></pre></div>
 <h3 id="3_2"><span>3.<span class="heti-spacing"> </span></span>更新软件包列表<a class="headerlink" href="#3_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>Windows:</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
-<span class="normal"><a href="#__codelineno-12-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c"># 更新Scoop包列表</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">scoop</span> <span class="n">export</span> <span class="p">&gt;</span> <span class="n">packages</span><span class="p">/</span><span class="n">scoop-packages</span><span class="p">.</span><span class="n">txt</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># 更新Scoop包列表</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">scoop</span> <span class="n">export</span> <span class="p">&gt;</span> <span class="n">packages</span><span class="p">/</span><span class="n">scoop-packages</span><span class="p">.</span><span class="n">txt</span>
+</span></code></pre></div>
 <p>Ubuntu:</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
-<span class="normal"><a href="#__codelineno-13-2">2</a></span>
-<span class="normal"><a href="#__codelineno-13-3">3</a></span>
-<span class="normal"><a href="#__codelineno-13-4">4</a></span>
-<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1"># 更新apt包列表</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2"></a>dpkg<span class="w"> </span>--get-selections<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>deinstall<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/apt-packages.txt
-<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1"># 更新snap包列表</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5"></a>snap<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{if (NR&gt;1) print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/snap-packages.txt
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 更新apt包列表</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a>dpkg<span class="w"> </span>--get-selections<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>deinstall<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/apt-packages.txt
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 更新snap包列表</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos="5 "></span></a>snap<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{if (NR&gt;1) print $1}'</span><span class="w"> </span>&gt;<span class="w"> </span>packages/snap-packages.txt
+</span></code></pre></div>
 <h3 id="4"><span>4.<span class="heti-spacing"> </span></span>在新机器上设置<a class="headerlink" href="#4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>Windows:</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">PowerShell</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
-<span class="normal"><a href="#__codelineno-14-2">2</a></span>
-<span class="normal"><a href="#__codelineno-14-3">3</a></span>
-<span class="normal"><a href="#__codelineno-14-4">4</a></span>
-<span class="normal"><a href="#__codelineno-14-5">5</a></span>
-<span class="normal"><a href="#__codelineno-14-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c"># 安装chezmoi</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="n">scoop</span> <span class="n">install</span> <span class="n">chezmoi</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="c"># 初始化并应用配置</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="n">chezmoi</span> <span class="n">init</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">yourusername</span><span class="p">/</span><span class="n">dotfiles</span><span class="p">.</span><span class="n">git</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="n">chezmoi</span> <span class="n">apply</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># 安装chezmoi</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">scoop</span> <span class="n">install</span> <span class="n">chezmoi</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><a href="#__codelineno-14-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># 初始化并应用配置</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><a href="#__codelineno-14-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">chezmoi</span> <span class="n">init</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">yourusername</span><span class="p">/</span><span class="n">dotfiles</span><span class="p">.</span><span class="n">git</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><a href="#__codelineno-14-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">chezmoi</span> <span class="n">apply</span>
+</span></code></pre></div>
 <p>Ubuntu:</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
-<span class="normal"><a href="#__codelineno-15-2">2</a></span>
-<span class="normal"><a href="#__codelineno-15-3">3</a></span>
-<span class="normal"><a href="#__codelineno-15-4">4</a></span>
-<span class="normal"><a href="#__codelineno-15-5">5</a></span>
-<span class="normal"><a href="#__codelineno-15-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1"># 安装chezmoi</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsLS<span class="w"> </span>get.chezmoi.io<span class="k">)</span><span class="s2">"</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="c1"># 初始化并应用配置</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a>chezmoi<span class="w"> </span>init<span class="w"> </span>https://github.com/yourusername/dotfiles.git
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a>chezmoi<span class="w"> </span>apply
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 安装chezmoi</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos="2 "></span></a>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsLS<span class="w"> </span>get.chezmoi.io<span class="k">)</span><span class="s2">"</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><a href="#__codelineno-15-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 初始化并应用配置</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><a href="#__codelineno-15-5"><span class="linenos" data-linenos="5 "></span></a>chezmoi<span class="w"> </span>init<span class="w"> </span>https://github.com/yourusername/dotfiles.git
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><a href="#__codelineno-15-6"><span class="linenos" data-linenos="6 "></span></a>chezmoi<span class="w"> </span>apply
+</span></code></pre></div>
 <h2 id="_3">常见问题<a class="headerlink" href="#_3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <h3 id="1_4"><span>1.<span class="heti-spacing"> </span></span>如何处理不同机器的特定配置？<a class="headerlink" href="#1_4" title="Permanent link">¶</a></h3>
 <p>使用模板和条件语句。在 <code>.chezmoi.toml.tmpl</code> 中：</p>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">TOML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
-<span class="normal"><a href="#__codelineno-16-2">2</a></span>
-<span class="normal"><a href="#__codelineno-16-3">3</a></span>
-<span class="normal"><a href="#__codelineno-16-4">4</a></span>
-<span class="normal"><a href="#__codelineno-16-5">5</a></span>
-<span class="normal"><a href="#__codelineno-16-6">6</a></span>
-<span class="normal"><a href="#__codelineno-16-7">7</a></span>
-<span class="normal"><a href="#__codelineno-16-8">8</a></span>
-<span class="normal"><a href="#__codelineno-16-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="err">$</span><span class="n">osid</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="err">.chezmoi.os -}}</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="k">[data]</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Your Name"</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"your@email.com"</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">    </span><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="n">if</span><span class="w"> </span><span class="n">eq</span><span class="w"> </span><span class="p">.</span><span class="n">chezmoi</span><span class="p">.</span><span class="n">os</span><span class="w"> </span><span class="s2">"windows"</span><span class="w"> </span><span class="err">}}</span>
-<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">    </span><span class="n">is_windows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">    </span><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="n">if</span><span class="w"> </span><span class="n">eq</span><span class="w"> </span><span class="p">.</span><span class="n">chezmoi</span><span class="p">.</span><span class="n">os</span><span class="w"> </span><span class="s2">"linux"</span><span class="w"> </span><span class="err">}}</span>
-<a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w">    </span><span class="n">is_linux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="w">    </span><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="err">}}</span>
-</code></pre></div></td></tr></table></div>
+<div class="language-toml highlight"><span class="filename">TOML</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="err">$</span><span class="n">osid</span><span class="w"> </span><span class="err">:</span><span class="o">=</span><span class="w"> </span><span class="err">.chezmoi.os -}}</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">[data]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><a href="#__codelineno-16-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Your Name"</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><a href="#__codelineno-16-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">    </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"your@email.com"</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><a href="#__codelineno-16-5"><span class="linenos" data-linenos="5 "></span></a><span class="w">    </span><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="n">if</span><span class="w"> </span><span class="n">eq</span><span class="w"> </span><span class="p">.</span><span class="n">chezmoi</span><span class="p">.</span><span class="n">os</span><span class="w"> </span><span class="s2">"windows"</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><a href="#__codelineno-16-6"><span class="linenos" data-linenos="6 "></span></a><span class="w">    </span><span class="n">is_windows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><a href="#__codelineno-16-7"><span class="linenos" data-linenos="7 "></span></a><span class="w">    </span><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="n">if</span><span class="w"> </span><span class="n">eq</span><span class="w"> </span><span class="p">.</span><span class="n">chezmoi</span><span class="p">.</span><span class="n">os</span><span class="w"> </span><span class="s2">"linux"</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><a href="#__codelineno-16-8"><span class="linenos" data-linenos="8 "></span></a><span class="w">    </span><span class="n">is_linux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a><a href="#__codelineno-16-9"><span class="linenos" data-linenos="9 "></span></a><span class="w">    </span><span class="err">{{</span><span class="n">-</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="err">}}</span>
+</span></code></pre></div>
 <h3 id="2_2"><span>2.<span class="heti-spacing"> </span></span>如何处理敏感信息？<a class="headerlink" href="#2_2" title="Permanent link">¶</a></h3>
 <p>对于敏感信息，可以：</p>
 <ol>
@@ -1727,22 +1623,15 @@
 <li>将敏感信息存储在单独的私有仓库中</li>
 </ol>
 <h3 id="3_3"><span>3.<span class="heti-spacing"> </span></span>如何撤销更改？<a class="headerlink" href="#3_3" title="Permanent link">¶</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
-<span class="normal"><a href="#__codelineno-17-2">2</a></span>
-<span class="normal"><a href="#__codelineno-17-3">3</a></span>
-<span class="normal"><a href="#__codelineno-17-4">4</a></span>
-<span class="normal"><a href="#__codelineno-17-5">5</a></span>
-<span class="normal"><a href="#__codelineno-17-6">6</a></span>
-<span class="normal"><a href="#__codelineno-17-7">7</a></span>
-<span class="normal"><a href="#__codelineno-17-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1"># 查看将要进行的更改</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a>chezmoi<span class="w"> </span>diff
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a>
-<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="c1"># 如果不满意，可以撤销</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5"></a>chezmoi<span class="w"> </span>forget<span class="w"> </span>~/.bashrc<span class="w">  </span><span class="c1"># 移除文件的管理</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6"></a>
-<a id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="c1"># 或者重置为原始状态</span>
-<a id="__codelineno-17-8" name="__codelineno-17-8"></a>chezmoi<span class="w"> </span>apply<span class="w"> </span>--force
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 查看将要进行的更改</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a>chezmoi<span class="w"> </span>diff
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a><a href="#__codelineno-17-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a><a href="#__codelineno-17-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 如果不满意，可以撤销</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a><a href="#__codelineno-17-5"><span class="linenos" data-linenos="5 "></span></a>chezmoi<span class="w"> </span>forget<span class="w"> </span>~/.bashrc<span class="w">  </span><span class="c1"># 移除文件的管理</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a><a href="#__codelineno-17-6"><span class="linenos" data-linenos="6 "></span></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a><a href="#__codelineno-17-7"><span class="linenos" data-linenos="7 "></span></a><span class="c1"># 或者重置为原始状态</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a><a href="#__codelineno-17-8"><span class="linenos" data-linenos="8 "></span></a>chezmoi<span class="w"> </span>apply<span class="w"> </span>--force
+</span></code></pre></div>
 <h3 id="4_1"><span>4.<span class="heti-spacing"> </span></span>配置文件权限问题？<a class="headerlink" href="#4_1" title="Permanent link">¶</a></h3>
 <p><span>chezmoi<span class="heti-spacing"> </span></span>会自动处理文件权限。对于特殊权限需求，可以在源文件名中使用特殊前缀：</p>
 <ul>
@@ -1751,35 +1640,37 @@
 <li><code>readonly_</code> <span>:<span class="heti-spacing"> </span></span>创建只读文件<span><span class="heti-spacing"> </span>(chmod 400)</span></li>
 </ul>
 <h3 id="5"><span>5.<span class="heti-spacing"> </span></span>如何查看管理的文件？<a class="headerlink" href="#5" title="Permanent link">¶</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
-<span class="normal"><a href="#__codelineno-18-2">2</a></span>
-<span class="normal"><a href="#__codelineno-18-3">3</a></span>
-<span class="normal"><a href="#__codelineno-18-4">4</a></span>
-<span class="normal"><a href="#__codelineno-18-5">5</a></span>
-<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="c1"># 列出所有管理的文件</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2"></a>chezmoi<span class="w"> </span>managed
-<a id="__codelineno-18-3" name="__codelineno-18-3"></a>
-<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="c1"># 查看源文件</span>
-<a id="__codelineno-18-5" name="__codelineno-18-5"></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
-<a id="__codelineno-18-6" name="__codelineno-18-6"></a>ls<span class="w"> </span>-la
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 列出所有管理的文件</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos="2 "></span></a>chezmoi<span class="w"> </span>managed
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><a href="#__codelineno-18-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 查看源文件</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><a href="#__codelineno-18-5"><span class="linenos" data-linenos="5 "></span></a>chezmoi<span class="w"> </span><span class="nb">cd</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><a href="#__codelineno-18-6"><span class="linenos" data-linenos="6 "></span></a>ls<span class="w"> </span>-la
+</span></code></pre></div>
 <h3 id="6"><span>6.<span class="heti-spacing"> </span></span>更新出错怎么办？<a class="headerlink" href="#6" title="Permanent link">¶</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
-<span class="normal"><a href="#__codelineno-19-2">2</a></span>
-<span class="normal"><a href="#__codelineno-19-3">3</a></span>
-<span class="normal"><a href="#__codelineno-19-4">4</a></span>
-<span class="normal"><a href="#__codelineno-19-5">5</a></span>
-<span class="normal"><a href="#__codelineno-19-6">6</a></span>
-<span class="normal"><a href="#__codelineno-19-7">7</a></span>
-<span class="normal"><a href="#__codelineno-19-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1"># 备份当前状态</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2"></a>chezmoi<span class="w"> </span>archive<span class="w"> </span>--output<span class="o">=</span>backup.tar.gz
-<a id="__codelineno-19-3" name="__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="c1"># 重置更改</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5"></a>chezmoi<span class="w"> </span>init<span class="w"> </span>--force
-<a id="__codelineno-19-6" name="__codelineno-19-6"></a>
-<a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="c1"># 重新应用配置</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8"></a>chezmoi<span class="w"> </span>apply
-</code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 备份当前状态</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a>chezmoi<span class="w"> </span>archive<span class="w"> </span>--output<span class="o">=</span>backup.tar.gz
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><a href="#__codelineno-19-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 重置更改</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><a href="#__codelineno-19-5"><span class="linenos" data-linenos="5 "></span></a>chezmoi<span class="w"> </span>init<span class="w"> </span>--force
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><a href="#__codelineno-19-6"><span class="linenos" data-linenos="6 "></span></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><a href="#__codelineno-19-7"><span class="linenos" data-linenos="7 "></span></a><span class="c1"># 重新应用配置</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a><a href="#__codelineno-19-8"><span class="linenos" data-linenos="8 "></span></a>chezmoi<span class="w"> </span>apply
+</span></code></pre></div></div>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 12, 2024 22:31:47</span>
+</span>
+<span class="md-source-file__fact">
+<span class="md-icon" title="Created">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 12, 2024 22:31:47</span>
+</span>
+</aside>
 <div id="__comments"></div>
 <!-- <h3>颜色主题调整</h3>
     <div class="tx-switch">
@@ -1845,11 +1736,12 @@
     </script>
 </article>
 </div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
 </div>
 <button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
-  回到页面顶部
+  Back to top
 </button>
 </main>
 <footer class="md-footer">
@@ -1886,7 +1778,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.action.view", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.code.select", "content.action.view", "content.footnote.tooltips", "content.tabs.link", "header.autohide", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
 <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
 <script src="../../js/katex.js"></script>
 <script src="../../js/mathjax.js"></script>
