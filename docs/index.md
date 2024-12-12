@@ -6,6 +6,7 @@ hide:
 home: true
 nostatistics: true
 comments: false
+icon: material/home
 ---
 
 <br><br><br><br><br><br>
@@ -18,7 +19,7 @@ Welcome to wnc's note!
 
 
 <span style="display: block; text-align: center; font-size: 18px;">
-[:octicons-link-16: My friends!](./links/index.md) / 
+[:octicons-link-16: My friends!](./Links/index.md) / 
 [:material-chart-line: Statistics](javascript:toggle_statistics();)
 </span>
 

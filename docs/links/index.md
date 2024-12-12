@@ -1,4 +1,5 @@
 ---
+icon: /octicons/link-24
 comment: True
 glightbox: False
 nostatistics: True

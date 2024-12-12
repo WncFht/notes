@@ -1,5 +1,5 @@
 ---
-icon: material/calendar-week
+icon: material/book
 nostatistics: true
 ---
 

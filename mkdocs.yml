@@ -233,6 +233,9 @@ plugins:
   #     execute: False
   #     ignore: ["*.py"]
 
+not_in_nav: 
+  links.md
+
 nav:
   - Home:
       - index.md
@@ -243,5 +246,5 @@ nav:
   - Robot: Robot/index.md
   - Environmet Setup: Environment/index.md
   - 一些工具: Technology/index.md
-  - 总结: summary/index.md
-  - Links: links/index.md
+  - 总结: Summary/index.md
+  - Links: Links/index.md
