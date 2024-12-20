@@ -2,7 +2,8 @@
 icon: /octicons/link-24
 comment: True
 glightbox: False
-nostatistics: True
+nostatistics: true
+comments: false
 ---
 
 # 友链

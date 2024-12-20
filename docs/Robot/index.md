@@ -1,6 +1,7 @@
 ---
 icon: /material/book
 nostatistics: true
+comments: false
 ---
 
 # Robot

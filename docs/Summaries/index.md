@@ -1,6 +1,7 @@
 ---
 icon: material/calendar-week
 nostatistics: true
+comments: false
 ---
 
 # Summaries

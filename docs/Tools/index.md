@@ -1,6 +1,7 @@
 ---
 icon: material/toolbox
 nostatistics: true
+comments: false
 ---
 
 # Toolbox

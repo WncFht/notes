@@ -255,11 +255,14 @@ not_in_nav:
 
 nav:
   - Home: index.md
+  - Blogs:
+    - index: Blogs/index.md
+    - Archives: Blogs/archives.md
   - Computer Basic: CS_Basic/index.md
-  - Computer Vision: CV/index.md
   - AI: AI/index.md
   - Robot: Robot/index.md
   - Environmet Setup: Environment/index.md
   - Tools: Tools/index.md
   - Summaries: Summaries/index.md
+  - Tags: Tags/index.md
   - Links: Links/index.md

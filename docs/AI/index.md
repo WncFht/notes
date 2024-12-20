@@ -1,6 +1,7 @@
 ---
 icon: /material/book
 nostatistics: true
+comments: false
 ---
 
 # Artificial Intelligence
@@ -21,4 +22,10 @@ nostatistics: true
 - "CS231n":
     - "Notes": CS231n/CS231n_notes
     - "Numpy": CS231n/Numpy
+- "机器学习":
+    - "《统计学习方法》笔记": 统计学习方法
+- "深度学习":
+    - "Dive into Deep Learning": Dive_into_Deep_Learning
+- "SLAM":
+    - "视觉 SLAM 十四讲": SLAM14
 {{ END_TOC }}
