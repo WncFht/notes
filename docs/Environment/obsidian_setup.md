@@ -1,6 +1,6 @@
 ---
 title: obsidian 配置
-tags: [Environment, Obsidian, 日记, 周记]
+tags: [Environment, Obsidian]
 categories: 
 date: 2024-12-22T18:41:30+08:00
 modify: 2024-12-22T18:41:30+08:00
