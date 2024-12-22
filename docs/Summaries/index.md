@@ -23,6 +23,7 @@ comments: false
     - "第 48 周": 2024/weekly/2024-W48-11
     - "第 49 周": 2024/weekly/2024-W49-12
     - "第 50 周": 2024/weekly/2024-W50-12
+    - "第 51 周": 2024/weekly/2024-W51-12
 - "高中学习经验":
     - "数学学习经验": High School/math_fht
     - "英语学习经验": High School/eng_fht
