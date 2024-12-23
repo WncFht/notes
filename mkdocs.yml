@@ -201,7 +201,7 @@ extra_javascript:
   # katex
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js
-  
+
   # mathjax
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml.js
@@ -214,7 +214,7 @@ plugins:
   - blogging:
       locale: en
       dirs:
-        - blogs/posts
+        - Blogs/posts
       theme:
         name: card
       features:
@@ -250,14 +250,13 @@ plugins:
   #     execute: False
   #     ignore: ["*.py"]
 
-not_in_nav: 
-  links.md
+not_in_nav: links.md
 
 nav:
   - Home: index.md
   - Blogs:
-    - index: Blogs/index.md
-    - Archives: Blogs/archives.md
+      - index: Blogs/index.md
+      - Archives: Blogs/archives.md
   - Computer Basic: CS_Basic/index.md
   - AI: AI/index.md
   - Robot: Robot/index.md
