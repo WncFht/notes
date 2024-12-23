@@ -12,4 +12,9 @@ comments: false
 
 ## Selected Blogs
 
-一些成体系的思考:
+{{ BEGIN_TOC }}
+
+- "一些想法":
+    - 关于交流，信息，选择，焦虑 : posts/24-12-23
+
+{{ END_TOC }}
