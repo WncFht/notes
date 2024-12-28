@@ -24,10 +24,4 @@ comments: false
     - "第 49 周": 2024/weekly/2024-W49-12
     - "第 50 周": 2024/weekly/2024-W50-12
     - "第 51 周": 2024/weekly/2024-W51-12
-- "高中学习经验":
-    - "数学学习经验": High School/math_fht
-    - "英语学习经验": High School/eng_fht
-    - "技术学习经验": High School/tech_fht
-    - "物理学习经验": High School/phy_fht
-    - "学习资源": High School/Resource
 {{ END_TOC }}
