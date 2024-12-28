@@ -28,4 +28,5 @@ comments: false
 - "Others":
     - "SSH": Others/SSH
     - "Chezmoi 同步配置文件": Others/Chezmoi
+    - "zotero 使用指南" : Others/zotero 使用指南
 {{ END_TOC }}
