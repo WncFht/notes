@@ -233,7 +233,7 @@ plugins:
   #     sort_file: true
   #     sort_directory: true
   - toc
-  # - obsidian_support
+  # - obsidian_support 不知道什么原因构建速度很慢，暂时不用
   # - rss
   - git-revision-date-localized:
       type: datetime
