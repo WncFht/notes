@@ -45,9 +45,10 @@ mdate: 2024-12-28
 
 ## Our Pipeline
 
+ULIP-2 采用大型多模态模型，从 3D 形状的整体角度为每个 2D 渲染的图像自动生成详细描述。ULIP-2 利用预先对齐和冻结的视觉语言特征空间来实现三元体模态之间的对齐：整体文本、图像和 3D 点云。预训练后，3D 编码器将用于下游任务。
+
 > [!example]-
-> ULIP-2 采用大型多模态模型，从 3D 形状的整体角度为每个 2D 渲染的图像自动生成详细描述。ULIP-2 利用预先对齐和冻结的视觉语言特征空间来实现三元体模态之间的对齐：整体文本、图像和 3D 点云。预训练后，3D 编码器将用于下游任务。
-![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20241228152142810.png)
+> ![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20241228152142810.png)
 
 ### Key insight
 
