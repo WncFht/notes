@@ -5,10 +5,10 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="wnc 的个人网站" name="description"/>
 <meta content="wnc" name="author"/>
-<link href="https://WncFht.github.io/notes/Blogs/posts/Beyond_Object_Recognition/" rel="canonical"/>
+<link href="https://WncFht.github.io/notes/Blogs/posts/ULIP-2/" rel="canonical"/>
 <link href="../../../assets/images/avatar.jpg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.5.49" name="generator"/>
-<title>Beyond Object Recognition: A New Benchmark towards Object Concept Learning - wnc 的咖啡馆</title>
+<title>ULIP-2: Towards Scalable Multimodal Pre-training for 3D Understanding - wnc 的咖啡馆</title>
 <link href="../../../assets/stylesheets/main.6f8fc17f.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link href="../../../css/toc_extra.css" rel="stylesheet"/>
@@ -36,7 +36,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#beyond-object-recognition-a-new-benchmark-towards-object-concept-learning">
+<a class="md-skip" href="#ulip-2-towards-scalable-multimodal-pre-training-for-3d-understanding">
           Skip to content
         </a>
 </div>
@@ -60,7 +60,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Beyond Object Recognition: A New Benchmark towards Object Concept Learning
+              ULIP-2: Towards Scalable Multimodal Pre-training for 3D Understanding
             
           </span>
 </div>
@@ -358,21 +358,193 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#abstract">
+<span class="md-ellipsis">
+      Abstract
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#task">
+<span class="md-ellipsis">
+      Task
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#technical-chellenge-for-previous-methods">
+<span class="md-ellipsis">
+      Technical Chellenge for Previous Methods
+    </span>
+</a>
+<nav aria-label="Technical Chellenge for Previous Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#previous-methods">
+<span class="md-ellipsis">
+      Previous Methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#failure-case-limitation">
+<span class="md-ellipsis">
+      Failure Case / Limitation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#our-pipeline">
+<span class="md-ellipsis">
+      Our Pipeline
+    </span>
+</a>
+<nav aria-label="Our Pipeline" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-insight">
+<span class="md-ellipsis">
+      Key insight
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#technical-contributions">
+<span class="md-ellipsis">
+      Technical contributions
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#method">
+<span class="md-ellipsis">
+      Method
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#experiment">
+<span class="md-ellipsis">
+      Experiment
+    </span>
+</a>
+<nav aria-label="Experiment" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-zero-shot-3d-classification-task-involving-multimodal-inputs">
+<span class="md-ellipsis">
+      the zero-shot 3D classification task involving multimodal inputs
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-standard-3d-classification-task-involving-a-single-modality">
+<span class="md-ellipsis">
+      the standard 3D classification task involving a single modality
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-3d-captioning-task-involving-3d-to-language-generation-with-llms">
+<span class="md-ellipsis">
+      the 3D captioning task involving 3D-to-language generation with LLMs
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ablation-study">
+<span class="md-ellipsis">
+      Ablation Study
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conclusion">
+<span class="md-ellipsis">
+      Conclusion
+    </span>
+</a>
+<nav aria-label="Conclusion" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#limitation">
+<span class="md-ellipsis">
+      Limitation
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      复现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      相关论文
+    </span>
+</a>
+<nav aria-label="相关论文" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#generative-large-multimodal-models">
+<span class="md-ellipsis">
+      Generative Large Multimodal Models
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multimodal-representation-learning">
+<span class="md-ellipsis">
+      Multimodal Representation Learning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3d-point-cloud-understanding">
+<span class="md-ellipsis">
+      3D Point Cloud Understanding
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Blogs/posts/Beyond_Object_Recognition.md" title="edit.link.title">
+<a class="md-content__button md-icon" href="https://github.com/WncFht/notes/edit/main/docs/Blogs/posts/ULIP-2.md" title="edit.link.title">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
 </a>
 <div><div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>99<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间不到<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>分钟 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path></svg></span> 共被读过 <span id="busuanzi_value_page_pv"></span> 次</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>1428<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> <span>7<span class="heti-spacing"> </span></span>张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>7<span class="heti-spacing"> </span></span>分钟 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path></svg></span> 共被读过 <span id="busuanzi_value_page_pv"></span> 次</p>
 </div>
 <div class="md-typeset">
 <div class="blogging-tags-grid">
-<a class="blogging-tag" href="https://WncFht.github.io/notes/tags#Blog"><code>#Blog</code></a>
 <a class="blogging-tag" href="https://WncFht.github.io/notes/tags#%E7%A7%91%E7%A0%94"><code>#科研</code></a>
 </div>
 </div>
@@ -396,28 +568,172 @@
         border-radius: 5px;
     }
 </style>
-<h1 id="beyond-object-recognition-a-new-benchmark-towards-object-concept-learning">Beyond Object Recognition: A New Benchmark towards Object Concept Learning<a class="headerlink" href="#beyond-object-recognition-a-new-benchmark-towards-object-concept-learning" title="Permanent link">¶</a></h1>
-<div class="admonition abstract">
-<p class="admonition-title">Summary</p>
+<h1 id="ulip-2-towards-scalable-multimodal-pre-training-for-3d-understanding">ULIP-2: Towards Scalable Multimodal Pre-training for 3D Understanding<a class="headerlink" href="#ulip-2-towards-scalable-multimodal-pre-training-for-3d-understanding" title="Permanent link">¶</a></h1>
+<details class="info" open="open">
+<summary>文章信息</summary>
 <ul>
-<li>文章题目<span><span class="heti-spacing"> </span>: Beyond Object Recognition: A New Benchmark towards Object Concept Learning</span></li>
-<li>作者：<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+Y">Yong-Lu Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+Y">Yue Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+X">Xinyu Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Mao,+X">Xiaohan Mao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yao,+Y">Yuan Yao</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+S">Siqi Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Lu,+C">Cewu Lu</a></li>
-<li>arXiv：<a href="https://arxiv.org/abs/2212.02710">[2212.02710] Beyond Object Recognition: A New Benchmark towards Object Concept Learning</a></li>
-<li>代码：<a href="https://github.com/silicx/ObjectConceptLearning">GitHub - silicx/ObjectConceptLearning: This the official repository of OCL (ICCV 2023).</a></li>
+<li>作者：<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xue,+L">Le Xue</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yu,+N">Ning Yu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang,+S">Shu Zhang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Panagopoulou,+A">Artemis Panagopoulou</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Li,+J">Junnan Li</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Mart%C3%ADn-Mart%C3%ADn,+R">Roberto Martín-Martín</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wu,+J">Jiajun Wu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xiong,+C">Caiming Xiong</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu,+R">Ran Xu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Niebles,+J+C">Juan Carlos Niebles</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Savarese,+S">Silvio Savarese</a></li>
+<li>arXiv：<a href="https://arxiv.org/abs/2305.08275">[2305.08275] ULIP-2: Towards Scalable Multimodal Pre-training for 3D Understanding</a></li>
+<li>代码：<a href="https://github.com/salesforce/ULIP">GitHub - salesforce/ULIP</a></li>
 </ul>
-</div></div>
+</details>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">¶</a></h2>
+<details class="abstract">
+<summary>Abstract</summary>
+<p>Recent advancements in multimodal pre-training have shown promising efficacy in 3D representation learning by aligning multimodal features across 3D shapes, their 2D counterparts, and language descriptions. However, the methods used by existing frameworks to curate such multimodal data, in particular language descriptions for 3D shapes, are not scalable, and the collected language descriptions are not diverse. To address this, we introduce ULIP-2, a simple yet effective tri-modal pre-training framework that leverages large multimodal models to automatically generate holistic language descriptions for 3D shapes. It only needs 3D data as input, eliminating the need for any manual 3D annotations, and is therefore scalable to large datasets. ULIP-2 is also equipped with scaled-up backbones for better multimodal representation learning. We conduct experiments on two large-scale 3D datasets, Objaverse and ShapeNet, and augment them with tri-modal datasets of 3D point clouds, images, and language for training ULIP-2. Experiments show that ULIP-2 demonstrates substantial benefits in three downstream tasks: zero-shot 3D classification, standard 3D classification with fine-tuning, and 3D captioning (3D-tolanguage generation). It achieves a new SOTA of 50.6% (top1) on Objaverse-LVIS and 84.7% (top-1) on ModelNet40 in zero-shot classification. In the ScanObjectNN benchmark for standard fine-tuning, ULIP-2 reaches an overall accuracy of 91.5% with a compact model of only 1.4 million parameters. ULIP-2 sheds light on a new paradigm for scalable multimodal 3D representation learning without human annotations and shows significant improvements over existing baselines. The code and datasets are released at <a href="https://github.com/salesforce/ULIP">https://github.com/salesforce/ULIP</a>.</p>
+</details>
+<h2 id="task">Task<a class="headerlink" href="#task" title="Permanent link">¶</a></h2>
+<ul>
+<li>构建一个可扩展的多模态预训练框架用于<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>理解<span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>不需要人工标注就能进行大规模<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>数据的预训练。</li>
+</ul>
+<h2 id="technical-chellenge-for-previous-methods">Technical Chellenge for Previous Methods<a class="headerlink" href="#technical-chellenge-for-previous-methods" title="Permanent link">¶</a></h2>
+<ul>
+<li>收集和采集<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>数据</li>
+</ul>
+<h3 id="previous-methods">Previous Methods<a class="headerlink" href="#previous-methods" title="Permanent link">¶</a></h3>
+<h3 id="failure-case-limitation">Failure Case / Limitation<a class="headerlink" href="#failure-case-limitation" title="Permanent link">¶</a></h3>
+<ul>
+<li>人工注释难以拓展</li>
+<li>不够全面<span><span class="heti-spacing"> </span>might not provide sufficient details and lacks variations, or appears to be noisy</span></li>
+<li>贵</li>
+</ul>
+<details class="example">
+<summary>Example</summary>
+<p>比如这张图，原始标注的语义信息就不太够，但是用<span class="heti-skip"><span class="heti-spacing"> </span>ULIP-2<span class="heti-spacing"> </span></span>标注的就比较全面。
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228152703528.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228152703528.png"/></a></p>
+</details>
+<h2 id="our-pipeline">Our Pipeline<a class="headerlink" href="#our-pipeline" title="Permanent link">¶</a></h2>
+<details class="example">
+<summary>Example</summary>
+<p><span>ULIP-2<span class="heti-spacing"> </span></span>采用大型多模态模型，从<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>形状的整体角度为每个<span class="heti-skip"><span class="heti-spacing"> </span>2D<span class="heti-spacing"> </span></span>渲染的图像自动生成详细描述。<span>ULIP-2<span class="heti-spacing"> </span></span>利用预先对齐和冻结的视觉语言特征空间来实现三元体模态之间的对齐：整体文本、图像和<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>点云。预训练后，<span>3D<span class="heti-spacing"> </span></span>编码器将用于下游任务。</p>
+</details>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228152142810.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228152142810.png"/></a></p>
+<h3 id="key-insight">Key insight<a class="headerlink" href="#key-insight" title="Permanent link">¶</a></h3>
+<ul>
+<li><span>3D<span class="heti-spacing"> </span></span>到<span class="heti-skip"><span class="heti-spacing"> </span>2D<span class="heti-spacing"> </span></span>就是用几个固定视角，然后用<span class="heti-skip"><span class="heti-spacing"> </span>multi-modality pre-training module<span class="heti-spacing"> </span></span>就可以生成每张照片的描述。就可以<strong>自动</strong>且可拓展地生成数据。</li>
+</ul>
+<h3 id="technical-contributions">Technical contributions<a class="headerlink" href="#technical-contributions" title="Permanent link">¶</a></h3>
+<ol>
+<li><span>ULIP-2<span class="heti-spacing"> </span></span>有助于实现可扩展的多模态预训练，无需人工注释，使其适用于任何<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>数据集，甚至是未标记的数据集。它完全依赖于<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>数据，实现了更广泛的适用性和易用性。</li>
+<li><span>ULIP-2<span class="heti-spacing"> </span></span>在多模态表示学习方面取得了重大进步。在具有挑战性的开放世界<span class="heti-skip"><span class="heti-spacing"> </span>Objaverse-LVIS<span class="heti-spacing"> </span></span>基准测试中，<span>ULIP-2<span class="heti-spacing"> </span></span>的准确率达到了<span class="heti-skip"><span class="heti-spacing"> </span>50.6%<span class="heti-spacing"> </span></span>的前<span><span class="heti-spacing"> </span>1%</span>，比当前的<span><span class="heti-spacing"> </span>SOTA</span>（OpenShape [22]）高出<span><span class="heti-spacing"> </span>3.8%</span>，尽管<span class="heti-skip"><span class="heti-spacing"> </span>ULIP-2<span class="heti-spacing"> </span></span>的框架更简单、更流线型<span class="heti-skip"><span class="heti-spacing"> </span>;<span class="heti-spacing"> </span></span>对于<span class="heti-skip"><span class="heti-spacing"> </span>ModelNet40<span class="heti-spacing"> </span></span>上的零样本分类，<span>ULIP-2<span class="heti-spacing"> </span></span>达到<span><span class="heti-spacing"> </span>84.7%</span>，甚至优于一些完全监督的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>分类方法<span><span class="heti-spacing"> </span>[50]</span>。此外，它在<span class="heti-skip"><span class="heti-spacing"> </span>ScanObjectNN<span class="heti-spacing"> </span></span>基准测试中确保了<span class="heti-skip"><span class="heti-spacing"> </span>91.5%<span class="heti-spacing"> </span></span>的总体准确率，只有<span class="heti-skip"><span class="heti-spacing"> </span>140<span class="heti-spacing"> </span></span>万个参数。此外，还展示了<span class="heti-skip"><span class="heti-spacing"> </span>ULIP-2<span class="heti-spacing"> </span></span>编码器的<span><span class="heti-spacing"> </span>LLMs</span>，突出了它与不断增长的<span><span class="heti-spacing"> </span>LLM</span>。此外，<span>ULIP-2<span class="heti-spacing"> </span></span>可以与不断增长的<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>数据容量和大型多模态模型的开发有效协同作用。</li>
+<li>我们发布了两个大规模的三模态数据集<heti-adjacent class="heti-adjacent-quarter">，</heti-adjacent>“ULIP-Objaverse”和“ULIP-ShapeNet”三元组，由点云、图像和语言描述组成。表<span class="heti-skip"><span class="heti-spacing"> </span>2<span class="heti-spacing"> </span></span>中详细介绍了数据集的统计数据。</li>
+</ol>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">¶</a></h2>
+<ul>
+<li>用<span class="heti-skip"><span class="heti-spacing"> </span>ULIP<span class="heti-spacing"> </span></span>当<span><span class="heti-spacing"> </span>baseline</span>
+1. 输入 3D 模态
+2. 提取点云
+3. 生成图像
+4. 用 BLIP-2 生成句子
+5. 得到语言模态</li>
+</ul>
+<div class="arithmatex">\[
+\mathcal{L}_{\mathrm{P2I}}=-\frac{1}{2}\sum_{i}\log\frac{\exp(\mathbf{f}_{i}^{\mathrm{P}}\mathbf{f}_{i}^{\mathrm{I}}/\tau)}{\sum_{j}\exp(\mathbf{f}_{i}^{\mathrm{P}}\mathbf{f}_{j}^{\mathrm{I}}/\tau)}+\log\frac{\exp(\mathbf{f}_{i}^{\mathrm{P}}\mathbf{f}_{i}^{\mathrm{I}}/\tau)}{\sum_{j}\exp(\mathbf{f}_{j}^{\mathrm{P}}\mathbf{f}_{i}^{\mathrm{I}}/\tau)}
+\]</div>
+<div class="arithmatex">\[
+\mathcal{L}_{\mathrm{P2T}}=-\frac{1}{2}\sum_{i}\log\frac{\exp(\mathbf{f}_{i}^{\mathrm{P}}\mathbf{f}_{i}^{\mathrm{T}}/\tau)}{\sum_{j}\exp(\mathbf{f}_{i}^{\mathrm{P}}\mathbf{f}_{j}^{\mathrm{T}}/\tau)}+\log\frac{\exp(\mathbf{f}_{i}^{\mathrm{P}}\mathbf{f}_{i}^{\mathrm{T}}/\tau)}{\sum_{j}\exp(\mathbf{f}_{j}^{\mathrm{P}}\mathbf{f}_{i}^{\mathrm{T}}/\tau)}
+\]</div>
+<ul>
+<li><span><span class="arithmatex">\(\displaystyle \tau\)</span><span class="heti-spacing"> </span></span>是温度系数， <span><span class="arithmatex">\(\displaystyle\mathrm{f}\)</span><span class="heti-spacing"> </span></span>是嵌入以后的特征</li>
+<li>训练<span class="heti-skip"><span class="heti-spacing"> </span>3D<span class="heti-spacing"> </span></span>编码器，让这两个值加起来最小</li>
+</ul>
+<h2 id="experiment">Experiment<a class="headerlink" href="#experiment" title="Permanent link">¶</a></h2>
+<ul>
+<li>dataset<ul>
+<li>Objaverse</li>
+<li>ShapeNet</li>
+</ul>
+</li>
+</ul>
+<details class="example">
+<summary>Example</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228155152655.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228155152655.png"/></a></p>
+</details>
+<ul>
+<li>three downstream tasks<ol>
+<li>the zero-shot 3D classification task involving multimodal inputs</li>
+<li>the standard 3D classification task involving a single modality</li>
+<li>the 3D captioning task involving 3D-to-language generation with LLMs</li>
+</ol>
+</li>
+<li>Evaluation Metrics<ul>
+<li>top-1 and top-5 accuracy for the zero-shot 3D classification task;</li>
+<li>overall accuracy and class average accuracy for the standard 3D classification task.</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-zero-shot-3d-classification-task-involving-multimodal-inputs">the zero-shot 3D classification task involving multimodal inputs<a class="headerlink" href="#the-zero-shot-3d-classification-task-involving-multimodal-inputs" title="Permanent link">¶</a></h3>
+<details class="example">
+<summary>Example</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228155711593.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228155711593.png"/></a></p>
+</details>
+<h3 id="the-standard-3d-classification-task-involving-a-single-modality">the standard 3D classification task involving a single modality<a class="headerlink" href="#the-standard-3d-classification-task-involving-a-single-modality" title="Permanent link">¶</a></h3>
+<details class="example">
+<summary>Example</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228155929875.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228155929875.png"/></a></p>
+</details>
+<h3 id="the-3d-captioning-task-involving-3d-to-language-generation-with-llms">the 3D captioning task involving 3D-to-language generation with LLMs<a class="headerlink" href="#the-3d-captioning-task-involving-3d-to-language-generation-with-llms" title="Permanent link">¶</a></h3>
+<details class="example">
+<summary>Example</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228160124516.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228160124516.png"/></a></p>
+</details>
+<details class="example">
+<summary>Example</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-type="image" data-width="80%" href="https://raw.githubusercontent.com/WncFht/picture/main/20241228160145316.png"><img alt="image.png" src="https://raw.githubusercontent.com/WncFht/picture/main/20241228160145316.png"/></a></p>
+</details>
+<h2 id="ablation-study">Ablation Study<a class="headerlink" href="#ablation-study" title="Permanent link">¶</a></h2>
+<ul>
+<li>Ablation on the effect of the generated captions</li>
+<li>Different Large Multimodal Models</li>
+<li>Number of 2D Views Per 3D Object</li>
+<li>Top-k CLIP Ranked Captions Per 2D View</li>
+<li>Scaling Up the Backbone Models</li>
+</ul>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<details class="abstract">
+<summary>Conclusion</summary>
+<p>We present ULIP-2, a novel framework for multimodal 3D representation learning. By leveraging large multimodal models for language description generation and scaling up the multimodal 3D pre-training, ULIP-2 not only addresses the quality and scalability challenges in existing multimodal 3D datasets but also demonstrates significant improvements in all downstream tasks. We also release "ULIP-Objaverse" triplets and "ULIP-ShapeNet" triplets, two large-scale trimodal datasets to foster further research.
+<strong>Limitations</strong>. ULIP-2’s pre-training primarily utilizes object-level 3D shape datasets, which inherently differ from scene-level 3D data in their distribution and complexity. Exploring the application of the ULIP-2 framework to scenelevel 3D data understanding, and leveraging the knowledge learned from object-level 3D data for this purpose, represents a compelling avenue for future research.
+<strong>Broader Impact</strong>. ULIP-2 aims to minimize human annotation in 3D multimodal pre-training, reducing labor but potentially impacting low-skilled job markets. This dual impact, a common concern in AI advancements, underscores the need for broader considerations in AI research.</p>
+</details>
+<ul>
+<li>创造了一种生成数据的方法，然后发布了<span><span class="heti-spacing"> </span>"ULIP-Objaverse" triplets and "ULIP-ShapeNet" triplets</span></li>
+</ul>
+<h3 id="limitation">Limitation<a class="headerlink" href="#limitation" title="Permanent link">¶</a></h3>
+<ul>
+<li><span>3D<span class="heti-spacing"> </span></span>数据集只有<span><span class="heti-spacing"> </span>object</span>，数据集没有场景的</li>
+</ul>
+<h2 id="_1">复现<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h2 id="_2">相关论文<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h3 id="generative-large-multimodal-models">Generative Large Multimodal Models<a class="headerlink" href="#generative-large-multimodal-models" title="Permanent link">¶</a></h3>
+<ul>
+<li><a href="../../gpt" title="GPT">GPT</a></li>
+<li><a href="../../gpt4" title="GPT4">GPT4</a></li>
+<li><a href="../../blip-2" title="BLIP-2">BLIP-2</a></li>
+</ul>
+<h3 id="multimodal-representation-learning">Multimodal Representation Learning<a class="headerlink" href="#multimodal-representation-learning" title="Permanent link">¶</a></h3>
+<ul>
+<li><a href="../../clip" title="CLIP">CLIP</a></li>
+<li>SLIP</li>
+</ul>
+<h3 id="3d-point-cloud-understanding">3D Point Cloud Understanding<a class="headerlink" href="#3d-point-cloud-understanding" title="Permanent link">¶</a></h3>
+<ul>
+<li>PointNet</li>
+<li>Point-BERT</li>
+<li>PointNeXt</li>
+</ul></div>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2024 13:29:32</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2024 16:11:56</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2024 13:29:32</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2024 16:11:56</span>
 </span>
 </aside>
 <div id="__comments"></div>
