@@ -223,6 +223,7 @@ plugins:
           insert: top
   - search
   - callouts
+  - ezlinks
   - glightbox:
       width: 80%
   - statistics:
