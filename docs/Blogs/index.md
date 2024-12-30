@@ -14,8 +14,6 @@ comments: false
 
 {{ BEGIN_TOC }}
 
-- "一些想法":
-    - 关于交流，信息，选择，焦虑 : posts/24-12-23
 - "论文笔记":
     - ULIP-2 : posts/ULIP-2
 {{ END_TOC }}
