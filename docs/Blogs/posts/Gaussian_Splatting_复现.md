@@ -1,7 +1,8 @@
 ---
-title: Gaussian_Splatting_复现
+title: Gaussian Splatting 复现
 tags:
-  - 科研 - 复现
+  - 科研
+  - 复现
 categories: 
 date: 2024-12-31T21:11:43+08:00
 modify: 2024-12-31T21:11:43+08:00
@@ -11,7 +12,7 @@ cdate: 2024-12-31
 mdate: 2024-12-31
 ---
 
-# Gaussian_Splatting_复现
+# Gaussian Splatting 复现
 
 ## 官方数据集复现
 
@@ -101,6 +102,8 @@ scp -r -P 26000 fanghaotian@RHOS:/home/fanghaotian/3DGS/gaussian-splatting/outpu
 
 ./SIBR_gaussianViewer_app -m C:\Users\fanghaotian\Desktop\data\82ea91ef-6\
 ```
+
+![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20241231225623884.png)
 
 ## 自己的数据集
 
