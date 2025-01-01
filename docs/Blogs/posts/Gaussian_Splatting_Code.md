@@ -1,6 +1,8 @@
 ---
 title: Gaussian Splatting 数据集
 tags: 
+  - 科研
+  - 三维重建
 categories: 
 date: 2025-01-01T12:11:48+08:00
 modify: 2025-01-01T12:11:48+08:00
@@ -34,7 +36,7 @@ mdate: 2025-01-01
 ```python
 cameras_extrinsic_file = os.path.join(path, "sparse/0", "images.bin")
 cam_extrinsics = read_extrinsics_binary(cameras_extrinsic_file)
-````
+```
 
 - 如果 `images.bin` 文件不存在，则加载 `images.txt`：
 
@@ -201,15 +203,15 @@ nerf_normalization = getNerfppNorm(train_cam_infos)
 
 ## **3. 总结对比**
 
-|**特性**|**Colmap 数据集**|**Blender 数据集**|
-|---|---|---|
-|**相机参数**|从 `images.bin` 和 `cameras.bin` 中加载外参和内参|从 `transforms_train.json` 中加载变换矩阵|
-|**点云**|从 `points3D.bin` 或 `points3D.txt` 加载|随机生成 10 万个点|
-|**图像数据**|存储在 `images/` 文件夹|路径由 JSON 文件指定|
-|**深度图**|可选，需 `depth_params.json` 定义|可选，需提供深度图文件夹|
-|**归一化**|基于相机位置计算场景中心和半径|同上|
-|**测试集划分**|每 8 个视角划分一个到测试集，或读取 `test.txt`|测试集通过 `transforms_test.json` 指定|
-|**背景颜色**|无|可选白色或黑色背景|
+| **特性**       | **Colmap 数据集**                                 | **Blender 数据集**                        |
+| -------------- | ------------------------------------------------- | ----------------------------------------- |
+| **相机参数**   | 从 `images.bin` 和 `cameras.bin` 中加载外参和内参 | 从 `transforms_train.json` 中加载变换矩阵 |
+| **点云**       | 从 `points3D.bin` 或 `points3D.txt` 加载          | 随机生成 10 万个点                        |
+| **图像数据**   | 存储在 `images/` 文件夹                           | 路径由 JSON 文件指定                      |
+| **深度图**     | 可选，需 `depth_params.json` 定义                 | 可选，需提供深度图文件夹                  |
+| **归一化**     | 基于相机位置计算场景中心和半径                    | 同上                                      |
+| **测试集划分** | 每 8 个视角划分一个到测试集，或读取 `test.txt`    | 测试集通过 `transforms_test.json` 指定    |
+| **背景颜色**   | 无                                                | 可选白色或黑色背景                        |
 
 ---
 
