@@ -3,6 +3,7 @@ title: Gaussian Splatting 复现
 tags:
   - 科研
   - 复现
+  - 三维重建
 categories: 
 date: 2024-12-31T21:11:43+08:00
 modify: 2024-12-31T21:11:43+08:00
@@ -112,6 +113,10 @@ TODO
 ### ffmpeg 的问题
 
 [ffmpeg: error while loading shared libraries: libopenh264.so.5:-CSDN博客](https://blog.csdn.net/weixin_43546619/article/details/124219304)
+
+## 代码解读
+
+[[Gaussian_Splatting_Code]]
 
 ## Reference
 
