@@ -99,16 +99,265 @@ Metric evaluation progress: 100%|███████████████�
 ### Interactive Viewers
 
 ```
-scp -r -P 26000 fanghaotian@RHOS:/home/fanghaotian/3DGS/gaussian-splatting/output C:\Users\fanghaotian\Desktop\
+scp -r -P 26000 fanghaotian@RHOS:/home/fanghaotian/3DGS/gaussian-splatting/output/ C:\Users\fanghaotian\Desktop\
 
 ./SIBR_gaussianViewer_app -m C:\Users\fanghaotian\Desktop\data\82ea91ef-6\
 ```
 
 ![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20241231225623884.png)
 
-## 自己的数据集
+## 用 blender 数据集
 
-TODO
+### prepare
+
+- 数据集
+	- [GitHub - bmild/nerf: Code release for NeRF (Neural Radiance Fields)](https://github.com/bmild/nerf)
+	- `nerf_synthetic/lego ` 那个是 blender 的格式
+
+```
+tree -I "*.png"
+.
+└── lego
+    ├── test
+    ├── train
+    ├── transforms_test.json
+    ├── transforms_train.json
+    ├── transforms_val.json
+    └── val
+```
+
+### Iterations=30000 no evaluation
+
+#### train
+
+```
+python train.py  -s ./data/nerf_synthetic/lego/ -m ./output/lego/
+
+Optimizing ./output/lego/
+Output folder: ./output/lego/ [01/01 13:31:23]
+Tensorboard not available: not logging progress [01/01 13:31:23]
+Found transforms_train.json file, assuming Blender data set! [01/01 13:31:23]
+Reading Training Transforms [01/01 13:31:23]
+Reading Test Transforms [01/01 13:31:31]
+Generating random point cloud (100000)... [01/01 13:31:38]
+Loading Training Cameras [01/01 13:31:39]
+Loading Test Cameras [01/01 13:31:53]
+Number of points at initialisation :  100000 [01/01 13:31:53]
+Training progress:  23%|████████████████████                                                                  | 7000/30000 [01:15<04:12, 91.02it/s, Loss=0.0152277, Depth Loss=0.0000000]
+[ITER 7000] Evaluating train: L1 0.3646775007247925 PSNR 5.983335494995117 [01/01 13:33:09]
+
+[ITER 7000] Saving Gaussians [01/01 13:33:09]
+Training progress: 100%|█████████████████████████████████████████████████████████████████████████████████████| 30000/30000 [05:26<00:00, 91.97it/s, Loss=0.0105094, Depth Loss=0.0000000]
+
+[ITER 30000] Evaluating train: L1 0.6417351365089417 PSNR 2.185275435447693 [01/01 13:37:19]
+
+[ITER 30000] Saving Gaussians [01/01 13:37:19]
+
+Training complete. [01/01 13:37:21]
+```
+
+#### render
+
+```
+python render.py -m ./output/lego/
+
+Looking for config file in ./output/lego/cfg_args
+Config file found: ./output/lego/cfg_args
+Rendering ./output/lego/
+Loading trained model at iteration 30000 [01/01 13:41:14]
+Found transforms_train.json file, assuming Blender data set! [01/01 13:41:14]
+Reading Training Transforms [01/01 13:41:14]
+Reading Test Transforms [01/01 13:41:20]
+Loading Training Cameras [01/01 13:41:28]
+Loading Test Cameras [01/01 13:41:44]
+Rendering progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 300/300 [01:06<00:00,  4.48it/s]
+Rendering progress: 0it [00:00, ?it/s]
+```
+
+#### metric
+
+```
+python metrics.py -m ./output/lego/
+
+Scene: ./output/lego/
+Method: ours_30000
+Metric evaluation progress: 0it [00:00, ?it/s]
+  SSIM :          nan
+  PSNR :          nan
+  LPIPS:          nan
+```
+
+#### Interactive Viewers
+
+```
+scp -r -P 26000 fanghaotian@RHOS:/home/fanghaotian/3DGS/gaussian-splatting/output/lego C:\Users\fanghaotian\Desktop\
+
+./SIBR_gaussianViewer_app -m C:\Users\fanghaotian\Desktop\lego
+```
+
+![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20250101142557441.png)
+
+🤔，好像一定要 --eval。
+
+### Iteratations=30000 + evaluation
+
+那么加上以后用 iterations=300000（default）再跑一次。
+
+```
+python train.py  -s ./data/nerf_synthetic/lego/ -m ./output/lego_eval/ --eval
+
+Optimizing ./output/lego_eval/
+Output folder: ./output/lego_eval/ [01/01 13:43:45]
+Tensorboard not available: not logging progress [01/01 13:43:45]
+Found transforms_train.json file, assuming Blender data set! [01/01 13:43:45]
+Reading Training Transforms [01/01 13:43:45]
+Reading Test Transforms [01/01 13:43:51]
+Loading Training Cameras [01/01 13:43:58]
+Loading Test Cameras [01/01 13:44:06]
+Number of points at initialisation :  100000 [01/01 13:44:12]
+Training progress:  23%|████████████████████                                                                  | 7000/30000 [01:24<04:48, 79.82it/s, Loss=0.0153927, Depth Loss=0.0000000]
+[ITER 7000] Evaluating test: L1 0.34677238538861277 PSNR 6.254974584579468 [01/01 13:45:38]
+
+[ITER 7000] Evaluating train: L1 0.3650033831596375 PSNR 5.939675426483155 [01/01 13:45:38]
+
+[ITER 7000] Saving Gaussians [01/01 13:45:38]
+Training progress: 100%|█████████████████████████████████████████████████████████████████████████████████████| 30000/30000 [05:47<00:00, 86.33it/s, Loss=0.0095609, Depth Loss=0.0000000]
+
+[ITER 30000] Evaluating test: L1 0.557637879550457 PSNR 3.0822176444530487 [01/01 13:50:00]
+
+[ITER 30000] Evaluating train: L1 0.5475435316562652 PSNR 3.064222288131714 [01/01 13:50:00]
+
+[ITER 30000] Saving Gaussians [01/01 13:50:00]
+
+Training complete. [01/01 13:50:04]
+
+
+python render.py -m ./output/lego_eval/
+
+Looking for config file in ./output/lego_eval/cfg_args
+Config file found: ./output/lego_eval/cfg_args
+Rendering ./output/lego_eval/
+Loading trained model at iteration 30000 [01/01 13:51:20]
+Found transforms_train.json file, assuming Blender data set! [01/01 13:51:20]
+Reading Training Transforms [01/01 13:51:20]
+Reading Test Transforms [01/01 13:51:26]
+Loading Training Cameras [01/01 13:51:33]
+Loading Test Cameras [01/01 13:51:40]
+Rendering progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:25<00:00,  3.94it/s]
+Rendering progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 200/200 [00:48<00:00,  4.13it/s]
+
+
+python metrics.py -m ./output/lego_eval/
+
+Scene: ./output/lego_eval/
+Method: ours_30000
+Metric evaluation progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 200/200 [04:00<00:00,  1.20s/it]
+  SSIM :    0.2604475
+  PSNR :    3.0649595
+  LPIPS:    0.5116847
+```
+
+看起来效果不太好。
+应该是初始化的问题，L1 甚至还是上次的 10 倍, `Evaluating train: L1 0.5475435316562652 PSNR 3.064222288131714 ` 。
+
+把 iterations 调到 100000 再来一次，看看收敛情况。
+
+### Iterations=100000 + evaluation
+
+```
+ python train.py  -s ./data/nerf_synthetic/lego/ -m ./output/lego_eval_100000/ --iterations 100000 --eval
+ 
+Optimizing ./output/lego_eval_100000/
+Output folder: ./output/lego_eval_100000/ [01/01 14:00:46]
+Tensorboard not available: not logging progress [01/01 14:00:46]
+Found transforms_train.json file, assuming Blender data set! [01/01 14:00:46]
+Reading Training Transforms [01/01 14:00:46]
+Reading Test Transforms [01/01 14:00:53]
+Loading Training Cameras [01/01 14:01:00]
+Loading Test Cameras [01/01 14:01:08]
+Number of points at initialisation :  100000 [01/01 14:01:15]
+Training progress:   7%|█████▉                                                                               | 7000/100000 [01:23<17:42, 87.50it/s, Loss=0.0159089, Depth Loss=0.0000000]
+[ITER 7000] Evaluating test: L1 0.34856061153113843 PSNR 6.298382818698883 [01/01 14:02:40]
+
+[ITER 7000] Evaluating train: L1 0.36839944720268253 PSNR 5.857858657836914 [01/01 14:02:40]
+
+[ITER 7000] Saving Gaussians [01/01 14:02:40]
+Training progress:  30%|████████████████████████▉                                                          | 29990/100000 [05:45<10:51, 107.52it/s, Loss=0.0095307, Depth Loss=0.0000000]
+[ITER 30000] Evaluating test: L1 0.6024469056725502 PSNR 2.6481225460767748 [01/01 14:07:02]
+
+[ITER 30000] Evaluating train: L1 0.5561836898326874 PSNR 2.9405082702636722 [01/01 14:07:02]
+
+[ITER 30000] Saving Gaussians [01/01 14:07:02]
+Training progress: 100%|██████████████████████████████████████████████████████████████████████████████████| 100000/100000 [16:33<00:00, 100.62it/s, Loss=0.0109117, Depth Loss=0.0000000]
+
+[ITER 100000] Saving Gaussians [01/01 14:17:49]
+
+Training complete. [01/01 14:17:51]
+```
+
+```
+python render.py -m ./output/lego_eval_100000/
+Looking for config file in ./output/lego_eval_100000/cfg_args
+Config file found: ./output/lego_eval_100000/cfg_args
+Rendering ./output/lego_eval_100000/
+Loading trained model at iteration 100000 [01/01 14:21:43]
+Found transforms_train.json file, assuming Blender data set! [01/01 14:21:43]
+Reading Training Transforms [01/01 14:21:43]
+Reading Test Transforms [01/01 14:21:50]
+Loading Training Cameras [01/01 14:21:57]
+Loading Test Cameras [01/01 14:22:06]
+Rendering progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:22<00:00,  4.39it/s]
+Rendering progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 200/200 [00:42<00:00,  4.65it/s]
+```
+
+```
+python metrics.py -m ./output/lego_eval_100000/
+
+Scene: ./output/lego_eval_100000/
+Method: ours_100000
+Metric evaluation progress: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 200/200 [04:03<00:00,  1.22s/it]
+  SSIM :    0.2404845
+  PSNR :    2.4990394
+  LPIPS:    0.5251624
+```
+
+好像评估仍然不太行，还越训练越差了。
+
+```
+scp -r -P 26000 fanghaotian@RHOS:/home/fanghaotian/3DGS/gaussian-splatting/output/lego_eval_100000/ C:\Users\fanghaotian\Desktop\
+```
+
+![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20250101142324995.png)
+
+### Blender 转 Colmap
+
+- [Frequently Asked Questions — COLMAP 3.12.0.dev0 documentation](https://colmap.github.io/faq.html#reconstruct-sparse-dense-model-from-known-camera-poses)
+
+```
+colmap automatic_reconstructor --workspace_path . --image_path ./images --sparse 1 --camera_model SIMPLE_PINHOLE --dense 0
+# colmap automatic_reconstructor: 这是调用COLMAP程序中的自动重建模块，它会自动完成特征提取、匹配、重投影误差优化和三角化等步骤，以生成场景的稀疏3D点云模型。
+# --workspace_path .: 指定了工作空间路径为当前目录(.)，在这个路径下，COLMAP将存储中间结果以及最终的重建输出文件。
+# --image_path ./images: 定义了图像数据集所在的路径，即所有参与重建的图片都位于./images目录下。
+# --sparse 1: 这个参数表示进行稀疏重建（与密集重建相对），即只构建出场景中的关键点及其对应关系，并通过这些信息生成一个由稀疏点云组成的三维模型。
+# --camera_model SIMPLE_PINHOLE: 指定使用的相机模型为“简单针孔模型”（Simple Pinhole Model）。这意味着COLMAP在进行重建时将假设相机遵循的是最基础的几何投影模型，其中不包括像径向畸变这样的复杂因素。
+# --dense 0，减少不需要的计算操作。
+```
+
+![image.png](https://raw.githubusercontent.com/WncFht/picture/main/20250101153810194.png)
+然后 train render metric
+
+```
+(gaussian_splatting) fanghaotian@rhos-Super-Server:~/3DGS/gaussian-splatting$ python metrics.py -m ./output/lego_colmap/
+
+Scene: ./output/lego_colmap/
+Method: ours_30000
+Metric evaluation progress: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 13/13 [00:23<00:00,  1.83s/it]
+  SSIM :    0.2915006
+  PSNR :    4.3199711
+  LPIPS:    0.4333871
+```
+
+感觉是转换的时候图片太少了，然后就变差了。render 的时候很快。
 
 ### ffmpeg 的问题
 
