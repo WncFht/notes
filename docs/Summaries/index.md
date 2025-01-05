@@ -13,6 +13,8 @@ comments: false
 {{ BEGIN_TOC }}
 - "学期总结 & 其他":
     - "高三至大一暑假总结": Semesters/2024summer_vacation
+- "2025 年周结":
+    - "第  1 周": 2025/weekly/2025-W01-12
 - "2024 年周结":
     - "第 51 周": 2024/weekly/2024-W51-12
     - "第 52 周": 2024/weekly/2024-W52-12
