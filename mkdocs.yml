@@ -181,12 +181,11 @@ extra_css:
   - css/tasklist.css
   - css/card.css
   - css/flink.css
-  # - css/heti.css
   # - css/changelog_extra.css
-  # - css/flod_toc.css
-  # - css/grid cards.css # 好用的但还没用
-  # - css/extra.css
-  # - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  - css/extra.css
+  - css/fold_toc.css
+  - css/grid cards.css # 好用的但还没用
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
 
 extra_javascript:
   - js/katex.js
@@ -207,8 +206,7 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml-full.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-svg-full.js
-  # - js/custom.js
-  # - js/heti.js
+
 
 plugins:
   - blogging:
