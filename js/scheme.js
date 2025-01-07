@@ -12,6 +12,20 @@
     )
   }
 
+/**
+ * Sets up the theme for the webpage based on user preferences and system settings.
+ *
+ * @param {HTMLElement} body - The body element of the webpage.
+ *
+ * The function performs the following steps:
+ * 1. Checks if the browser supports the `prefers-color-scheme` media feature.
+ * 2. Retrieves the user's preferred color scheme and preference settings from localStorage.
+ * 3. Removes any old version of the color scheme settings from localStorage.
+ * 4. Sets default values for the color scheme and preference settings if they are not found in localStorage.
+ * 5. Adjusts the color scheme based on the user's preference and system settings.
+ * 6. Updates the body element's attributes to reflect the current color scheme and preference settings.
+ * 7. Adds an event listener to handle changes in the `prefers-color-scheme` media feature if supported.
+ */
   const setupTheme = body => {
     const preferSupported = window.matchMedia("(prefers-color-scheme)").media !== "not all"
     let scheme = localStorage.getItem("data-md-color-scheme")
