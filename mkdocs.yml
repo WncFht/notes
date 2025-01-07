@@ -4,7 +4,7 @@ site_description: wnc 的个人网站
 site_author: wnc
 repo_name: wnc's café
 repo_url: https://github.com/WncFht/notes/
-edit_uri: edit/main/docs/
+# edit_uri: edit/main/docs/
 copyright: Copyright &copy; 2024 - Present <a href="https://github.com/WncFht/" target="_blank" rel="noopener">WncFht</a>
 
 theme:
@@ -173,28 +173,24 @@ extra:
   #   property: YOUR-ANALYTICS-ID
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css
-  # - https://cdn.tonycrane.cc/utils/katex.min.css
+  # - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css
+  - https://cdn.tonycrane.cc/utils/katex.min.css
   - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
   - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
   - css/custom.css
   - css/tasklist.css
   - css/card.css
   - css/flink.css
-  # - css/changelog_extra.css
   - css/extra.css
   - css/fold_toc.css
-  - css/grid cards.css # 好用的但还没用
   - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
 
 extra_javascript:
   - js/katex.js
-  - js/mathjax.js
-  - js/tablesort.js
   - js/toc.js
+  - js/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-  # - https://cdn.tonycrane.cc/utils/katex.min.js
+  - https://cdn.tonycrane.cc/utils/katex.min.js
   - https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
   # katex
@@ -206,7 +202,6 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-chtml-full.js
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-svg-full.js
-
 
 plugins:
   - blogging:
@@ -231,6 +226,23 @@ plugins:
   #     sort_file: true
   #     sort_directory: true
   - toc
+
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      js_files:
+        - js/katex.js
+        - js/mathjax.js
+        - js/toc.js
+      css_files:
+        - css/custom.css
+        - css/tasklist.css
+        - css/card.css
+        - css/flink.css
+        - css/extra.css
+        - css/fold_toc.css
+        - css/grid cards.css
   # - obsidian_support 不知道什么原因构建速度很慢，暂时不用
   # - rss
   - git-revision-date-localized:
@@ -239,26 +251,80 @@ plugins:
       enable_creation_date: true
       exclude:
         - index.md
-  - mkdocs-video:
-      video_muted: True
-      video_controls: True
-      mark: "video"
-  # - changelog
-  # - mkdocs-jupyter:
-  #     include_source: True
-  #     execute: False
-  #     ignore: ["*.py"]
 
-not_in_nav: links.md
+not_in_nav: Links.md
 
 nav:
-  - Home: index.md
+  - Home: 
+      - index.md
+      - about.md
   - Blogs:
       - index: Blogs/index.md
       - Archives: Blogs/archives.md
-  - Summaries: Summaries/index.md
-  - Computer Basic: CS_Basic/index.md
-  - AI: AI/index.md
-  - Robot: Robot/index.md
-  - Tools: Tools/index.md
-  - Tags: Tags/index.md
+      - Blogs/posts/24-12-29.md
+      - Blogs/posts/24-12-30.md
+      - Blogs/posts/FreeSplatter 代码解读.md
+      - Blogs/posts/Gaussian_Splatting_Code.md
+      - Blogs/posts/Gaussian_Splatting_复现.md
+      - Blogs/posts/OCRN.md
+      - Blogs/posts/ULIP-2.md
+      - Blogs/posts/用AI后的问题.md
+  - Summaries:
+      - Summaries/index.md
+      - Summaries/2024/weekly/2024-W44-10.md
+      - Summaries/2024/weekly/2024-W45-11.md
+      - Summaries/2024/weekly/2024-W46-11.md
+      - Summaries/2024/weekly/2024-W47-11.md
+      - Summaries/2024/weekly/2024-W48-11.md
+      - Summaries/2024/weekly/2024-W49-12.md
+      - Summaries/2024/weekly/2024-W50-12.md
+      - Summaries/2024/weekly/2024-W51-12.md
+      - Summaries/2024/weekly/2024-W52-12.md
+      - Summaries/2025/weekly/2025-W01-12.md
+      - Summaries/Semesters/202409-10.md
+      - Summaries/Semesters/2024_1_1.md
+      - Summaries/Semesters/2024summer_vacation.md
+  - Computer Basic:
+      - CS_Basic/index.md
+      - CS_Basic/15-213/CSAPP.md
+      - CS_Basic/C++/Accelerated C++.md
+      - CS_Basic/C++/C++ Basic.md
+      - CS_Basic/CS61A/CS61A.md
+      - CS_Basic/CS61A/Composing_Programs.md
+      - CS_Basic/CS61C/计算机组成与设计硬件软件接口.md
+      - CS_Basic/Network/Security.md
+  - AI:
+      - AI/index.md
+      - AI/Dive_into_Deep_Learning.md
+      - AI/SLAM14.md
+      - AI/统计学习方法.md
+      - AI/CS231n/CS231n_notes.md
+      - AI/CS231n/Image Classification-Data-driven Approach, k-Nearest Neighbor, train_val_test splits.md
+      - AI/CS231n/Linear classification-Support Vector Machine, Softmax.md
+      - AI/CS231n/Numpy.md
+      - AI/EECS 498-007/KNN.md
+      - AI/EECS 498-007/Pytorch.md
+      - AI/EECS 498-007/linear_classifer.md
+      - AI/FFB6D/FFB6D_Conda.md
+      - AI/FFB6D/FFB6D_Docker.md
+  - Robot:
+      - Robot/index.md
+      - Robot/calibration.md
+      - Robot/kalman.md
+      - Robot/pnp.md
+  - Tools:
+      - Tools/index.md
+      - Tools/AI/prompt.md
+      - Tools/AI/prompt_writing.md
+      - Tools/Blog/Mkdocs_Material.md
+      - Tools/Environment/Ubuntu_setup.md
+      - Tools/Environment/environment.md
+      - Tools/Environment/obsidian_setup.md
+      - Tools/Make/CMake.md
+      - Tools/Make/Makeflie.md
+      - Tools/Others/Chezmoi.md
+      - Tools/Others/SSH.md
+      - Tools/Others/zotero_使用指南.md
+      - Tools/Terminal/Tabby_Zsh.md
+  - Tags: 
+    - Tags/index.md
