@@ -261,52 +261,65 @@ nav:
   - Blogs:
       - index: Blogs/index.md
       - Archives: Blogs/archives.md
-      - Blogs/posts/24-12-29.md
-      - Blogs/posts/24-12-30.md
-      - Blogs/posts/FreeSplatter 代码解读.md
-      - Blogs/posts/Gaussian_Splatting_Code.md
-      - Blogs/posts/Gaussian_Splatting_复现.md
-      - Blogs/posts/OCRN.md
-      - Blogs/posts/ULIP-2.md
-      - Blogs/posts/用AI后的问题.md
+      - Posts:
+          - Blogs/posts/24-12-29.md
+          - Blogs/posts/24-12-30.md
+          - Blogs/posts/FreeSplatter 代码解读.md
+          - Blogs/posts/Gaussian_Splatting_Code.md
+          - Blogs/posts/Gaussian_Splatting_复现.md
+          - Blogs/posts/OCRN.md
+          - Blogs/posts/ULIP-2.md
+          - Blogs/posts/用AI后的问题.md
   - Summaries:
       - Summaries/index.md
-      - Summaries/2024/weekly/2024-W44-10.md
-      - Summaries/2024/weekly/2024-W45-11.md
-      - Summaries/2024/weekly/2024-W46-11.md
-      - Summaries/2024/weekly/2024-W47-11.md
-      - Summaries/2024/weekly/2024-W48-11.md
-      - Summaries/2024/weekly/2024-W49-12.md
-      - Summaries/2024/weekly/2024-W50-12.md
-      - Summaries/2024/weekly/2024-W51-12.md
-      - Summaries/2024/weekly/2024-W52-12.md
-      - Summaries/2025/weekly/2025-W01-12.md
-      - Summaries/Semesters/202409-10.md
-      - Summaries/Semesters/2024_1_1.md
-      - Summaries/Semesters/2024summer_vacation.md
+      - Weekly:
+          - 2024:
+              - Summaries/2024/weekly/2024-W44-10.md
+              - Summaries/2024/weekly/2024-W45-11.md
+              - Summaries/2024/weekly/2024-W46-11.md
+              - Summaries/2024/weekly/2024-W47-11.md
+              - Summaries/2024/weekly/2024-W48-11.md
+              - Summaries/2024/weekly/2024-W49-12.md
+              - Summaries/2024/weekly/2024-W50-12.md
+              - Summaries/2024/weekly/2024-W51-12.md
+              - Summaries/2024/weekly/2024-W52-12.md
+          - 2025:
+              - Summaries/2025/weekly/2025-W01-12.md
+              - Summaries/2025/weekly/2025-W02-01.md
+      - Semesters:
+          - Summaries/Semesters/202409-10.md
+          - Summaries/Semesters/2024_1_1.md
+          - Summaries/Semesters/2024summer_vacation.md
   - Computer Basic:
       - CS_Basic/index.md
-      - CS_Basic/15-213/CSAPP.md
-      - CS_Basic/C++/Accelerated C++.md
-      - CS_Basic/C++/C++ Basic.md
-      - CS_Basic/CS61A/CS61A.md
-      - CS_Basic/CS61A/Composing_Programs.md
-      - CS_Basic/CS61C/计算机组成与设计硬件软件接口.md
-      - CS_Basic/Network/Security.md
+      - CSAPP: CS_Basic/15-213/CSAPP.md
+      - C++:
+          - CS_Basic/C++/Accelerated C++.md
+          - CS_Basic/C++/C++ Basic.md
+      - CS61:
+          - CS_Basic/CS61A/CS61A.md
+          - CS_Basic/CS61A/Composing_Programs.md
+          - CS_Basic/CS61C/计算机组成与设计硬件软件接口.md
+      - Network:
+          - CS_Basic/Network/Security.md
   - AI:
       - AI/index.md
-      - AI/Dive_into_Deep_Learning.md
-      - AI/SLAM14.md
-      - AI/统计学习方法.md
-      - AI/CS231n/CS231n_notes.md
-      - AI/CS231n/Image Classification-Data-driven Approach, k-Nearest Neighbor, train_val_test splits.md
-      - AI/CS231n/Linear classification-Support Vector Machine, Softmax.md
-      - AI/CS231n/Numpy.md
-      - AI/EECS 498-007/KNN.md
-      - AI/EECS 498-007/Pytorch.md
-      - AI/EECS 498-007/linear_classifer.md
-      - AI/FFB6D/FFB6D_Conda.md
-      - AI/FFB6D/FFB6D_Docker.md
+      - Basic:
+          - AI/Dive_into_Deep_Learning.md
+          - AI/SLAM14.md
+          - AI/统计学习方法.md
+      - CS231n:
+          - AI/CS231n/CS231n_notes.md
+          - AI/CS231n/Image Classification-Data-driven Approach, k-Nearest Neighbor, train_val_test splits.md
+          - AI/CS231n/Linear classification-Support Vector Machine, Softmax.md
+          - AI/CS231n/Numpy.md
+      - EECS 498-007:
+          - AI/EECS 498-007/KNN.md
+          - AI/EECS 498-007/Pytorch.md
+          - AI/EECS 498-007/linear_classifer.md
+      - FFB6D:
+          - AI/FFB6D/FFB6D_Conda.md
+          - AI/FFB6D/FFB6D_Docker.md
   - Robot:
       - Robot/index.md
       - Robot/calibration.md
@@ -314,17 +327,23 @@ nav:
       - Robot/pnp.md
   - Tools:
       - Tools/index.md
-      - Tools/AI/prompt.md
-      - Tools/AI/prompt_writing.md
-      - Tools/Blog/Mkdocs_Material.md
-      - Tools/Environment/Ubuntu_setup.md
-      - Tools/Environment/environment.md
-      - Tools/Environment/obsidian_setup.md
-      - Tools/Make/CMake.md
-      - Tools/Make/Makeflie.md
-      - Tools/Others/Chezmoi.md
-      - Tools/Others/SSH.md
-      - Tools/Others/zotero_使用指南.md
-      - Tools/Terminal/Tabby_Zsh.md
+      - AI:
+          - Tools/AI/prompt.md
+          - Tools/AI/prompt_writing.md
+      - Blog:
+          - Tools/Blog/Mkdocs_Material.md
+      - Environment:
+          - Tools/Environment/Ubuntu_setup.md
+          - Tools/Environment/environment.md
+          - Tools/Environment/obsidian_setup.md
+      - Make:
+          - Tools/Make/CMake.md
+          - Tools/Make/Makeflie.md
+      - Others:
+          - Tools/Others/Chezmoi.md
+          - Tools/Others/SSH.md
+          - Tools/Others/zotero_使用指南.md
+      - Terminal:
+          - Tools/Terminal/Tabby_Zsh.md
   - Tags: 
-    - Tags/index.md
+      - Tags/index.md
