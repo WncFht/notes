@@ -1,9 +1,9 @@
 body {
-      font-family: "LXGW WenKai", "JetBrains Mono";
-      /* Lite version */
-      /* font-family: "LXGW WenKai Lite", sans-serif; */
-      /* TC version */
-      /* font-family: "LXGW WenKai TC", sans-serif; */
-      /* Screen version */
-      /* font-family: "LXGW WenKai Screen", sans-serif; */
-    }
+  font-family: "JetBrains Mono", "LXGW WenKai";
+  /* Lite version */
+  /* font-family: "LXGW WenKai Lite", sans-serif; */
+  /* TC version */
+  /* font-family: "LXGW WenKai TC", sans-serif; */
+  /* Screen version */
+  /* font-family: "LXGW WenKai Screen", sans-serif; */
+}

@@ -216,7 +216,6 @@ plugins:
           insert: top
   - search
   - callouts
-  - ezlinks
   - glightbox:
       width: 80%
   - statistics:
@@ -255,7 +254,7 @@ plugins:
 not_in_nav: Links.md
 
 nav:
-  - Home: 
+  - Home:
       - index.md
       - about.md
   - Blogs:
@@ -345,5 +344,5 @@ nav:
           - Tools/Others/zotero_使用指南.md
       - Terminal:
           - Tools/Terminal/Tabby_Zsh.md
-  - Tags: 
+  - Tags:
       - Tags/index.md
