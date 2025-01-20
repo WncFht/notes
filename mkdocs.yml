@@ -204,6 +204,8 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-svg-full.js
 
 plugins:
+  - bi_directional_links
+  # - ezlinks
   - blogging:
       locale: en
       dirs:
