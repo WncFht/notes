@@ -13,7 +13,6 @@ comments: false
 ## Selected Blogs
 
 {{ BEGIN_TOC }}
-
 - "论文笔记":
     - ULIP-2 : posts/ULIP-2
 {{ END_TOC }}
