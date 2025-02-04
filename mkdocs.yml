@@ -332,6 +332,25 @@ nav:
       - Robot/pnp.md
   - Tools:
       - Tools/index.md
+      - Cheat Sheet:
+          - Tools/Cheat Sheet/index.md
+          - tools:
+              - Tools/Cheat Sheet/tools/adb Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/bash Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/ffmpeg Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/gdb Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/git Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/ip Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/tmux Cheat Sheet.md
+          - editors:
+              - Tools/Cheat Sheet/editors/emacs Cheat Sheet.md
+              - Tools/Cheat Sheet/editors/nano Cheat Sheet.md
+              - Tools/Cheat Sheet/editors/org Cheat Sheet.md
+              - Tools/Cheat Sheet/editors/vim Cheat Sheet.md
+          - languages:
+              - Tools/Cheat Sheet/languages/javascript Cheat Sheet.md
+              - Tools/Cheat Sheet/languages/python Cheat Sheet.md
+              - Tools/Cheat Sheet/languages/vimscript Cheat Sheet.md
       - AI:
           - Tools/AI/prompt.md
           - Tools/AI/prompt_writing.md
