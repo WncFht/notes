@@ -47,7 +47,7 @@ theme:
 
   font: false
 
-  favicon: assets/images/avatar.jpg
+  favicon: assets/images/avatar.png
 
   palette:
     - media: "(prefers-color-scheme)"
