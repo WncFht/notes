@@ -13,6 +13,7 @@ comments: false
 {{ BEGIN_TOC }}
 - "学期总结 & 其他":
     - "高三至大一暑假总结": Semesters/2024summer_vacation
+    - "2025 年寒假总结": Semesters/2025winter_vacation
 - "2025 年周结":
     - "第  1 周": 2025/weekly/2025-W01-12
     - "第  2 周": 2025/weekly/2025-W02-01
