@@ -22,7 +22,7 @@ mdate: 2025-02-15
 
 首先来点俗套的干了什么的环节
 
-## What Have Been Done
+## What Has Been Done
 
 ### LLM
 
