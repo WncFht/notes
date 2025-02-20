@@ -358,6 +358,7 @@ nav:
       - Blog:
           - Tools/Blog/Mkdocs_Material.md
       - Environment:
+          - Tools/Environment/Arch_setup.md
           - Tools/Environment/Ubuntu_setup.md
           - Tools/Environment/environment.md
           - Tools/Environment/obsidian_setup.md

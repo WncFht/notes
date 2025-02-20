@@ -20,6 +20,7 @@ comments: false
     - Environment: Environment/environment
     - Obsidian: Environment/obsidian_setup
     - Ubuntu: Environment/Ubuntu_setup
+    - Arch: Environment/Arch_setup
 - "Prompt Engerneering":
     - "如何写一个好 prompt": AI/prompt_writing
     - "useful prompt": AI/prompt
