@@ -12,9 +12,7 @@ cdate: 2025-02-09
 mdate: 2025-02-09
 ---
 
-q
-
-# arch 配置
+# Arch 配置
 
 ## preprocess
 
