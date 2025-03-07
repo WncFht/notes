@@ -88,8 +88,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.snippets
   - pymdownx.magiclink
-  # - pymdownx.smartsymbols
   - pymdownx.superfences
+  # - pymdownx.smartsymbols
   - pymdownx.inlinehilite
   # - markdown.extensions.attr_list
   - toc:
@@ -99,8 +99,7 @@ markdown_extensions:
   #     custom_fences:
   #       - name: mermaid
   #         class: mermaid
-  #         format:
-  #           pymdownx.superfences.fence_code_format # 代码块高亮插件
+  #         format: pymdownx.superfences.fence_code_format # 代码块高亮插件
   - pymdownx.highlight: # 代码块高亮
       anchor_linenums: true
       linenums: true # 显示行号
@@ -251,6 +250,7 @@ plugins:
       enable_creation_date: true
       exclude:
         - index.md
+  - mermaid2
 
 not_in_nav: Links.md
 
@@ -272,6 +272,7 @@ nav:
           - Blogs/posts/ULIP-2.md
           - Blogs/posts/用AI后的问题.md
           - Blogs/posts/notes_software.md
+          - Blogs/posts/openManus.md
   - Summaries:
       - Summaries/index.md
       - Weekly:
