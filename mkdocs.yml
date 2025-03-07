@@ -88,18 +88,17 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.snippets
   - pymdownx.magiclink
-  - pymdownx.superfences
   # - pymdownx.smartsymbols
   - pymdownx.inlinehilite
   # - markdown.extensions.attr_list
   - toc:
       permalink: true
       toc_depth: 3
-  # - pymdownx.superfences:
-  #     custom_fences:
-  #       - name: mermaid
-  #         class: mermaid
-  #         format: pymdownx.superfences.fence_code_format # 代码块高亮插件
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight: # 代码块高亮
       anchor_linenums: true
       linenums: true # 显示行号
