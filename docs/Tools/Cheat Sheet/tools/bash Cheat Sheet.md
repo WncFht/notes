@@ -50,6 +50,179 @@ CTRL+X CTRL+X       # 连续按两次 CTRL+X，光标在当前位置和行首来
 CTRL+X CTRL+E       # 用你指定的编辑器，编辑当前命令
 ```
 
+## zsh bindkey
+
+### 光标移动
+
+```zsh
+Ctrl + ← # 向后移动一个单词  
+Ctrl + → # 向前移动一个单词  
+Ctrl + A # 移到行首  
+Ctrl + B # 向左移动一个字符  
+Ctrl + E # 移到行尾  
+Ctrl + F # 向右移动一个字符  
+Alt + B # 向左移动一个单词  
+Alt + F # 向右移动一个单词
+```
+
+### 历史命令
+
+```
+Ctrl + N # 下一条命令  
+Ctrl + O # 执行命令并显示下一条历史  
+Ctrl + P # 上一条命令  
+Ctrl + R # 搜索历史命令  
+Ctrl + S # 前向搜索历史命令  
+Alt + . # 插入上一条命令的最后一个参数
+```
+
+### 文本编辑
+
+```
+Ctrl + D # 删除光标处字符  
+Ctrl + H # 删除光标左侧字符  
+Ctrl + K # 删除光标到行尾  
+Ctrl + U # 删除光标到行首  
+Ctrl + W # 删除光标左侧单词  
+Ctrl + Y # 粘贴删除内容  
+Ctrl + _ # 撤销  
+Alt + D # 删除光标右侧单词
+```
+
+### 命令执行
+
+```
+Ctrl + J 或 Ctrl + M # 执行命令  
+Ctrl + O # 执行命令并显示下一条历史
+```
+
+### 屏幕控制
+
+```
+Ctrl + L # 清屏
+```
+
+### 其他
+
+```
+Ctrl + G # 取消操作  
+Ctrl + Q # 推送到行缓冲区中空行
+```
+
+### 文件操作
+
+```
+Ctrl + X Ctrl + F # 找到下一个要匹配的字符  
+Ctrl + X Ctrl + J # 连接  
+Ctrl + X Ctrl + R # 读取补全  
+Ctrl + X Ctrl + U # 撤销  
+Ctrl + X Ctrl + V # 切换到命令模式  
+Ctrl + X Ctrl + X # 交换光标和标记  
+Ctrl + X * # 展开单词  
+Ctrl + X = # 显示光标信息  
+Ctrl + X ? # 调试补全  
+Ctrl + X C # 纠正文件名  
+Ctrl + X G # 列出展开内容  
+Ctrl + X a # 展开别名  
+Ctrl + X c # 纠正单词  
+Ctrl + X d # 列出展开选项  
+Ctrl + X e # 展开单词  
+Ctrl + X g # 列出展开内容  
+Ctrl + X h # 显示补全帮助  
+Ctrl + X m # 最近的文件  
+Ctrl + X n # 下一个标签  
+Ctrl + X r # 反向搜索历史  
+Ctrl + X s # 前向搜索历史  
+Ctrl + X t # 完成标签  
+Ctrl + X u # 撤销  
+Ctrl + X ~ # 列出选择
+```
+
+### 更多操作
+
+```
+Ctrl + X Ctrl + B # 括号匹配  
+Ctrl + X Ctrl + E # 编辑命令行  
+Ctrl + X Ctrl + O # 覆盖模式  
+Ctrl + Y # 粘贴  
+Alt + [ # sudo 命令行  
+Alt + _ # 复制前一个单词  
+Alt + "空格" # 扩展历史  
+Alt + ! # 扩展历史  
+Alt + "双引号" # 引用区域  
+Alt + $ # 拼写单词  
+Alt + ' # 引用行  
+Alt + , # 比较更近的历史  
+Alt + - # 负数参数  
+Alt + . # 插入最后一个参数  
+Alt + / # 比较更早的历史  
+Alt + 0-9 # 数字参数  
+Alt + < # 开始缓冲区或历史  
+Alt + > # 缓冲区或历史结束  
+Alt + ? # 显示命令  
+Alt + A # 接受并暂停  
+Alt + B # 向后移动一个单词  
+Alt + C # 首字母大写单词  
+Alt + D # 删除一个单词  
+Alt + F # 向前移动一个单词  
+Alt + G # 获取行  
+Alt + H # 获取帮助  
+Alt + L # 降低单词大小写  
+Alt + N # 历史前向搜索  
+Alt + OA # 历史子字符串搜索上  
+Alt + OB # 历史子字符串搜索下  
+Alt + OC # 向前移动一个字符  
+Alt + OD # 向后移动一个字符  
+Alt + OF # 行尾  
+Alt + OH # 行首  
+Alt + P # 历史反向搜索  
+Alt + Q # 推送到行缓冲区  
+Alt + S # 拼写单词  
+Alt + T # 交换单词  
+Alt + U # 提高单词大小写  
+Alt + W # 拷贝区域作为删除  
+Alt + [1;5C # 向前移动一个单词  
+Alt + [1;5D # 向后移动一个单词  
+Alt + [200~ # 使用括号粘贴  
+Alt + [3;5~ # 删除一个单词  
+Alt + [3~ # 删除光标处字符  
+Alt + [5~ # 历史向上  
+Alt + [6~ # 历史向下  
+Alt + [A # 行历史向上  
+Alt + [B # 行历史向下  
+Alt + [C # 向前移动一个字符  
+Alt + [D # 向后移动一个字符  
+Alt + [Z # 反向菜单补全  
+Alt + [_ # 插入最后一个单词  
+Alt + a # 接受并暂停  
+Alt + b # 向后移动一个单词  
+Alt + c # 切换目录  
+Alt + d # 删除一个单词  
+Alt + f # 向前移动一个单词  
+Alt + g # 获取行  
+Alt + h # 获取帮助  
+Alt + l # 列目录  
+Alt + m # 拷贝前一个 Shell 单词  
+Alt + n # 历史前向搜索  
+Alt + p # 历史反向搜索  
+Alt + q # 推送到行缓冲区  
+Alt + s # 拼写单词  
+Alt + t # 交换单词  
+Alt + u # 提高单词大小写  
+Alt + w # 删除区域  
+Alt + x # 执行命名命令  
+Alt + y # 黏贴弹出  
+Alt + z # 执行最后命名命令  
+Alt + | # 跳转到列  
+Alt + ~ # Bash 列表选择  
+Alt + ^? # 删除光标左侧单词  
+^_ # 撤销  
+空格 # 魔法空格  
+!-"~" # 自我插入  
+^? # 删除光标左侧字符  
+\M-^-@ 到 \M-^-? # 自我插入
+```
+
 ## BASH 基本操作
 
 ```bash

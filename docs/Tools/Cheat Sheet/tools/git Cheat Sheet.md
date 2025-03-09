@@ -2,6 +2,7 @@
 title: git
 tags:
   - CheatSheet
+  - git
 categories: 
 date: 2025-02-01T14:22:36+08:00
 modify: 2025-02-01T14:22:36+08:00
@@ -15,18 +16,27 @@ mdate: 2025-02-01
 
 ## 配置
 
-```
+```shell
 git config --global user.name "Your Name" 配置全局用户名
 git config --global user.email "Email Address" 配置全局邮箱地址
 git config --global credential.helper store    保存密码(每次要输密码/重复输密码)
 git config user.name "Your Name" 配置当前仓库用户名
 git config user.email "Email Address" 配置当前仓库邮箱地址
+git config --global --edit
+
+git config -system core.editor vim
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.up rebase
+git config --global alias.ci commit
 ```
 
 ## 初始化
 
 ```
 git init
+git init --bare <directory>
 ```
 
 ## 提交修改
@@ -95,8 +105,8 @@ git log --pretty=format 常用的选项(摘自progit_v2.1.9)
 
 git log --since --after     显示时间之后的提交
 git log --until --before    显示时间之前的提交
-git --author                显示指定作者的提交
-git --committer             显示指定committer的提交(注:committer不一定是author)
+git log --author                显示指定作者的提交
+git log --committer             显示指定committer的提交(注:committer不一定是author)
 git log -S [keyword]        仅显示添加或移除了某个关键字的提交(某些场景比单独git log -p | grep [keyword] 好用很多)
 git log origin/b3.3/master --author=yx-ren --since="2019-10-01" --before="2019-11-01" 查看某作者在某发布版本最近一个月的提交, 常见于线上背锅
 git log origin/b3.0/master --author=some_leave --since="1 month ago" 查看某刚离职同事过去一个月的提交, 常见于背锅
@@ -158,6 +168,27 @@ git push origin master                    以后每次将本地仓库推送至�
 ```
 git clone <remote address>    git协议速度更快但通常公司内网不允许，https协议速度慢
 ```
+
+## commit convention
+
+### 常见的 commit types（提交类型）
+
+- **feat** ：新增功能（feature），表示引入了新的功能或特性，这是项目向前发展的提交类型。
+- **fix** ：修复 bug（bug fix），用于修复代码中存在的错误或问题，以使软件的功能恢复正常。
+- **docs** ：文档（documentation），涉及对项目文档的修改，包括但不限于 README 文件、API 文档、用户指南等，不涉及代码逻辑的改变。
+- **style** ：格式（不影响代码运行的变动），主要指对代码风格和格式的调整，如空格、缩进、分号等，不会影响代码的功能和逻辑。
+- **refactor** ：重构，表示对现有代码进行重构，既不是新增功能，也不是修复 bug，而是对代码结构、设计模式等进行优化，以提高代码质量和可维护性。
+- **perf** ：改善效能，用于描述对代码性能的优化，如提高运行速度、减少内存占用等，使软件在性能方面得到提升。
+- **test** ：增加测试，当添加缺失的测试用例或对现有测试进行改进时使用此类型，有助于确保代码的正确性和稳定性。
+- **chore** ：杂项，用于描述不属于上述类型的其他类型的提交，如对构建工具、依赖项管理工具等的修改，通常是对项目构建、运行环境等方面的维护工作。
+- **revert** ：撤销回复先前的 commit，用于撤销之前的一个或多个提交，格式通常为 `revert：<previous commit message>`，以便明确撤销的是哪个提交以及该提交的内容。
+
+### 其他约定
+
+- **scope（范围）** ：可选，用于描述提交影响的代码范围或模块，通常放在提交类型后面，用括号括起来，例如 `feat(ui): add new button` 表示在 UI 模块中新增了一个按钮功能。
+- **subject（主题）** ：简要描述提交的主要内容，应简洁明了，避免使用模糊或不准确的词汇，一般不超过 50 个字符。
+- **body（正文）** ：可选，用于对提交进行更详细的说明，可以包括背景信息、实现细节、为什么要做这个更改等内容，通常在主题下方空一行开始编写。
+- **footer（尾部）** ：可选，用于引用相关的 issue、PR 或其他重要信息，例如 “Closes #123” 表示关闭了编号为 123 的 issue。
 
 ## 分支管理：创建、切换、查看、合并、删除
 
@@ -477,3 +508,4 @@ git submodule foreach git pull    子模块更新
 https://www.liaoxuefeng.com/wiki/896043488029600
 https://git-scm.com/book/en/v2
 ```
+

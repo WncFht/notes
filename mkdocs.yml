@@ -335,7 +335,10 @@ nav:
   - Tools:
       - Tools/index.md
       - Cheat Sheet:
-          - Tools/Cheat Sheet/index.md
+          - Tools/Cheat Sheet/Cheat Sheet.md
+          - Tools/Cheat Sheet/Tools 待整理.md
+          - Tools/Cheat Sheet/常用命令.md
+          - Tools/Cheat Sheet/常用配置文件.md
           - tools:
               - Tools/Cheat Sheet/tools/adb Cheat Sheet.md
               - Tools/Cheat Sheet/tools/bash Cheat Sheet.md
@@ -344,15 +347,35 @@ nav:
               - Tools/Cheat Sheet/tools/git Cheat Sheet.md
               - Tools/Cheat Sheet/tools/ip Cheat Sheet.md
               - Tools/Cheat Sheet/tools/tmux Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/Docker Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/KDE Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/Makeflie Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/chezmoi Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/mkdocs Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/network Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/ssh Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/tabby Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/wandb Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/zotero Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/小鹤双拼 Cheat Sheet.md
+              - Tools/Cheat Sheet/tools/远程连接 Cheat Sheet.md
           - editors:
               - Tools/Cheat Sheet/editors/emacs Cheat Sheet.md
               - Tools/Cheat Sheet/editors/nano Cheat Sheet.md
+              - Tools/Cheat Sheet/editors/VScode Cheat Sheet.md
               - Tools/Cheat Sheet/editors/org Cheat Sheet.md
               - Tools/Cheat Sheet/editors/vim Cheat Sheet.md
+              - Tools/Cheat Sheet/editors/nvim Cheat Sheet.md
+              - Tools/Cheat Sheet/editors/cursor Cheat Sheet.md
           - languages:
               - Tools/Cheat Sheet/languages/javascript Cheat Sheet.md
               - Tools/Cheat Sheet/languages/python Cheat Sheet.md
               - Tools/Cheat Sheet/languages/vimscript Cheat Sheet.md
+              - Tools/Cheat Sheet/languages/Go Cheat Sheet.md
+              - Tools/Cheat Sheet/languages/markdown Cheat Sheet.md
+              - Tools/Cheat Sheet/languages/typst Cheat Sheet.md
+          - System:
+              - Tools/Cheat Sheet/System/Arch Cheat Sheet.md
       - AI:
           - Tools/AI/prompt.md
           - Tools/AI/prompt_writing.md

@@ -156,3 +156,74 @@ Enter          M-w        # 确认选择内容, 并退出
 	- http://man.openbsd.org/OpenBSD-current/man1/tmux.1
 - 可以通过 $HOME/.tmux.conf 更改配置, 参考一些比较好的 tmux 配置:
 	- https://github.com/gpakosz/.tmux
+- [Tmux 配置：打造最适合自己的终端复用工具 - zuorn - 博客园](https://www.cnblogs.com/zuoruining/p/11074367.html)
+
+## 配置文件
+
+```.tmux.conf
+# 设置前缀键为 Ctrl+a
+set-option -g set-titles-string '#h - tmux (#S)'
+
+# 状态栏内容
+set-option -g status-left '[#S]'
+set-option -g status-right '[#I:#P] | %a %Y-%m-%d %H:%M'
+
+# 设置默认命令为 zsh
+set-option -g default-command "zsh"
+
+# 更换左右窗口快捷键
+bind-key -r h select-pane -L
+bind-key -r j select-pane -D
+bind-key -r k select-pane -U
+bind-key -r l select-pane -R
+
+# 快速切换窗口
+bind -r C-h select-window -p
+bind -r C-l select-window -n
+
+# 分离 / 重新连接会话
+bind d detach
+bind C-r source-file ~/.tmux.conf \; display "配置已重新加载！"
+
+# 连接已有会话
+bind C-c new-window -c '#{pane_current_path}'
+
+# 切换分屏
+bind \\ split-window -v
+bind-key v split-window -h
+bind-key s split-window -v
+
+# 复制模式
+bind-key [ copy-mode
+bind-key ] paste-buffer
+
+# 设置默认分屏的方向
+bind-key '"' split-window -h
+bind-key % split-window -v
+
+# 设置默认的窗口标题
+set-option -g set-titles on
+
+# 窗口永久关闭
+bind-key & confirm-before -p "是否杀死窗口 #W? (y/n)" kill-window
+
+# 复制模式下方便的选词选段
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
+unbind -T copy-mode-vi Enter
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
+
+# 设置其他快捷键
+bind-key M-1 select-window -t :1
+bind-key M-2 select-window -t :2
+bind-key M-3 select-window -t :3
+bind-key M-4 select-window -t :4
+bind-key M-5 select-window -t :5
+bind-key M-6 select-window -t :6
+bind-key M-7 select-window -t :7
+bind-key M-8 select-window -t :8
+bind-key M-9 select-window -t :9
+bind-key M-0 select-window -t :10
+
+# 禁用警告音
+set -g bell-action none
+```
