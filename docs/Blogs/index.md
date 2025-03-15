@@ -23,6 +23,8 @@ comments: false
     - FreeSplatter 代码解读 : posts/FreeSplatter 代码解读
 - "项目解读":
     - OpenManus : posts/openManus
+- "Agent":
+  - "Agent 资源汇总" : posts/Agent 的一些资源汇总
 - "其他":
     - 笔记软件 : posts/notes_software
 {{ END_TOC }}
